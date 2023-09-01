@@ -1,0 +1,87 @@
+/* In your styles.css or styles.scss */
+.error-message {
+    color: red; /* You can adjust the color to your preference */
+    font-size: 14px; /* You can adjust the font size to your preference */
+    margin-top: 5px; /* You can adjust the margin to provide spacing between the input and the error message */
+  }
+  
+
+  /* Custom style for center-top notifications */
+.center-top-toast {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  max-width: 400px; /* Adjust the maximum width as needed */
+  background-color: black;
+}
+
+
+/* your-component.component.css */
+.dark-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  z-index: 1000;
+}
+
+.dark-overlay.show {
+  display: block;
+}
+
+.popup-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  z-index: 1001;
+}
+
+.popup {
+  /* Popup styles here */
+}
+
+.th-che {
+  width: 18px;
+  height: 18px;
+  opacity: 0;
+  position: absolute;
+}
+.th-che + label {
+  display: flex;
+  position: relative;
+  padding: 2px 0 2px 25px;
+  cursor: pointer;
+  color: var(--black);
+}
+
+.th-che + label::before {
+  content: "";
+  width: 17px;
+  height: 17px;
+  border: 1px solid var(--theme-grey2);
+  border-radius: 5px;
+  position: absolute;
+  display: inline-block;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.th-chechecked + label::before {
+  border-color: var(--black);
+  background: var(--black) url(/assets/images/tick-icon.svg) no-repeat center center;
+  background-size: 11px 8px !important;
+}
+.che-list li {
+  padding: 2px 0;
+}
+

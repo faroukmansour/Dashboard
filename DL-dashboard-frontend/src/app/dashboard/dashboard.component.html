@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="/assets/datepicker/daterangepicker.css" rel="stylesheet" type="text/css">
+    <link href="/assets/fonts/stylesheet.css" rel="stylesheet" type="text/css">
+    <link href="/assets/bootstrap5/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/assets/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+    <div id="app-wrapper" class="d-flex">
+        <div id="app-sidebar">
+            <div class="d-flex justify-content-end d-md-none">
+                <span class="close-icon close-sidebar"></span>
+            </div>
+            <div class="login-user d-flex align-items-center mb-4 mt-2 position-relative">
+                <div class="d-inline-flex align-items-center dropdown-arrow toggle-btn w-100">
+                    <div class="user-img">
+                        <img src="/assets/images/Achraf.svg" alt="" >
+                    </div>
+                    <div class="user-info">
+                        <h4>Achraf</h4>
+                    </div>
+                </div>
+                <div class="user-account-menu toggle-dropdown">
+                    <ul class="list-unstyled m-0">
+                        <li><a href="#">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <nav class="main-menu mb-4">
+                <ul>
+                    <li class="nav-icon-dashboard active"><a routerLink="">Dashboard</a></li>
+                    <li class="nav-icon-documents"><a routerLink="listQuotation">Quotations</a></li>
+                    <li class="nav-icon-documents"><a routerLink="template">Templates</a></li>
+                    <li class="nav-icon-projects"><a routerLink="">Projects</a></li>
+                    <li class="nav-icon-clients"><a routerLink="client">Clients</a></li>
+                </ul>
+            </nav>
+            <div class="logo mt-auto">
+                <img src="/assets/images/DL-logo.svg" alt="Logo" />
+            </div>
+            <div class="copyright pt-3">&copy; Digital Lifestyle 2023. All rights reserved.</div>
+        </div>
+
+        <div id="app-main-content">
+            <div class="main-content content-area">
+                <div class="sidebarToggleBtn hamburger-menu-btn me-auto d-md-none"><span></span></div>
+                <div class="page-header d-flex flex-wrap align-items-center justify-content-between">
+                    <div class="page-title mb-3">
+                        <h2>Dashboard</h2>
+                        <p>Discover facts & numbers of your business.</p>
+                    </div>
+                    <div class="page-header-content d-flex flex-wrap align-items-center mb-2">
+                        <div class="d-flex d-sm-inline-flex field-icon-start select-dropdown filter-option">
+                            <i class="sm-icon icon-dark-gray calendar-icon"></i>
+                            <input type="text" id="daterangepicker" class="textbox date-picker" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-grid dashboard-stats mt-3">
+                    <div class="d-stats">
+                        <strong>13</strong>
+                        <p>Total <br/>Projects</p>
+                    </div>
+                    <div class="d-stats">
+                        <strong>05</strong>
+                        <p>Ongoing <br/>Projects</p>
+                    </div>
+                    <div class="d-stats">
+                        <strong>08</strong>
+                        <p>Delivered <br/>Projects</p>
+                    </div>
+                    <div class="d-stats">
+                        <strong class="color-red">02</strong>
+                        <p>Late <br/>Projects</p>
+                    </div>
+                    <div class="d-stats">
+                        <strong>1,321,147.50</strong>
+                        <p>DIRAHMS <br/>Quotations</p>
+                    </div>
+                    <div class="d-stats">
+                        <strong>1,501,147.50</strong>
+                        <p>DIRAHMS <br/>Completed</p>
+                    </div>
+                    <div class="d-stats">
+                        <strong>8,147.00</strong>
+                        <p>DIRAHMS <br/>Pending</p>
+                    </div>
+                </div>
+
+                <div class="grey-box-section pb-0 mt-2">
+                    <div class="d-flex flex-wrap align-items-start justify-content-between py-1">
+                        <h5>Latest Quotations</h5>
+                        <a href="#">See All</a>
+                    </div>
+                    <div class="table-wrapper pt-1">
+                        <table class="last-child-text-right" cellpadding="0" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th><span class="ps-4 ms-3">ID</span></th>
+                                    <th><span>Client Name</span></th>
+                                    <th><span>Quotation Name</span></th>
+                                    <th><span>Quotation Date</span></th>
+                                    <th><span>Type de Services</span></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span class="d-inline-flex align-items-center">
+                                            <span class="col-user-img">
+                                                <img src="/assets/images/user-face1.svg" alt="" >
+                                            </span>
+                                            0001
+                                        </span>
+                                    </td>
+                                    <td>
+                                        Luana Clement
+                                    </td>
+                                    <td>
+                                        Retal Official Website
+                                    </td>
+                                    <td>
+                                        Jan 14, 2023
+                                    </td>
+                                    <td>
+                                        <span class="tag">UX UI Design</span>
+                                        <span class="tag">Dévelopment</span>
+                                    </td>
+                                    <td>
+                                        <a href="#"><i class="sm-icon eye-icon"></i></a>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <span class="d-inline-flex align-items-center">
+                                            <span class="col-user-img">
+                                                <img src="/assets/images/user-face2.svg" alt="" >
+                                            </span>
+                                            0002
+                                        </span>
+                                    </td>
+                                    <td>
+                                        Leo Castell
+                                    </td>
+                                    <td>
+                                        Executive Dashboard
+                                    </td>
+                                    <td>
+                                        Feb 4, 2023
+                                    </td>
+                                    <td>
+                                        <span class="tag">UX UI Design</span>
+                                    </td>
+                                    <td>
+                                        <a href="#"><i class="sm-icon eye-icon"></i></a>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <span class="d-inline-flex align-items-center">
+                                            <span class="col-user-img">
+                                                <img src="/assets/images/user-face1.svg" alt="" >
+                                            </span>
+                                            0003
+                                        </span>
+                                    </td>
+                                    <td>
+                                        Shana Schwarz
+                                    </td>
+                                    <td>
+                                        Operational Dashboard
+                                    </td>
+                                    <td>
+                                        Feb 9, 2023
+                                    </td>
+                                    <td>
+                                        <span class="tag">Dévelopment</span>
+                                    </td>
+                                    <td>
+                                        <a href="#"><i class="sm-icon eye-icon"></i></a>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <span class="d-inline-flex align-items-center">
+                                            <span class="col-user-img">
+                                                <img src="/assets/images/user-face1.svg" alt="" >
+                                            </span>
+                                            0004
+                                        </span>
+                                    </td>
+                                    <td>
+                                        Carla Bonadei
+                                    </td>
+                                    <td>
+                                        Nobu Landing Page
+                                    </td>
+                                    <td>
+                                        Feb 12, 2023
+                                    </td>
+                                    <td>
+                                        <span class="tag">UX UI Design</span>
+                                        <span class="tag">Dévelopment</span>
+                                    </td>
+                                    <td>
+                                        <a href="#"><i class="sm-icon eye-icon"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="row gx-2">
+                    <div class="col-md-6">
+                        <div class="grey-box-section pb-0 mt-2">
+                            <div class="d-flex flex-wrap align-items-start justify-content-between py-1">
+                                <h5>Ongoing Projects</h5>
+                                <a href="#">See All</a>
+                            </div>
+                            <div class="table-wrapper pt-1">
+                                <table cellpadding="0" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th><span>ID</span></th>
+                                            <th><span>Name</span></th>
+                                            <th><span>Type</span></th>
+                                            <th><span>Delivery Date</span></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>01</td>
+                                            <td>
+                                                The resort Landing page
+                                            </td>
+                                            <td>
+                                                <span class="tag tag-v2 fw-700 green-tag">
+                                                    WEBSITE
+                                                </span>
+                                            </td>
+                                            <td>
+                                                Jan 14, 2023
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>02</td>
+                                            <td>
+                                                Eithar Website
+                                            </td>
+                                            <td>
+                                                <span class="tag tag-v2 fw-700 purple-tag">
+                                                    MOBILE APP
+                                                </span>
+                                            </td>
+                                            <td>
+                                                Feb 04, 2023
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>03</td>
+                                            <td>
+                                                Tes Website
+                                            </td>
+                                            <td>
+                                                <span class="tag tag-v2 fw-700 navy-blue-tag">
+                                                    DASHBOARD
+                                                </span>
+                                            </td>
+                                            <td>
+                                                Feb 09, 2023
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>04</td>
+                                            <td>
+                                                Motion Design
+                                            </td>
+                                            <td>
+                                                <span class="tag tag-v2 fw-700 green-tag">
+                                                    WEBSITE
+                                                </span>
+                                            </td>
+                                            <td>
+                                                Feb 12, 2023
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="grey-box-section pb-0 mt-2">
+                            <div class="d-flex flex-wrap align-items-start justify-content-between py-1">
+                                <h5>Latest Invoices & POs</h5>
+                                <a href="#">See All</a>
+                            </div>
+                            <div class="table-wrapper pt-1">
+                                <table cellpadding="0" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th><span>Purchase Order</span></th>
+                                            <th><span>Invoice Date</span></th>
+                                            <th><span>Status</span></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>#P9246</td>
+                                            <td>
+                                                Jan 26, 2023
+                                            </td>
+                                            <td>
+                                                <span class="tag tag-v2 fw-700 green-tag">
+                                                    COMPLETE
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <a class="d-inline-flex align-items-start" href="#">
+                                                    <i class="sm-icon2 download-icon me-2"></i>
+                                                    Download
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>#P5421</td>
+                                            <td>
+                                                Feb 4, 2023
+                                            </td>
+                                            <td>
+                                                <span class="tag tag-v2 fw-700 grey-tag">
+                                                    NONE
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <a class="d-inline-flex align-items-start" href="#">
+                                                    <i class="sm-icon2 download-icon me-2"></i>
+                                                    Download
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>#P1963</td>
+                                            <td>
+                                                Feb 9, 2023
+                                            </td>
+                                            <td>
+                                                <span class="tag tag-v2 fw-700 green-tag">
+                                                    COMPLETE
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <a class="d-inline-flex align-items-start" href="#">
+                                                    <i class="sm-icon2 download-icon me-2"></i>
+                                                    Download
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>#P0912</td>
+                                            <td>
+                                                Feb 25, 2023
+                                            </td>
+                                            <td>
+                                                <span class="tag tag-v2 fw-700 green-tag">
+                                                    COMPLETE
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <a class="d-inline-flex align-items-start" href="#">
+                                                    <i class="sm-icon2 download-icon me-2"></i>
+                                                    Download
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="/assets/js/jquery-3.6.1.min.js"></script>
+    <script src="/assets/datepicker/moment.min.js"></script>
+    <script src="/assets/datepicker/daterangepicker.js"></script>
+    <script src="/assets/bootstrap5/js/bootstrap.min.js"></script>
+    <script src="/assets/js/main.js"></script>
+    <script>
+        $(function() {
+            
+            $('#daterangepicker').daterangepicker({
+                "opens": "left"
+            });
+
+            $('#daterangepicker').on('apply.daterangepicker', function(ev, picker) {
+                $(this).val(`Du ${picker.startDate.format('DD-MM-YYYY')} au ${picker.endDate.format('DD-MM-YYYY')}`);
+            });
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<router-outlet></router-outlet>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Templates</title>
+    <link href="/assets/datepicker/daterangepicker.css" rel="stylesheet" type="text/css">
+    <link href="/assets/fonts/stylesheet.css" rel="stylesheet" type="text/css">
+    <link href="/assets/bootstrap5/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/assets/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+    <div id="app-wrapper" class="d-flex">
+        <div id="app-sidebar">
+            <div class="d-flex justify-content-end d-md-none">
+                <span class="close-icon close-sidebar"></span>
+            </div>
+            <div class="login-user d-flex align-items-center mb-4 mt-2 position-relative">
+                <div class="d-inline-flex align-items-center dropdown-arrow toggle-btn w-100">
+                    <div class="user-img">
+                        <img src="/assets/images/Achraf.svg" alt="" >
+                    </div>
+                    <div class="user-info">
+                        <h4>Achraf</h4>
+                    </div>
+                </div>
+                <div class="user-account-menu toggle-dropdown">
+                    <ul class="list-unstyled m-0">
+                        <li><a href="#">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <nav class="main-menu mb-4">
+                <ul>
+                    <li class="nav-icon-dashboard "><a routerLink="">Dashboard</a></li>
+                    <li class="nav-icon-documents"><a routerLink="/listQuotation">Quotations</a></li>
+                    <li class="nav-icon-documents active"><a routerLink="/template">Templates</a></li>
+                    <li class="nav-icon-projects"><a routerLink="">Projects</a></li>
+                    <li class="nav-icon-clients"><a routerLink="/client">Clients</a></li>
+                </ul>
+            </nav>
+            <div class="logo mt-auto">
+                <img src="/assets/images/DL-logo.svg" alt="Logo" />
+            </div>
+            <div class="copyright pt-3">&copy; Digital Lifestyle 2023. All rights reserved.</div>
+        </div>
+
+        <div id="app-main-content">
+            <div class="main-content content-area">
+                <div class="sidebarToggleBtn hamburger-menu-btn me-auto d-md-none"><span></span></div>
+                <div class="page-header d-flex flex-wrap align-items-center justify-content-between">
+                    <div class="page-title mb-3">
+                        <h2>Templates</h2>
+                        <p>Find all quotations templates</p>
+                    </div>
+                    <div class="page-header-content d-flex flex-wrap align-items-center mb-2">
+                        <a href="#" class="theme-btn theme-btn--grey mb-2 ms-auto">+ Template</a>
+                    </div>
+                </div>
+
+                <div class="d-grid templates-holder my-4 pt-lg-1">
+                    <div class="template-item">
+                        <div class="cta-btns">
+                            <a href="#"><i class="sm-icon edit-icon"></i></a>
+                            <a href="#"><i class="sm-icon trash-icon"></i></a>
+                        </div>
+                        <div class="template-item-img">
+                            <img src="/assets/images/e-commerce.svg" alt="E-commerce" />
+                        </div>
+                        <h4>E-commerce</h4>
+                    </div>
+                    <div class="template-item">
+                        <div class="cta-btns">
+                            <a href="#"><i class="sm-icon edit-icon"></i></a>
+                            <a href="#"><i class="sm-icon trash-icon"></i></a>
+                        </div>
+                        <div class="template-item-img">
+                            <img src="/assets/images/real-estate.svg" alt="Real estate" />
+                        </div>
+                        <h4>Real estate</h4>
+                    </div>
+                    <div class="template-item">
+                        <div class="cta-btns">
+                            <a href="#"><i class="sm-icon edit-icon"></i></a>
+                            <a href="#"><i class="sm-icon trash-icon"></i></a>
+                        </div>
+                        <div class="template-item-img">
+                            <img src="/assets/images/mobile-app.svg" alt="Mobile App" />
+                        </div>
+                        <h4>Mobile App</h4>
+                    </div>
+                    <div class="template-item">
+                        <div class="cta-btns">
+                            <a href="#"><i class="sm-icon edit-icon"></i></a>
+                            <a href="#"><i class="sm-icon trash-icon"></i></a>
+                        </div>
+                        <div class="template-item-img">
+                            <img src="/assets/images/dashboard.svg" alt="Dashboard" />
+                        </div>
+                        <h4>Dashboard</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/assets/js/jquery-3.6.1.min.js"></script>
+    <script src="/assets/datepicker/moment.min.js"></script>
+    <script src="/assets/datepicker/daterangepicker.js"></script>
+    <script src="/assets/bootstrap5/js/bootstrap.min.js"></script>
+    <script src="/assets/js/main.js"></script>
+    <script>
+        $(function() {
+            
+            $('#daterangepicker').daterangepicker();
+
+            $('#daterangepicker').on('apply.daterangepicker', function(ev, picker) {
+                $(this).val(`Du ${picker.startDate.format('DD-MM-YYYY')} au ${picker.endDate.format('DD-MM-YYYY')}`);
+            });
+        });
+    </script>
+
+</body>
+</html>

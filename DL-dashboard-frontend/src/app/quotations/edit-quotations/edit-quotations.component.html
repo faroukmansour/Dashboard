@@ -1,0 +1,2932 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quotation Edit</title>
+    <link href="/assets/css/switch-button-style.css" rel="stylesheet" type="text/css">
+    <link href="/assets/datepicker/daterangepicker.css" rel="stylesheet" type="text/css">
+    <link href="/assets/fonts/stylesheet.css" rel="stylesheet" type="text/css">
+    <link href="/assets/bootstrap5/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/assets/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <div id="app-wrapper" class="d-flex" *ngIf="quotation">
+        <div id="app-sidebar">
+            <div class="d-flex justify-content-end d-md-none">
+                <span class="close-icon close-sidebar"></span>
+            </div>
+            <div class="login-user d-flex align-items-center mb-4 mt-2 position-relative">
+                <div class="d-inline-flex align-items-center dropdown-arrow toggle-btn w-100">
+                    <div class="user-img">
+                        <img src="/assets/images/Achraf.svg" alt="">
+                    </div>
+                    <div class="user-info">
+                        <h4>Achraf</h4>
+                    </div>
+                </div>
+                <div class="user-account-menu toggle-dropdown">
+                    <ul class="list-unstyled m-0">
+                        <li><a href="#">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <nav class="main-menu mb-4">
+                <ul>
+                    <li class="nav-icon-dashboard active"><a routerLink="">Dashboard</a></li>
+                    <li class="nav-icon-documents"><a routerLink="/listQuotation">Quotations</a></li>
+                    <li class="nav-icon-documents"><a routerLink="/template">Templates</a></li>
+                    <li class="nav-icon-projects"><a routerLink="">Projects</a></li>
+                    <li class="nav-icon-clients"><a routerLink="/client">Clients</a></li>
+                </ul>
+            </nav>
+            <div class="logo mt-auto">
+                <img src="/assets/images/DL-logo.svg" alt="Logo" />
+            </div>
+            <div class="copyright pt-3">&copy; Digital Lifestyle 2023. All rights reserved.</div>
+        </div>
+
+        <div id="app-main-content">
+            <div class="main-content content-area">
+                <div class="sidebarToggleBtn hamburger-menu-btn me-auto d-md-none"><span></span></div>
+                <div
+                    class="sticky-page-header page-header border-bottom-grey d-flex flex-wrap align-items-center justify-content-between">
+                    <div class="page-title mb-3">
+                        <h2 class="d-inline-flex align-items-center">
+                            Modifier devis
+                            <span class="tag tag-v2 fw-700 green-tag ms-3">
+                                COMPLETE
+                            </span>
+                        </h2>
+                        <p>Modifiez le formulaire ci-dessus</p>
+                    </div>
+                    <div class="page-header-content d-flex flex-wrap align-items-center mb-2">
+                        <a data-popup="#linkPrintModal"
+                            class="popup-modal-btn theme-btn icon-btn theme-btn--transparent mb-2 ms-auto">
+                            <i class="sm-icon printer-icon"></i>
+                        </a>
+                        <a data-popup="#linkPrintModal"
+                            class="popup-modal-btn theme-btn icon-btn theme-btn--transparent mb-2 ms-2">
+                            <i class="sm-icon link2-icon"></i>
+                        </a>
+                        <a href="#" class="theme-btn theme-btn--transparent mb-2 ms-2">Annuler</a>
+                        <a href="#" class="theme-btn mb-2 ms-2">Enregistrer</a>
+                    </div>
+                </div>
+
+                <div class="form-wrapper py-4">
+                    <div class="form-field">
+                        <label class="d-inline-flex align-items-center">
+                            Voulez-vous utiliser une template ?
+                            <div class="switch ms-3">
+                                <input type="checkbox" class="toggleOption" name="templates" value="templates-list"
+                                    checked>
+                                <div class="slider round">
+                                    <span class="on"></span>
+                                    <span class="off"></span>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="d-grid sample-templates-holder templates-list pb-3">
+                        <div class="sample-template-item">
+                            <input id="E-commerce" type="radio" name="template" value="E-commerce"
+                                [(ngModel)]="selectedTemplate" [checked]="selectedTemplate === 'E-commerce'" />
+                            <label for="E-commerce">
+                                <div class="template-item-img">
+                                    <img src="/assets/images/e-commerce.svg" alt="E-commerce" />
+                                </div>
+                                <h4>E-commerce</h4>
+                            </label>
+                        </div>
+                        <div class="sample-template-item">
+                            <input id="Real-estate" type="radio" name="template" value="Real-estate"
+                                [(ngModel)]="selectedTemplate" [checked]="selectedTemplate === 'Real-estate'" />
+                            <label for="Real-estate">
+                                <div class="template-item-img">
+                                    <img src="/assets/images/real-estate.svg" alt="Real estate" />
+                                </div>
+                                <h4>Real estate</h4>
+                            </label>
+                        </div>
+                        <div class="sample-template-item">
+                            <input id="Mobile-App" type="radio" name="template" value="Mobile-App"
+                                [(ngModel)]="selectedTemplate" [checked]="selectedTemplate === 'Mobile-App'" />
+                            <label for="Mobile-App">
+                                <div class="template-item-img">
+                                    <img src="/assets/images/mobile-app.svg" alt="Mobile App" />
+                                </div>
+                                <h4>Mobile App</h4>
+                            </label>
+                        </div>
+                        <div class="sample-template-item">
+                            <input id="Dashboard" type="radio" name="template" value="Dashboard"
+                                [(ngModel)]="selectedTemplate" [checked]="selectedTemplate === 'Dashboard'" />
+                            <label for="Dashboard">
+                                <div class="template-item-img">
+                                    <img src="/assets/images/dashboard.svg" alt="Dashboard" />
+                                </div>
+                                <h4>Dashboard</h4>
+                            </label>
+                        </div>
+                        <div class="sample-template-item">
+                            <input id="scratch" type="radio" name="template" value="scratch"
+                                [(ngModel)]="selectedTemplate" [checked]="selectedTemplate === 'scratch'" />
+                            <label for="scratch">
+                                <div class="template-item-img">
+                                    <img src="/assets/images/scratch-img.svg" alt="Scratch" />
+                                </div>
+                                <h4>From scratch</h4>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-lg-6">
+                            <div class="d-inline-flex">
+                                <span class="step-num">
+                                    Étape 01. <strong>Détails du devis</strong>
+                                </span>
+                            </div>
+
+                            <div class="form-field">
+                                <label>Société</label>
+                                <div class="select-dropdown">
+                                    <select class="th-textbox" [(ngModel)]="societe" name="societe">
+                                        <option>COM4DESIGN</option>
+                                        <option>DL</option>
+                                        <option>Retal</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row gx-3">
+                                <div class="col-sm-8">
+                                    <div class="form-field">
+                                        <label>Date de création</label>
+                                        <div class="field-icon-start field-icon-end">
+                                            <i class="sm-icon icon-start icon-dark-gray calendar-icon"></i>
+                                            <i class="sm-icon2 icon-end edit-icon"></i>
+                                            <input type="date" class="th-textbox" name="creation_date"
+                                                [(ngModel)]="creation_date">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-field">
+                                        <label>N° de devis</label>
+                                        <div class="field-icon-end">
+                                            <i class="sm-icon2 icon-end edit-icon"></i>
+                                            <input type="text" class="th-textbox" name="date-creation" value="0478"
+                                                placeholder="N° de devis" [(ngModel)]="id" name="id" [readonly]="true">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-field">
+                                <label>Qui est l’auteur du devis ?</label>
+                                <div class="select-dropdown field-icon-start">
+                                    <span class="col-user-img icon-start ">
+                                        <img src="/assets/images/user-face1.svg" alt="">
+                                    </span>
+                                    <select class="th-textbox" [(ngModel)]="auteur" name="auteur">
+                                        <option>Achraf Azaiez</option>
+                                        <option>User 2</option>
+                                        <option>User 3</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-field">
+                                <label>Commentaire</label>
+                                <textarea placeholder="Commentaire" class="th-textbox th-textarea"
+                                    [(ngModel)]="commentaire" name="commentaire"> </textarea>
+                            </div>
+
+                            <div class="form-field">
+                                <label for="ClientName">Nom du client</label>
+                                <div class="field-icon-end">
+                                    <ng-container *ngIf="!ClientName">
+                                        <input type="text" id="searchNames" class="th-textbox"
+                                            placeholder="Veuillez indiquer le nom du client..." name="clients"
+                                            [(ngModel)]="searchTerm" (keyup)="filterClients()">
+                                        <ul class="namesList searchable-namesList addable-items-list">
+                                            <li *ngFor="let client of filteredClients" (click)="selectClient(client)">
+                                                <span class="name-tag">Fa </span>
+                                                <div>
+                                                    <span class="full-name">{{ client.name }} {{ client.lastname
+                                                        }}</span>
+                                                    <p>Nom de la société</p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </ng-container>
+                                    <ng-container *ngIf="ClientName">
+                                        <div>
+                                            <input type="text" id="editName" class="th-textbox"
+                                                placeholder="Modifier le nom du client..." [(ngModel)]="ClientName"
+                                                name="ClientName">
+                                        </div>
+                                    </ng-container>
+                                    <div *ngIf="filteredClients.length === 0 && searchTerm.length > 0">
+                                        <p>Ooups, il semblerait que ce client n’existe pas !</p>
+                                        <a (click)="openForm()" data-popup="#addClient"
+                                            class="theme-btn popup-modal-btn w-100 mt-2">+ Nouvelle fiche client</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-12">
+                            <div class="col-lg-6">
+                                <div class="d-inline-flex mt-4">
+                                    <span class="step-num">
+                                        Étape 02. <strong>Type de services</strong>
+                                    </span>
+                                </div>
+
+                                <div class="form-field">
+                                    <label>01. Sélectionnez les services souhaités :</label>
+
+                                </div>
+                            </div>
+
+                            <div class="d-grid services-holder pt-2 pb-4">
+                                <div class="service-item selectable-item">
+                                    <input id="Branding" type="checkbox" class="toggleOption" name="service1"
+                                        value="branding" [(ngModel)]="branding" [checked]="branding === '1'" />
+                                    <label for="Branding">
+                                        <div class="service-item-img">
+                                            <img src="/assets/images/branding-icon.svg" alt="Branding" />
+                                        </div>
+                                        <h4>Branding</h4>
+                                    </label>
+                                </div>
+                                <div class="service-item selectable-item">
+                                    <input id="design" type="checkbox" class="toggleOption" name="service2"
+                                        value="design" [(ngModel)]="design" [checked]="design === '1'" />
+                                    <label for="design">
+                                        <div class="service-item-img">
+                                            <img src="/assets/images/ux-ui-icon.svg" alt="design" />
+                                        </div>
+                                        <h4>UX UI Design</h4>
+                                    </label>
+                                </div>
+                                <div class="service-item selectable-item">
+                                    <input id="web" type="checkbox" class="toggleOption" name="service3" value="web-dev"
+                                        [(ngModel)]="web" [checked]="web === '1'" />
+                                    <label for="web">
+                                        <div class="service-item-img">
+                                            <img src="/assets/images/web-dev-icon.svg" alt="web" />
+                                        </div>
+                                        <h4>Web dev</h4>
+                                    </label>
+                                </div>
+                                <div class="service-item selectable-item">
+                                    <input id="mobile" type="checkbox" class="toggleOption" name="service4"
+                                        value="mobile" [(ngModel)]="mobile" [checked]="mobile === '1'" />
+                                    <label for="mobile">
+                                        <div class="service-item-img">
+                                            <img src="/assets/images/mob-dev-icon.svg" alt="mobile" />
+                                        </div>
+                                        <h4>Mobile dev</h4>
+                                    </label>
+                                </div>
+                                <div class="service-item selectable-item">
+                                    <input id="dashboard" type="checkbox" class="toggleOption" name="service5"
+                                        value="dashboard" [(ngModel)]="dashboard" [checked]="dashboard === '1'" />
+                                    <label for="dashboard">
+                                        <div class="service-item-img">
+                                            <img src="/assets/images/dashboard-v2-icon.svg" alt="dashboard" />
+                                        </div>
+                                        <h4>Dashboard</h4>
+                                    </label>
+                                </div>
+                                <div class="service-item selectable-item">
+                                    <input id="web3" type="checkbox" class="toggleOption" name="service6" value="web3"
+                                        [(ngModel)]="web3" [checked]="web3 === '1'" />
+                                    <label for="web3">
+                                        <div class="service-item-img">
+                                            <img src="/assets/images/web3-icon.svg" alt="web3" />
+                                        </div>
+                                        <h4>Web 3</h4>
+                                    </label>
+                                </div>
+                                <div class="service-item selectable-item">
+                                    <input id="motion-design" type="checkbox" class="toggleOption" name="service7"
+                                        value="motion-design" [(ngModel)]="motion" [checked]="motion === '1'" />
+                                    <label for="motion-design">
+                                        <div class="service-item-img">
+                                            <img src="/assets/images/motion-design-icon.svg" alt="motion-design" />
+                                        </div>
+                                        <h4>Motion Design</h4>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="my-3" *ngIf="motion || web3|| web|| mobile|| branding|| design|| dashboard">
+                                <label>02. Veuillez détailler votre sélection :</label>
+                            </div>
+
+
+
+                            <div class="box-section pb-0 mb-2" *ngIf="branding">
+                                <div class="box-title">
+                                    <strong>Branding</strong>
+                                </div>
+                                <div class="accordion-wrapper">
+                                    <div class="accordion-element">
+                                        <div class="accordion-header">
+                                            <label>
+                                                01. Discovering & UI Design
+                                                <div class="switch ms-auto">
+                                                    <input type="checkbox" name="accordion-state" value="6"
+                                                        [(ngModel)]="Branding1">
+                                                    <div class="slider round">
+                                                        <span class="on"></span>
+                                                        <span class="off"></span>
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div *ngIf="Branding1">
+                                            <ul class="list-unstyled m-0 p-0 checkboxes-list">
+                                                <li>
+                                                    <input type="checkbox" id="Branding11" value="Branding11"
+                                                        class="th-checkbox" [(ngModel)]="Branding11"
+                                                        name="Branding11" />
+                                                    <label for="Branding11">Mapping out the current content
+                                                        architecture.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Branding12" value="Branding12"
+                                                        class="th-checkbox" [(ngModel)]="Branding12"
+                                                        name="Branding12" />
+                                                    <label for="Branding12">Combine user interviews and internally
+                                                        generated ideas into wireframes.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Branding13" value="Branding13"
+                                                        class="th-checkbox" [(ngModel)]="Branding13"
+                                                        name="Branding13" />
+                                                    <label for="Branding13">Prototyping all pages as a clickable
+                                                        prototype.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Branding14" value="Branding14"
+                                                        class="th-checkbox" [(ngModel)]="Branding14"
+                                                        name="Branding15" />
+                                                    <label for="Branding14">Testing materials as required.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Branding15" value="Branding15"
+                                                        class="th-checkbox" [(ngModel)]="Branding15"
+                                                        name="Branding15" />
+                                                    <label for="Branding15">User acceptance testing & iterations
+                                                        validation.</label>
+                                                </li>
+                                                <li *ngFor="let checkboxcxc1 of brandingcheckboxes; let i = index">
+                                                    <input type="checkbox" [(ngModel)]="checkboxcxc1.checked"
+                                                        value="chec" name="brandingLabel"
+                                                        (change)="updateCheckboxBrandingValue()"
+
+                                                        [id]="'checkboxSet1_' + i" class="th-checkbox" />
+                                                    <label *ngIf="checkboxcxc1.brandingLabel"
+                                                        [for]="'checkboxSet1_' + i">{{ checkboxcxc1.brandingLabel
+                                                        }}</label>
+                                                </li>
+
+                                                <li (click)="openFormbranding()">
+                                                    <strong class="text-decoration-underline">+ Add</strong>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="accordion-element">
+                                        <div class="accordion-header">
+                                            <label>
+                                                02. Information Architecture
+                                                <div class="switch ms-auto">
+                                                    <input type="checkbox" name="Branding2" value="Branding2"
+                                                        [(ngModel)]="Branding2">
+                                                    <div class="slider round">
+                                                        <span class="on"></span>
+                                                        <span class="off"></span>
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div *ngIf="Branding2">
+                                            <ul class="list-unstyled m-0 p-0 checkboxes-list">
+                                                <li>
+                                                    <input type="checkbox" id="Branding21" value="Branding21"
+                                                        class="th-checkbox" [(ngModel)]="Branding21"
+                                                        name="Branding21" />
+                                                    <label for="Branding21">Mapping out the current content
+                                                        architecture.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Branding22" value="Branding22"
+                                                        class="th-checkbox" [(ngModel)]="Branding22"
+                                                        name="Branding22" />
+                                                    <label for="Branding22">Combine user interviews and internally
+                                                        generated ideas into wireframes.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Branding23" value="Branding23"
+                                                        class="th-checkbox" [(ngModel)]="Branding23"
+                                                        name="Branding23" />
+                                                    <label for="Branding23">Prototyping all pages as a clickable
+                                                        prototype.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Branding24" value="Branding24"
+                                                        class="th-checkbox" [(ngModel)]="Branding24"
+                                                        name="Branding24" />
+                                                    <label for="Branding24">Testing materials as required.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Branding25" value="Branding25"
+                                                        class="th-checkbox" [(ngModel)]="Branding25"
+                                                        name="Branding25" />
+                                                    <label for="Branding25">User acceptance testing & iterations
+                                                        validation.</label>
+                                                </li>
+                                                <li *ngFor="let checkboxcxc of brandingcheckboxes1; let i = index">
+                                                    <input type="checkbox" [(ngModel)]="checkboxcxc.checked"
+                                                    (change)="updateCheckboxBrandingValue1()"
+
+                                                        value="'checkboxSet2_' + i" [id]="'checkboxSet2_' + i"
+                                                        name="'checkboxSet2_' + i" class="th-checkbox" />
+                                                    <label *ngIf="checkboxcxc.brandingLabel1"
+                                                        [for]="'checkboxSet2_' + i">{{ checkboxcxc.brandingLabel1
+                                                        }}</label>
+                                                </li>
+
+                                                <li (click)="openFormbranding1()">
+                                                    <strong class="text-decoration-underline">+ Add</strong>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="accordion-element">
+                                        <div class="accordion-header">
+                                            <label>
+                                                03. Prototyping & Testing
+                                                <div class="switch ms-auto">
+                                                    <input type="checkbox" name="accordion-state" value="8"
+                                                        [(ngModel)]="Branding3">
+                                                    <div class="slider round">
+                                                        <span class="on"></span>
+                                                        <span class="off"></span>
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div *ngIf="Branding3">
+                                            <ul class="list-unstyled m-0 p-0 checkboxes-list">
+                                                <li>
+                                                    <input type="checkbox" id="Branding31" value="Branding31"
+                                                        class="th-checkbox" [(ngModel)]="Branding31"
+                                                        name="Branding31" />
+                                                    <label for="Branding31">Mapping out the current content
+                                                        architecture.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Branding32" value="Branding32"
+                                                        class="th-checkbox" [(ngModel)]="Branding32"
+
+                                                        name="Branding32" />
+                                                    <label for="Branding32">Combine user interviews and internally
+                                                        generated ideas into wireframes.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Branding33" value="Branding33"
+                                                        class="th-checkbox" [(ngModel)]="Branding33"
+                                                        name="Branding33" />
+                                                    <label for="Branding33">Prototyping all pages as a clickable
+                                                        prototype.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Branding34" value="Branding34"
+                                                        class="th-checkbox" [(ngModel)]="Branding34"
+                                                        name="Branding34" />
+                                                    <label for="Branding34">Testing materials as required.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Branding35" value="Branding35"
+                                                        class="th-checkbox" [(ngModel)]="Branding35"
+                                                        name="Branding35" />
+                                                    <label for="Branding35">User acceptance testing & iterations
+                                                        validation.</label>
+                                                </li>
+                                                <li *ngFor="let checkboxcxc of brandingcheckboxes2; let i = index">
+                                                    <input type="checkbox" [(ngModel)]="checkboxcxc.checked"
+                                                        name="brandingLabel2" [id]="'checkboxSet3_' + i"
+                                                        (change)="updateCheckboxBrandingValue2()"
+                                                        class="th-checkbox" />
+                                                    <label *ngIf="checkboxcxc.brandingLabel2"
+                                                        [for]="'checkboxSet3_' + i">{{ checkboxcxc.brandingLabel2
+                                                        }}</label>
+                                                </li>
+
+                                                <li (click)="openFormbranding2()">
+                                                    <strong class="text-decoration-underline">+ Add</strong>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="box-section pb-0 mb-3" *ngIf="design">
+                                <div class="box-title">
+                                    <strong>UX UI Design</strong>
+                                </div>
+                                <div class="accordion-wrapper">
+                                    <div class="accordion-element">
+                                        <div class="accordion-header">
+                                            <label>
+                                                01. Discovering & UI Design
+                                                <div class="switch ms-auto">
+                                                    <input type="checkbox" name="accordion-state" value="1"
+                                                        [(ngModel)]="Design1" (change)="onCheckboxChange(1)">
+                                                    <div class="slider round">
+                                                        <span class="on"></span>
+                                                        <span class="off"></span>
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div *ngIf="Design1">
+                                            <ul class="list-unstyled m-0 p-0 checkboxes-list">
+                                                <li>
+                                                    <input type="checkbox" id="checkbox1_1_1" value="value1"
+                                                        class="th-checkbox" [(ngModel)]="Design11" name="Design11" />
+                                                    <label for="checkbox1_1_1">Mapping out the current content
+                                                        architecture.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="checkbox1_1_2" value="value2"
+                                                        class="th-checkbox" [(ngModel)]="Design12" name="Design12" />
+                                                    <label for="checkbox1_1_2">Combine user interviews and internally
+                                                        generated ideas into wireframes.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="checkbox1_1_3" value="value3"
+                                                        class="th-checkbox" [(ngModel)]="Design13" name="Design13" />
+                                                    <label for="checkbox1_1_3">Prototyping all pages as a clickable
+                                                        prototype.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="checkbox1_1_4" value="value4"
+                                                        class="th-checkbox" [(ngModel)]="Design14" name="Design14" />
+                                                    <label for="checkbox1_1_4">Testing materials as required.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="checkbox1_1_5" value="value5"
+                                                        class="th-checkbox" [(ngModel)]="Design15" name="Design15" />
+                                                    <label for="checkbox1_1_5">User acceptance testing & iterations
+                                                        validation.</label>
+                                                </li>
+
+                                                <li *ngFor="let checkboxcxc of checkboxes; let i = index">
+                                                    <input type="checkbox" [id]="'label' + i" value="value5"
+                                                    [(ngModel)]="checkboxcxc.checked"
+                                                    (change)="updateCheckboxvalue()"
+                                                        class="th-checkbox" />
+                                                    <label *ngIf="checkboxcxc.label" [for]="'label' + i">{{
+                                                        checkboxcxc.label }}</label>
+                                                </li>
+
+                                                <li (click)="openForm2()">
+                                                    <strong class="text-decoration-underline">+ Add</strong>
+                                                </li>
+                                            </ul>
+
+
+                                        </div>
+                                    </div>
+
+                                    <div class="accordion-element">
+                                        <div class="accordion-header">
+                                            <label>
+                                                02. Information Architecture
+                                                <div class="switch ms-auto">
+                                                    <input type="checkbox" name="accordion-state" value="2"
+                                                    
+                                                        [(ngModel)]="Design2" (change)="onCheckboxChange(2)">
+                                                    <div class="slider round">
+                                                        <span class="on"></span>
+                                                        <span class="off"></span>
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <ul class="list-unstyled m-0 p-0 checkboxes-list" *ngIf="Design2">
+                                                <li>
+                                                    <input type="checkbox" id="checkbox1_2_1" value="value1"
+                                                        class="th-checkbox" [(ngModel)]="Design21" name="Design21" />
+                                                    <label for="checkbox1_2_1">Mapping out the current content
+                                                        architecture.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="checkbox1_2_2" value="value2"
+                                                        class="th-checkbox" [(ngModel)]="Design22" name="Design22" />
+                                                    <label for="checkbox1_2_2">Combine user interviews and internally
+                                                        generated ideas into wireframes.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="checkbox1_2_3" value="value3"
+                                                        class="th-checkbox" [(ngModel)]="Design23" name="Design23" />
+                                                    <label for="checkbox1_2_3">Prototyping all pages as a clickable
+                                                        prototype.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="checkbox1_2_4" value="value4"
+                                                        class="th-checkbox" [(ngModel)]="Design24" name="Design24" />
+                                                    <label for="checkbox1_2_4">Testing materials as required.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="checkbox1_2_5" value="value5"
+                                                        class="th-checkbox" [(ngModel)]="Design25" name="Design25" />
+                                                    <label for="checkbox1_2_5">User acceptance testing & iterations
+                                                        validation.</label>
+                                                </li>
+                                                <li *ngFor="let checkboxcxc of checkboxes1; let i = index">
+                                                    <input type="checkbox" [id]="'label1' + i" value="value5"
+                                                    [(ngModel)]="checkboxcxc.checked"
+                                                    (change)="updateCheckboxvalue1()"
+                                                        class="th-checkbox" />
+                                                    <label *ngIf="checkboxcxc.label1" [for]="'label1' + i">{{
+                                                        checkboxcxc.label1 }}</label>
+                                                </li>
+
+                                                <li (click)="openForm3()">
+                                                    <strong class="text-decoration-underline">+ Add</strong>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="accordion-element">
+                                        <div class="accordion-header">
+                                            <label>
+                                                03. Prototyping & Testing
+                                                <div class="switch ms-auto">
+                                                    <input type="checkbox" name="accordion-state" value="3"
+                                                        [(ngModel)]="Design3" (change)="onCheckboxChange(3)">
+                                                    <div class="slider round">
+                                                        <span class="on"></span>
+                                                        <span class="off"></span>
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <ul class="list-unstyled m-0 p-0 checkboxes-list" *ngIf="Design3">
+                                                <li>
+                                                    <input type="checkbox" id="checkbox1_3_1" value="value1"
+                                                        class="th-checkbox" [(ngModel)]="Design31" name="Design31" />
+                                                    <label for="checkbox1_3_1">Mapping out the current content
+                                                        architecture.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="checkbox1_3_2" value="value2"
+                                                        class="th-checkbox" [(ngModel)]="Design32" name="Design32" />
+                                                    <label for="checkbox1_3_2">Combine user interviews and internally
+                                                        generated ideas into wireframes.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="checkbox1_3_3" value="value3"
+                                                        class="th-checkbox" [(ngModel)]="Design33" name="Design33" />
+                                                    <label for="checkbox1_3_3">Prototyping all pages as a clickable
+                                                        prototype.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="checkbox1_3_4" value="value4"
+                                                        class="th-checkbox" [(ngModel)]="Design34" name="Design34" />
+                                                    <label for="checkbox1_3_4">Testing materials as required.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="checkbox1_3_5" value="value5"
+                                                        class="th-checkbox" [(ngModel)]="Design35" name="Design35" />
+                                                    <label for="checkbox1_3_5">User acceptance testing & iterations
+                                                        validation.</label>
+                                                </li>
+                                                <li *ngFor="let checkboxcxc of checkboxes2; let i = index">
+                                                    <input type="checkbox" [id]="'label2' + i" value="value5"
+                                                    [(ngModel)]="checkboxcxc.checked"
+                                                    (change)="updateCheckboxvalue2()"
+                                                        class="th-checkbox" />
+                                                    <label *ngIf="checkboxcxc.label2" [for]="'label2' + i">{{
+                                                        checkboxcxc.label2 }}</label>
+                                                </li>
+
+                                                <li (click)="openForm4()">
+                                                    <strong class="text-decoration-underline">+ Add</strong>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="accordion-element">
+                                        <div class="accordion-header">
+                                            <label>
+                                                04. Creative Research
+                                                <div class="switch ms-auto">
+                                                    <input type="checkbox" name="accordion-state" value="4"
+                                                        [(ngModel)]="Design4" (change)="onCheckboxChange(4)">
+                                                    <div class="slider round">
+                                                        <span class="on"></span>
+                                                        <span class="off"></span>
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <ul class="list-unstyled m-0 p-0 checkboxes-list" *ngIf="Design4">
+                                                <li>
+                                                    <input type="checkbox" id="checkbox1_4_1" value="value1"
+                                                        class="th-checkbox" [(ngModel)]="Design41" name="Design41" />
+                                                    <label for="checkbox1_4_1">Mapping out the current content
+                                                        architecture.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="checkbox1_4_2" value="value2"
+                                                        class="th-checkbox" [(ngModel)]="Design42" name="Design42" />
+                                                    <label for="checkbox1_4_2">Combine user interviews and internally
+                                                        generated ideas into wireframes.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="checkbox1_4_3" value="value3"
+                                                        class="th-checkbox" [(ngModel)]="Design43" name="Design43" />
+                                                    <label for="checkbox1_4_3">Prototyping all pages as a clickable
+                                                        prototype.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="checkbox1_4_4" value="value4"
+                                                        class="th-checkbox" [(ngModel)]="Design44" name="Design44" />
+                                                    <label for="checkbox1_4_4">Testing materials as required.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="checkbox1_4_5" value="value5"
+                                                        class="th-checkbox" [(ngModel)]="Design45" name="Design45" />
+                                                    <label for="checkbox1_4_5">User acceptance testing & iterations
+                                                        validation.</label>
+                                                </li>
+                                                <li *ngFor="let checkboxcxc of checkboxes3; let i = index">
+                                                    <input type="checkbox" [id]="'label3' + i" value="value5"
+                                                    [(ngModel)]="checkboxcxc.checked"
+                                                    (change)="updateCheckboxvalue3()"
+                                                        class="th-checkbox" />
+                                                    <label *ngIf="checkboxcxc.label3" [for]="'label3' + i">{{
+                                                        checkboxcxc.label3 }}</label>
+                                                </li>
+
+                                                <li (click)="openForm5()">
+                                                    <strong class="text-decoration-underline">+ Add</strong>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="accordion-element">
+                                        <div class="accordion-header">
+                                            <label>
+                                                05. User Interface Design
+                                                <div class="switch ms-auto">
+                                                    <input type="checkbox" name="accordion-state" value="5"
+                                                        [(ngModel)]="Design5" (change)="onCheckboxChange(5)">
+                                                    <div class="slider round">
+                                                        <span class="on"></span>
+                                                        <span class="off"></span>
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <ul class="list-unstyled m-0 p-0 checkboxes-list" *ngIf="Design5">
+                                                <li>
+                                                    <input type="checkbox" id="checkbox1_5_1" value="value1"
+                                                        class="th-checkbox" [(ngModel)]="Design51" name="Design51" />
+                                                    <label for="checkbox1_5_1">Mapping out the current content
+                                                        architecture.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="checkbox1_5_2" value="value2"
+                                                        class="th-checkbox" [(ngModel)]="Design52" name="Design52" />
+                                                    <label for="checkbox1_5_2">Combine user interviews and internally
+                                                        generated ideas into wireframes.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="checkbox1_5_3" value="value3"
+                                                        class="th-checkbox" [(ngModel)]="Design53" name="Design53" />
+                                                    <label for="checkbox1_5_3">Prototyping all pages as a clickable
+                                                        prototype.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="checkbox1_5_4" value="value4"
+                                                        class="th-checkbox" [(ngModel)]="Design54" name="Design54" />
+                                                    <label for="checkbox1_5_4">Testing materials as required.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="checkbox1_5_5" value="value5"
+                                                        class="th-checkbox" [(ngModel)]="Design55" name="Design55" />
+                                                    <label for="checkbox1_5_5">User acceptance testing & iterations
+                                                        validation.</label>
+                                                </li>
+                                                <li *ngFor="let checkboxcxc of checkboxes4; let i = index">
+                                                    <input type="checkbox" [id]="'label4' + i"
+                                                    [(ngModel)]="checkboxcxc.checked"
+                                                    (change)="updateCheckboxvalue4()"
+                                                        class="th-checkbox" />
+                                                    <label *ngIf="checkboxcxc.label4" [for]="'label4' + i">{{
+                                                        checkboxcxc.label4 }}</label>
+                                                </li>
+
+                                                <li (click)="openForm6()">
+                                                    <strong class="text-decoration-underline">+ Add</strong>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="box-section pb-0 mb-2" *ngIf="web">
+                                <div class="box-title">
+                                    <strong>Web Dev</strong>
+                                </div>
+                                <div class="accordion-wrapper">
+                                    <div class="accordion-element">
+                                        <div class="accordion-header">
+                                            <label>
+                                                01. Discovering & UI Design
+                                                <div class="switch ms-auto">
+                                                    <input type="checkbox" name="Web1" value="Web1" [(ngModel)]="Web1"
+                                                        (change)="Web1">
+                                                    <div class="slider round">
+                                                        <span class="on"></span>
+                                                        <span class="off"></span>
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div *ngIf="Web1">
+                                            <ul class="list-unstyled m-0 p-0 checkboxes-list">
+                                                <li>
+                                                    <input type="checkbox" id="Web11" value="Web11" class="th-checkbox"
+                                                        [(ngModel)]="Web11" name="Web11" />
+                                                    <label for="Web11">Mapping out the current content
+                                                        architecture.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Web12" value="Web12" class="th-checkbox"
+                                                        [(ngModel)]="Web12" name="Web12" />
+                                                    <label for="Web12">Combine user interviews and internally generated
+                                                        ideas into wireframes.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Web13" value="Web13" class="th-checkbox"
+                                                        [(ngModel)]="Web13" name="Web13" />
+                                                    <label for="Web13">Prototyping all pages as a clickable
+                                                        prototype.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Web14" value="Web14" class="th-checkbox"
+                                                        [(ngModel)]="Web14" name="Web14" />
+                                                    <label for="Web14">Testing materials as required.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Web15" value="Web15" class="th-checkbox"
+                                                        [(ngModel)]="Web15" name="Web15" />
+                                                    <label for="Web15">User acceptance testing & iterations
+                                                        validation.</label>
+                                                </li>
+                                                <li *ngFor="let checkboxcxc of webcheckboxes; let i = index">
+                                                    <input type="checkbox" [id]="'webLabel' + i"
+                                                    [(ngModel)]="checkboxcxc.checked"
+                                                    (change)="updateCheckboxWebValue()"
+                                                        value="value5" class="th-checkbox" />
+                                                        
+                                                    <label *ngIf="checkboxcxc.webLabel"
+                                                    [for]="'webLabel' + i">{{ checkboxcxc.webLabel
+                                                        }}</label>
+                                                </li>
+
+                                                <li (click)="openFormweb()">
+                                                    <strong class="text-decoration-underline">+ Add</strong>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="accordion-element">
+                                        <div class="accordion-header">
+                                            <label>
+                                                02. Information Architecture
+                                                <div class="switch ms-auto">
+                                                    <input type="checkbox" name="Web2" value="Web2" [(ngModel)]="Web2">
+                                                    <div class="slider round">
+                                                        <span class="on"></span>
+                                                        <span class="off"></span>
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div *ngIf="Web2">
+                                            <ul class="list-unstyled m-0 p-0 checkboxes-list">
+                                                <li>
+                                                    <input type="checkbox" id="Web21" value="Web21" class="th-checkbox"
+                                                        [(ngModel)]="Web21" name="Web21" />
+                                                    <label for="Web21">Mapping out the current content
+                                                        architecture.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Web22" value="Web22" class="th-checkbox"
+                                                        [(ngModel)]="Web22" name="Web22" />
+                                                    <label for="Web22">Combine user interviews and internally generated
+                                                        ideas into wireframes.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Web23" value="Web23" class="th-checkbox"
+                                                        [(ngModel)]="Web23" name="Web23" />
+                                                    <label for="Web23">Prototyping all pages as a clickable
+                                                        prototype.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Web24" value="Web24" class="th-checkbox"
+                                                        [(ngModel)]="Web24" name="Web24" />
+                                                    <label for="Web24">Testing materials as required.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Web25" value="Web25" class="th-checkbox"
+                                                        [(ngModel)]="Web25" name="Web25" />
+                                                    <label for="Web25">User acceptance testing & iterations
+                                                        validation.</label>
+                                                </li>
+                                                <li *ngFor="let checkboxcxc of webcheckboxes1; let i = index">
+                                                    <input type="checkbox" [id]="'webLabel1' + i"
+                                                    [(ngModel)]="checkboxcxc.checked"
+                                                    (change)="updateCheckboxWebValue1()"
+                                                        value="value5" class="th-checkbox" />
+                                                    <label *ngIf="checkboxcxc.webLabel1"
+                                                    [for]="'webLabel1' + i">{{ checkboxcxc.webLabel1
+                                                        }}</label>
+                                                </li>
+
+                                                <li (click)="openFormweb1()">
+                                                    <strong class="text-decoration-underline">+ Add</strong>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="accordion-element">
+                                        <div class="accordion-header">
+                                            <label>
+                                                03. Prototyping & Testing
+                                                <div class="switch ms-auto">
+                                                    <input type="checkbox" name="Webb3" value="Webb3"
+                                                        [(ngModel)]="Webb3">
+                                                    <div class="slider round">
+                                                        <span class="on"></span>
+                                                        <span class="off"></span>
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div *ngIf="Webb3">
+                                            <ul class="list-unstyled m-0 p-0 checkboxes-list">
+                                                <li>
+                                                    <input type="checkbox" id="Web31" value="Web31" class="th-checkbox"
+                                                        [(ngModel)]="Web31" name="Web31" />
+                                                    <label for="Web31">Mapping out the current content
+                                                        architecture.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Web32" value="Web32" class="th-checkbox"
+                                                        [(ngModel)]="Web32" name="Web32" />
+                                                    <label for="Web32">Combine user interviews and internally generated
+                                                        ideas into wireframes.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Web33" value="Web33" class="th-checkbox"
+                                                        [(ngModel)]="Web33" name="Web33" />
+                                                    <label for="Web33">Prototyping all pages as a clickable
+                                                        prototype.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Web34" value="Web34" class="th-checkbox"
+                                                        [(ngModel)]="Web34" name="Web34" />
+                                                    <label for="Web34">Testing materials as required.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Web35" value="Web35" class="th-checkbox"
+                                                        [(ngModel)]="Web35" name="Web35" />
+                                                    <label for="Web35">User acceptance testing & iterations
+                                                        validation.</label>
+                                                </li>
+                                                <li *ngFor="let checkboxcxc of webcheckboxes2; let i = index">
+                                                    <input type="checkbox" [id]="'webLabel2' + i"
+                                                    [(ngModel)]="checkboxcxc.checked"
+                                                    (change)="updateCheckboxWebValue2()"
+                                                        value="value5" class="th-checkbox" />
+                                                    <label *ngIf="checkboxcxc.webLabel2"
+                                                    [for]="'webLabel2' + i">{{ checkboxcxc.webLabel2
+                                                        }}</label>
+                                                </li>
+
+                                                <li (click)="openFormweb2()">
+                                                    <strong class="text-decoration-underline">+ Add</strong>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="box-section pb-0 mb-2" *ngIf="mobile">
+                                <div class="box-title">
+                                    <strong>Mobile Dev</strong>
+                                </div>
+                                <div class="accordion-wrapper">
+                                    <div class="accordion-element">
+                                        <div class="accordion-header">
+                                            <label>
+                                                01. Discovering & UI Design
+                                                <div class="switch ms-auto">
+                                                    <input type="checkbox" name="Mobile1" value="Mobile1"
+                                                        [(ngModel)]="Mobile1">
+                                                    <div class="slider round">
+                                                        <span class="on"></span>
+                                                        <span class="off"></span>
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div *ngIf="Mobile1">
+                                            <ul class="list-unstyled m-0 p-0 checkboxes-list">
+                                                <li>
+                                                    <input type="checkbox" id="Mobile11" value="Mobile11"
+                                                        class="th-checkbox" [(ngModel)]="Mobile11" name="Mobile11" />
+                                                    <label for="Mobile11">Mapping out the current content
+                                                        architecture.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Mobile12" value="Mobile12"
+                                                        class="th-checkbox" [(ngModel)]="Mobile12" name="Mobile12" />
+                                                    <label for="Mobile12">Combine user interviews and internally
+                                                        generated ideas into wireframes.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Mobile13" value="Mobile13"
+                                                        class="th-checkbox" [(ngModel)]="Mobile13" name="Mobile13" />
+                                                    <label for="Mobile13">Prototyping all pages as a clickable
+                                                        prototype.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Mobile14" value="Mobile14"
+                                                        class="th-checkbox" [(ngModel)]="Mobile14" name="Mobile14" />
+                                                    <label for="Mobile14">Testing materials as required.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Mobile15" value="Mobile15"
+                                                        class="th-checkbox" [(ngModel)]="Mobile15" name="Mobile15" />
+                                                    <label for="Mobile15">User acceptance testing & iterations
+                                                        validation.</label>
+                                                </li>
+                                                <li *ngFor="let checkboxcxc of mobilecheckboxes; let i = index">
+                                                    <input type="checkbox" [id]="'MobileLabel' + i"
+                                                    [(ngModel)]="checkboxcxc.checked"
+                                                    (change)="updateCheckboxMobileValue()"
+                                                        value="value5" class="th-checkbox" />
+                                                    <label *ngIf="checkboxcxc.MobileLabel"
+                                                    [for]="'MobileLabel' + i">{{ checkboxcxc.MobileLabel
+                                                        }}</label>
+                                                </li>
+
+                                                <li (click)="openFormmobile()">
+                                                    <strong class="text-decoration-underline">+ Add</strong>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="accordion-element">
+                                        <div class="accordion-header">
+                                            <label>
+                                                02. Information Architecture
+                                                <div class="switch ms-auto">
+                                                    <input type="checkbox" name="Mobile2" value="Mobile2"
+                                                        [(ngModel)]="Mobile2">
+                                                    <div class="slider round">
+                                                        <span class="on"></span>
+                                                        <span class="off"></span>
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div *ngIf="Mobile2">
+                                            <ul class="list-unstyled m-0 p-0 checkboxes-list">
+                                                <li>
+                                                    <input type="checkbox" id="Mobile21" value="Mobile21"
+                                                        class="th-checkbox" [(ngModel)]="Mobile21" name="Mobile21" />
+                                                    <label for="Mobile21">Mapping out the current content
+                                                        architecture.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Mobile22" value="Mobile22"
+                                                        class="th-checkbox" [(ngModel)]="Mobile22" name="Mobile22" />
+                                                    <label for="Mobile22">Combine user interviews and internally
+                                                        generated ideas into wireframes.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Mobile23" value="Mobile23"
+                                                        class="th-checkbox" [(ngModel)]="Mobile23" name="Mobile23" />
+                                                    <label for="Mobile23">Prototyping all pages as a clickable
+                                                        prototype.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Mobile24" value="Mobile24"
+                                                        class="th-checkbox" [(ngModel)]="Mobile24" name="Mobile24" />
+                                                    <label for="Mobile24">Testing materials as required.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Mobile25" value="Mobile25"
+                                                        class="th-checkbox" [(ngModel)]="Mobile25" name="Mobile25" />
+                                                    <label for="Mobile25">User acceptance testing & iterations
+                                                        validation.</label>
+                                                </li>
+                                                <li *ngFor="let checkboxcxc of mobilecheckboxes1; let i = index">
+                                                    <input type="checkbox" [id]="'MobileLabel1' + i"
+                                                    [(ngModel)]="checkboxcxc.checked"
+                                                    (change)="updateCheckboxMobileValue1()"
+                                                        value="value5" class="th-checkbox" />
+                                                    <label *ngIf="checkboxcxc.MobileLabel1"
+                                                    [for]="'MobileLabel1' + i">{{ checkboxcxc.MobileLabel1
+                                                        }}</label>
+                                                </li>
+
+                                                <li (click)="openFormmobile1()">
+                                                    <strong class="text-decoration-underline">+ Add</strong>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="accordion-element">
+                                        <div class="accordion-header">
+                                            <label>
+                                                03. Prototyping & Testing
+                                                <div class="switch ms-auto">
+                                                    <input type="checkbox" name="Mobile3" value="Mobile3"
+                                                        [(ngModel)]="Mobile3">
+                                                    <div class="slider round">
+                                                        <span class="on"></span>
+                                                        <span class="off"></span>
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div *ngIf="Mobile3">
+                                            <ul class="list-unstyled m-0 p-0 checkboxes-list">
+                                                <li>
+                                                    <input type="checkbox" id="Mobile31" value="Mobile31"
+                                                        class="th-checkbox" [(ngModel)]="Mobile31" name="Mobile31" />
+                                                    <label for="Mobile31">Mapping out the current content
+                                                        architecture.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Mobile32" value="Mobile32"
+                                                        class="th-checkbox" [(ngModel)]="Mobile32" name="Mobile32" />
+                                                    <label for="Mobile32">Combine user interviews and internally
+                                                        generated ideas into wireframes.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Mobile33" value="Mobile33"
+                                                        class="th-checkbox" [(ngModel)]="Mobile33" name="Mobile33" />
+                                                    <label for="Mobile33">Prototyping all pages as a clickable
+                                                        prototype.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Mobile34" value="Mobile34"
+                                                        class="th-checkbox" [(ngModel)]="Mobile34" name="Mobile34" />
+                                                    <label for="Mobile34">Testing materials as required.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Mobile35" value="Mobile35"
+                                                        class="th-checkbox" [(ngModel)]="Mobile35" name="Mobile35" />
+                                                    <label for="Mobile35">User acceptance testing & iterations
+                                                        validation.</label>
+                                                </li>
+                                                <li *ngFor="let checkboxcxc of mobilecheckboxes2; let i = index">
+                                                    <input type="checkbox" [id]="'MobileLabel2' + i"
+                                                    [(ngModel)]="checkboxcxc.checked"
+                                                    (change)="updateCheckboxMobileValue2()"
+                                                        value="value5" class="th-checkbox" />
+                                                    <label *ngIf="checkboxcxc.MobileLabel2"
+                                                    [for]="'MobileLabel2' + i">{{ checkboxcxc.MobileLabel2
+                                                        }}</label>
+                                                </li>
+
+                                                <li (click)="openFormmobile2()">
+                                                    <strong class="text-decoration-underline">+ Add</strong>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+                            
+                            <div class="box-section pb-0 mb-2" *ngIf="dashboard">
+                                <div class="box-title">
+                                    <strong>Dashboard</strong>
+                                </div>
+                                <div class="accordion-wrapper">
+                                    <div class="accordion-element">
+                                        <div class="accordion-header">
+                                            <label>
+                                                01. Discovering & UI Design
+                                                <div class="switch ms-auto">
+                                                    <input type="checkbox" name="accordion-state" value="6" [(ngModel)]="Dashboard1" >
+                                                    <div class="slider round">
+                                                        <span class="on"></span>
+                                                        <span class="off"></span>
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div *ngIf="Dashboard1">
+                                            <ul class="list-unstyled m-0 p-0 checkboxes-list">
+                                                <li>
+                                                    <input type="checkbox" id="checkbox2_1_1" value="value1" class="th-checkbox" [(ngModel)]="Dashboard11" name="Dashboard11" />
+                                                    <label for="checkbox2_1_1">Mapping out the current content architecture.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="checkbox2_1_2" value="value2" class="th-checkbox" [(ngModel)]="Dashboard12" name="Dashboard12" />
+                                                    <label for="checkbox2_1_2">Combine user interviews and internally generated ideas into wireframes.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="checkbox2_1_3" value="value3" class="th-checkbox" [(ngModel)]="Dashboard13" name="Dashboard13" />
+                                                    <label for="checkbox2_1_3">Prototyping all pages as a clickable prototype.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="checkbox2_1_4" value="value4" class="th-checkbox" [(ngModel)]="Dashboard14" name="Dashboard14" />
+                                                    <label for="checkbox2_1_4">Testing materials as required.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="checkbox2_1_5" value="value5" class="th-checkbox" [(ngModel)]="Dashboard15" name="Dashboard15" />
+                                                    <label for="checkbox2_1_5">User acceptance testing & iterations validation.</label>
+                                                </li>
+                                                <li *ngFor="let checkboxcxc of dashboardcheckboxes; let i = index"  >
+                                                    <input type="checkbox" [id]="'DashboardLabel' + i" value="value5" class="th-checkbox" [(ngModel)]="checkboxcxc.checked"
+                                                    (change)="updateCheckboxDashboardValue()" />
+                                                    <label *ngIf="checkboxcxc.DashboardLabel" [for]="'DashboardLabel' + i">{{ checkboxcxc.DashboardLabel }}</label>
+                                                  </li>
+                                                  
+                                                <li (click)="openFormdashboard()" >
+                                                    <strong class="text-decoration-underline">+ Add</strong>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="accordion-element">
+                                        <div class="accordion-header">
+                                            <label>
+                                                02. Information Architecture
+                                                <div class="switch ms-auto">
+                                                    <input type="checkbox" name="accordion-state" value="7" [(ngModel)]="Dashboard2">
+                                                    <div class="slider round">
+                                                        <span class="on"></span>
+                                                        <span class="off"></span>
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div *ngIf="Dashboard2">
+                                            <ul class="list-unstyled m-0 p-0 checkboxes-list">
+                                                <li>
+                                                    <input type="checkbox" id="checkbox2_2_1" value="value1" class="th-checkbox" [(ngModel)]="Dashboard21" name="Dashboard21" />
+                                                    <label for="checkbox2_2_1">Mapping out the current content architecture.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="checkbox2_2_2" value="value2" class="th-checkbox"  [(ngModel)]="Dashboard22" name="Dashboard22"/>
+                                                    <label for="checkbox2_2_2">Combine user interviews and internally generated ideas into wireframes.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="checkbox2_2_3" value="value3" class="th-checkbox" [(ngModel)]="Dashboard23" name="Dashboard23" />
+                                                    <label for="checkbox2_2_3">Prototyping all pages as a clickable prototype.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="checkbox2_2_4" value="value4" class="th-checkbox" [(ngModel)]="Dashboard24" name="Dashboard24" />
+                                                    <label for="checkbox2_2_4">Testing materials as required.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="checkbox2_2_5" value="value5" class="th-checkbox" [(ngModel)]="Dashboard25" name="Dashboard25" />
+                                                    <label for="checkbox2_2_5">User acceptance testing & iterations validation.</label>
+                                                </li>
+                                                <li *ngFor="let checkboxcxc of dashboardcheckboxes1; let i = index"  >
+                                                    <input type="checkbox" [id]="'DashboardLabel1' + i" value="value5" class="th-checkbox" [(ngModel)]="checkboxcxc.checked"
+                                                    (change)="updateCheckboxDashboardValue1()" />
+                                                    <label *ngIf="checkboxcxc.DashboardLabel1" [for]="'DashboardLabel1' + i">{{ checkboxcxc.DashboardLabel1 }}</label>
+                                                  </li>
+                                                  
+                                                <li (click)="openFormdashboard1()" >
+                                                    <strong class="text-decoration-underline">+ Add</strong>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="accordion-element">
+                                        <div class="accordion-header">
+                                            <label>
+                                                03. Prototyping & Testing
+                                                <div class="switch ms-auto">
+                                                    <input type="checkbox" name="accordion-state" value="8" [(ngModel)]="Dashboard3" >
+                                                    <div class="slider round">
+                                                        <span class="on"></span>
+                                                        <span class="off"></span>
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div *ngIf="Dashboard3" >
+                                            <ul class="list-unstyled m-0 p-0 checkboxes-list">
+                                                <li>
+                                                    <input type="checkbox" id="checkbox2_3_1" value="value1" class="th-checkbox" [(ngModel)]="Dashboard31" name="Dashboard31"/>
+                                                    <label for="checkbox2_3_1">Mapping out the current content architecture.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="checkbox2_3_2" value="value2" class="th-checkbox" [(ngModel)]="Dashboard32" name="Dashboard32" />
+                                                    <label for="checkbox2_3_2">Combine user interviews and internally generated ideas into wireframes.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="checkbox2_3_3" value="value3" class="th-checkbox" [(ngModel)]="Dashboard33" name="Dashboard33"/>
+                                                    <label for="checkbox2_3_3">Prototyping all pages as a clickable prototype.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="checkbox2_3_4" value="value4" class="th-checkbox" [(ngModel)]="Dashboard34" name="Dashboard34"/>
+                                                    <label for="checkbox2_3_4">Testing materials as required.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="checkbox2_3_5" value="value5" class="th-checkbox" [(ngModel)]="Dashboard35" name="Dashboard35"/>
+                                                    <label for="checkbox2_3_5">User acceptance testing & iterations validation.</label>
+                                                </li>
+                                                <li *ngFor="let checkboxcxc of dashboardcheckboxes2; let i = index"  >
+                                                    <input type="checkbox" [id]="'DashboardLabel2' + i" value="value5" class="th-checkbox" [(ngModel)]="checkboxcxc.checked"
+                                                    (change)="updateCheckboxDashboardValue2()"  />
+                                                    <label *ngIf="checkboxcxc.DashboardLabel2" [for]="'DashboardLabel2' + i">{{ checkboxcxc.DashboardLabel2 }}</label>
+                                                  </li>
+                                                  
+                                                <li (click)="openFormdashboard2()" >
+                                                    <strong class="text-decoration-underline">+ Add</strong>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="box-section pb-0 mb-2" *ngIf="web3">
+                                <div class="box-title">
+                                    <strong>Web3</strong>
+                                </div>
+                                <div class="accordion-wrapper">
+                                    <div class="accordion-element">
+                                        <div class="accordion-header">
+                                            <label>
+                                                01. Discovering & UI Design
+                                                <div class="switch ms-auto">
+                                                    <input type="checkbox" name="Webbb1" value="Webbb1"
+                                                        [(ngModel)]="Webbb1">
+                                                    <div class="slider round">
+                                                        <span class="on"></span>
+                                                        <span class="off"></span>
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div *ngIf="Webbb1">
+                                            <ul class="list-unstyled m-0 p-0 checkboxes-list">
+                                                <li>
+                                                    <input type="checkbox" id="Webbb11" value="Webbb11"
+                                                        class="th-checkbox" [(ngModel)]="Webbb11" name="Webbb11" />
+                                                    <label for="Webbb11">Mapping out the current content
+                                                        architecture.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Webbb12" value="Webbb12"
+                                                        class="th-checkbox" [(ngModel)]="Webbb12" name="Webbb12" />
+                                                    <label for="Webbb12">Combine user interviews and internally
+                                                        generated ideas into wireframes.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Webbb13" value="Webbb13"
+                                                        class="th-checkbox" [(ngModel)]="Webbb13" name="Webbb13" />
+                                                    <label for="Webbb13">Prototyping all pages as a clickable
+                                                        prototype.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Webbb14" value="Webbb14"
+                                                        class="th-checkbox" [(ngModel)]="Webbb14" name="Webbb14" />
+                                                    <label for="Webbb14">Testing materials as required.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Webbb15" value="Webbb15"
+                                                        class="th-checkbox" [(ngModel)]="Webbb15" name="Webbb15" />
+                                                    <label for="Webbb15">User acceptance testing & iterations
+                                                        validation.</label>
+                                                </li>
+                                                <li *ngFor="let checkboxcxc of web3checkboxes; let i = index">
+                                                    <input type="checkbox" [id]="'Web3Label' + i"
+                                                    [(ngModel)]="checkboxcxc.checked"
+                                                    (change)="updateCheckboxWeb3Value()"
+                                                        value="value5" class="th-checkbox" />
+                                                    <label *ngIf="checkboxcxc.Web3Label"
+                                                    [for]="'web3checkboxes' + i">{{ checkboxcxc.Web3Label
+                                                        }}</label>
+                                                </li>
+
+                                                <li (click)="openFormweb3()">
+                                                    <strong class="text-decoration-underline">+ Add</strong>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="accordion-element">
+                                        <div class="accordion-header">
+                                            <label>
+                                                02. Information Architecture
+                                                <div class="switch ms-auto">
+                                                    <input type="checkbox" name="Webbb2" value="Webbb2"
+                                                        [(ngModel)]="Webbb2">
+                                                    <div class="slider round">
+                                                        <span class="on"></span>
+                                                        <span class="off"></span>
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div *ngIf="Webbb2">
+                                            <ul class="list-unstyled m-0 p-0 checkboxes-list">
+                                                <li>
+                                                    <input type="checkbox" id="Webbb21" value="Webbb21"
+                                                        class="th-checkbox" [(ngModel)]="Webbb21" name="Webbb21" />
+                                                    <label for="Webbb21">Mapping out the current content
+                                                        architecture.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Webbb22" value="Webbb22"
+                                                        class="th-checkbox" [(ngModel)]="Webbb22" name="Webbb22" />
+                                                    <label for="Webbb22">Combine user interviews and internally
+                                                        generated ideas into wireframes.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Webbb23" value="Webbb23"
+                                                        class="th-checkbox" [(ngModel)]="Webbb23" name="Webbb23" />
+                                                    <label for="Webbb23">Prototyping all pages as a clickable
+                                                        prototype.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Webbb24" value="Webbb24"
+                                                        class="th-checkbox" [(ngModel)]="Webbb24" name="Webbb24" />
+                                                    <label for="Webbb24">Testing materials as required.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Webbb25" value="Webbb25"
+                                                        class="th-checkbox" [(ngModel)]="Webbb25" name="Webbb25" />
+                                                    <label for="Webbb25">User acceptance testing & iterations
+                                                        validation.</label>
+                                                </li>
+                                                <li *ngFor="let checkboxcxc of web3checkboxes1; let i = index">
+                                                    <input type="checkbox" [id]="'Web3Label1' + i"
+                                                    [(ngModel)]="checkboxcxc.checked"
+                                                    (change)="updateCheckboxWeb3Value1()"
+                                                        value="value5" class="th-checkbox" />
+                                                    <label *ngIf="checkboxcxc.Web3Label1"
+                                                    [for]="'web3checkboxes1' + i">{{ checkboxcxc.Web3Label1
+                                                        }}</label>
+                                                </li>
+
+                                                <li (click)="openFormweb31()">
+                                                    <strong class="text-decoration-underline">+ Add</strong>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="accordion-element">
+                                        <div class="accordion-header">
+                                            <label>
+                                                03. Prototyping & Testing
+                                                <div class="switch ms-auto">
+                                                    <input type="checkbox" name="Webbb3" value="Webbb3"
+                                                        [(ngModel)]="Webbb3">
+                                                    <div class="slider round">
+                                                        <span class="on"></span>
+                                                        <span class="off"></span>
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div *ngIf="Webbb3">
+                                            <ul class="list-unstyled m-0 p-0 checkboxes-list">
+                                                <li>
+                                                    <input type="checkbox" id="Webbb31" value="Webbb31"
+                                                        class="th-checkbox" [(ngModel)]="Webbb31" name="Webbb31" />
+                                                    <label for="Webbb31">Mapping out the current content
+                                                        architecture.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Webbb32" value="Webbb32"
+                                                        class="th-checkbox" [(ngModel)]="Webbb32" name="Webbb32" />
+                                                    <label for="Webbb32">Combine user interviews and internally
+                                                        generated ideas into wireframes.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Webbb33" value="Webbb33"
+                                                        class="th-checkbox" [(ngModel)]="Webbb33" name="Webbb33" />
+                                                    <label for="Webbb33">Prototyping all pages as a clickable
+                                                        prototype.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Webbb34" value="Webbb34"
+                                                        class="th-checkbox" [(ngModel)]="Webbb34" name="Webbb34" />
+                                                    <label for="Webbb34">Testing materials as required.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Webbb35" value="Webbb35"
+                                                        class="th-checkbox" [(ngModel)]="Webbb35" name="Webbb35" />
+                                                    <label for="Webbb35">User acceptance testing & iterations
+                                                        validation.</label>
+                                                </li>
+                                                <li *ngFor="let checkboxcxc of web3checkboxes2; let i = index">
+                                                    <input type="checkbox" [id]="'Web3Label2' + i"
+                                                    [(ngModel)]="checkboxcxc.checked"
+                                                    (change)="updateCheckboxWeb3Value2()"
+                                                        value="value5" class="th-checkbox" />
+                                                    <label *ngIf="checkboxcxc.Web3Label2"
+                                                    [for]="'web3checkboxes2' + i">{{ checkboxcxc.Web3Label2
+                                                        }}</label>
+                                                </li>
+
+                                                <li (click)="openFormweb32()">
+                                                    <strong class="text-decoration-underline">+ Add</strong>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="box-section pb-0 mb-2" *ngIf="motion">
+                                <div class="box-title">
+                                    <strong>Motion Design</strong>
+                                </div>
+                                <div class="accordion-wrapper">
+                                    <div class="accordion-element">
+                                        <div class="accordion-header">
+                                            <label>
+                                                01. Discovering & UI Design
+                                                <div class="switch ms-auto">
+                                                    <input type="checkbox" name="Motion1" value="Motion1"
+                                                        [(ngModel)]="Motion1">
+                                                    <div class="slider round">
+                                                        <span class="on"></span>
+                                                        <span class="off"></span>
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div *ngIf="Motion1">
+                                            <ul class="list-unstyled m-0 p-0 checkboxes-list">
+                                                <li>
+                                                    <input type="checkbox" id="Motion11" value="Motion11"
+                                                        class="th-checkbox" [(ngModel)]="Motion11" name="Motion11" />
+                                                    <label for="Motion11">Mapping out the current content
+                                                        architecture.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Motion12" value="Motion12"
+                                                        class="th-checkbox" [(ngModel)]="Motion12" name="Motion12" />
+                                                    <label for="Motion12">Combine user interviews and internally
+                                                        generated ideas into wireframes.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Motion13" value="Motion13"
+                                                        class="th-checkbox" [(ngModel)]="Motion13" name="Motion13" />
+                                                    <label for="Motion13">Prototyping all pages as a clickable
+                                                        prototype.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Motion14" value="Motion14"
+                                                        class="th-checkbox" [(ngModel)]="Motion14" name="Motion14" />
+                                                    <label for="Motion14">Testing materials as required.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Motion15" value="Motion15"
+                                                        class="th-checkbox" [(ngModel)]="Motion15" name="Motion15" />
+                                                    <label for="Motion15">User acceptance testing & iterations
+                                                        validation.</label>
+                                                </li>
+                                                <li *ngFor="let checkboxcxc of motioncheckboxes; let i = index">
+                                                    <input type="checkbox" [id]="'MotionLabel' + i"
+                                                    [(ngModel)]="checkboxcxc.checked"
+                                                    (change)="updateCheckboxMotionValue()"
+                                                    value="'checkboxSet1_' + i" class="th-checkbox" />
+                                                    <label *ngIf="checkboxcxc.MotionLabel"
+                                                    [for]="'MotionLabel' + i">{{ checkboxcxc.MotionLabel
+                                                        }}</label>
+                                                </li>
+
+                                                <li (click)="openFormmotion()">
+                                                    <strong class="text-decoration-underline">+ Add</strong>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="accordion-element">
+                                        <div class="accordion-header">
+                                            <label>
+                                                02. Information Architecture
+                                                <div class="switch ms-auto">
+                                                    <input type="checkbox" name="Motion2" value="Motion2"
+                                                        [(ngModel)]="Motion2">
+                                                    <div class="slider round">
+                                                        <span class="on"></span>
+                                                        <span class="off"></span>
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div *ngIf="Motion2">
+                                            <ul class="list-unstyled m-0 p-0 checkboxes-list">
+                                                <li>
+                                                    <input type="checkbox" id="Motion21" value="Motion21"
+                                                        class="th-checkbox" [(ngModel)]="Motion21" name="Motion21" />
+                                                    <label for="Motion21">Mapping out the current content
+                                                        architecture.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Motion22" value="Motion22"
+                                                        class="th-checkbox" [(ngModel)]="Motion22" name="Motion22" />
+                                                    <label for="Motion22">Combine user interviews and internally
+                                                        generated ideas into wireframes.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Motion23" value="Motion23"
+                                                        class="th-checkbox" [(ngModel)]="Motion23" name="Motion23" />
+                                                    <label for="Motion23">Prototyping all pages as a clickable
+                                                        prototype.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Motion24" value="Motion24"
+                                                        class="th-checkbox" [(ngModel)]="Motion24" name="Motion24" />
+                                                    <label for="Motion24">Testing materials as required.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Motion25" value="Motion25"
+                                                        class="th-checkbox" [(ngModel)]="Motion25" name="Motion25" />
+                                                    <label for="Motion25">User acceptance testing & iterations
+                                                        validation.</label>
+                                                </li>
+                                                <li *ngFor="let checkboxcxc of motioncheckboxes1; let i = index">
+                                                    <input type="checkbox" [id]="'MotionLabel1' + i"
+                                                    [(ngModel)]="checkboxcxc.checked"
+                                                    (change)="updateCheckboxMotionValue1()"
+                                                    value="'checkboxSet2_' + i" class="th-checkbox" />
+                                                    <label *ngIf="checkboxcxc.MotionLabel1"
+                                                    [for]="'MotionLabel1' + i">{{ checkboxcxc.MotionLabel1
+                                                        }}</label>
+                                                </li>
+                                                <li (click)="openFormmotion1()">
+                                                    <strong class="text-decoration-underline">+ Add</strong>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="accordion-element">
+                                        <div class="accordion-header">
+                                            <label>
+                                                03. Prototyping & Testing
+                                                <div class="switch ms-auto">
+                                                    <input type="checkbox" name="Motion3" value="Motion3"
+                                                        [(ngModel)]="Motion3">
+                                                    <div class="slider round">
+                                                        <span class="on"></span>
+                                                        <span class="off"></span>
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div *ngIf="Motion3">
+                                            <ul class="list-unstyled m-0 p-0 checkboxes-list">
+                                                <li>
+                                                    <input type="checkbox" id="Motion31" value="Motion31"
+                                                        class="th-checkbox" [(ngModel)]="Motion31" name="Motion31" />
+                                                    <label for="Motion31">Mapping out the current content
+                                                        architecture.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Motion32" value="Motion32"
+                                                        class="th-checkbox" [(ngModel)]="Motion32" name="Motion32" />
+                                                    <label for="Motion32">Combine user interviews and internally
+                                                        generated ideas into wireframes.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Motion33" value="Motion33"
+                                                        class="th-checkbox" [(ngModel)]="Motion33" name="Motion33" />
+                                                    <label for="Motion33">Prototyping all pages as a clickable
+                                                        prototype.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Motion34" value="Motion34"
+                                                        class="th-checkbox" [(ngModel)]="Motion34" name="Motion34" />
+                                                    <label for="Motion34">Testing materials as required.</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="Motion35" value="Motion35"
+                                                        class="th-checkbox" [(ngModel)]="Motion35" name="Motion35" />
+                                                    <label for="Motion35">User acceptance testing & iterations
+                                                        validation.</label>
+                                                </li>
+                                                <li *ngFor="let checkboxcxc of motioncheckboxes2; let i = index">
+                                                    <input type="checkbox" [id]="'MotionLabel2' + i"
+                                                    [(ngModel)]="checkboxcxc.checked"
+                                                    (change)="updateCheckboxMotionValue2()"
+                                                    value="'checkboxSet3_' + i" class="th-checkbox" />
+                                                    <label *ngIf="checkboxcxc.MotionLabel2"
+                                                    [for]="'MotionLabel2' + i">{{ checkboxcxc.MotionLabel2
+                                                        }}</label>
+                                                </li>
+
+                                                <li (click)="openFormmotion2()">
+                                                    <strong class="text-decoration-underline">+ Add</strong>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="d-inline-flex mt-4"
+                                *ngIf="branding || design || web||mobile ||web3 ||dashboard ||motion">
+                                <span class="step-num">
+                                    Étape 03. <strong>Durée et Tarifs</strong>
+                                </span>
+                            </div>
+
+                            <div class="mb-2 border-bottom-light pb-2 mb-4">
+                                <label *ngIf="branding || design || web||mobile ||web3 ||dashboard ||motion">01.
+                                    Veuillez définir la durée et le tarif pour chacun des services sélectionnés
+                                    :</label>
+                                <div class="d-flex flex-wrap my-sm-3" *ngIf="branding ">
+                                    <div class="field-title">
+                                        <strong>Branding</strong>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <div class="row gx-2">
+                                            <div class="col-sm-6">
+                                                <div class="form-field mb-sm-0">
+                                                    <label>Temps</label>
+                                                    <div class="select-dropdown field-icon-start">
+                                                        <i class="sm-icon icon-start clock-icon"></i>
+                                                        <select class="th-textbox" name="TempsBranding"
+                                                            [(ngModel)]="TempsBranding">
+                                                            <option disabled value="" selected>Sélectionnez un temps
+                                                            </option>
+                                                            <option>6 jours</option>
+                                                            <option>8 jours</option>
+                                                            <option>10 jours</option>
+                                                            <option>12 jours</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <div class="form-field mb-sm-0">
+                                                    <label>Tarif</label>
+                                                    <div class="select-dropdown field-icon-start">
+                                                        <i class="sm-icon icon-start tag-icon"></i>
+                                                        <select class="th-textbox" name="TarifBranding"
+                                                            [(ngModel)]="TarifBranding">
+                                                            <option disabled value="" selected>Sélectionnez un tarif
+                                                            </option>
+                                                            <option>1 500 €</option>
+                                                            <option>1 800 €</option>
+                                                            <option>2 000 €</option>
+                                                            <option>2 500 €</option>
+                                                            <option>2 800 €</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex flex-wrap my-sm-3" *ngIf="design">
+                                    <div class="field-title">
+                                        <strong>UX UI Design</strong>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <div class="row gx-2">
+                                            <div class="col-sm-6">
+                                                <div class="form-field mb-sm-0">
+                                                    <label>Temps</label>
+                                                    <div class="select-dropdown field-icon-start">
+                                                        <i class="sm-icon icon-start clock-icon"></i>
+                                                        <select class="th-textbox" name="TempsDesign"
+                                                            [(ngModel)]="TempsDesign">
+                                                            <option disabled value="" selected>Sélectionnez un temps
+                                                            </option>
+                                                            <option>6 jours</option>
+                                                            <option>8 jours</option>
+                                                            <option>10 jours</option>
+                                                            <option>12 jours</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <div class="form-field mb-sm-0">
+                                                    <label>Tarif</label>
+                                                    <div class="select-dropdown field-icon-start">
+                                                        <i class="sm-icon icon-start tag-icon"></i>
+                                                        <select class="th-textbox" name="TarifDesign"
+                                                            [(ngModel)]="TarifDesign">
+                                                            <option disabled value="" selected>Sélectionnez un tarif
+                                                            </option>
+                                                            <option>1 500 €</option>
+                                                            <option>1 800 €</option>
+                                                            <option>2 000 €</option>
+                                                            <option>2 500 €</option>
+                                                            <option>2 800 €</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex flex-wrap my-sm-3" *ngIf="web">
+                                    <div class="field-title">
+                                        <strong>Web Dev</strong>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <div class="row gx-2">
+                                            <div class="col-sm-6">
+                                                <div class="form-field mb-sm-0">
+                                                    <label>Temps</label>
+                                                    <div class="select-dropdown field-icon-start">
+                                                        <i class="sm-icon icon-start clock-icon"></i>
+                                                        <select class="th-textbox" name="TempsWeb"
+                                                            [(ngModel)]="TempsWeb">
+                                                            <option disabled value="" selected>Sélectionnez un temps
+                                                            </option>
+                                                            <option>6 jours</option>
+                                                            <option>8 jours</option>
+                                                            <option>10 jours</option>
+                                                            <option>12 jours</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <div class="form-field mb-sm-0">
+                                                    <label>Tarif</label>
+                                                    <div class="select-dropdown field-icon-start">
+                                                        <i class="sm-icon icon-start tag-icon"></i>
+                                                        <select class="th-textbox" name="TarifWeb"
+                                                            [(ngModel)]="TarifWeb">
+                                                            <option disabled value="" selected>Sélectionnez un tarif
+                                                            </option>
+                                                            <option>1 500 €</option>
+                                                            <option>1 800 €</option>
+                                                            <option>2 000 €</option>
+                                                            <option>2 500 €</option>
+                                                            <option>2 800 €</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex flex-wrap my-sm-3" *ngIf="mobile">
+                                    <div class="field-title">
+                                        <strong>Mobile Dev</strong>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <div class="row gx-2">
+                                            <div class="col-sm-6">
+                                                <div class="form-field mb-sm-0">
+                                                    <label>Temps</label>
+                                                    <div class="select-dropdown field-icon-start">
+                                                        <i class="sm-icon icon-start clock-icon"></i>
+                                                        <select class="th-textbox" name="TempsMobile"
+                                                            [(ngModel)]="TempsMobile">
+                                                            <option disabled value="" selected>Sélectionnez un temps
+                                                            </option>
+                                                            <option>6 jours</option>
+                                                            <option>8 jours</option>
+                                                            <option>10 jours</option>
+                                                            <option>12 jours</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <div class="form-field mb-sm-0">
+                                                    <label>Tarif</label>
+                                                    <div class="select-dropdown field-icon-start">
+                                                        <i class="sm-icon icon-start tag-icon"></i>
+                                                        <select class="th-textbox" name="TarifMobile"
+                                                            [(ngModel)]="TarifMobile">
+                                                            <option disabled value="" selected>Sélectionnez un tarif
+                                                            </option>
+                                                            <option>1 500 €</option>
+                                                            <option>1 800 €</option>
+                                                            <option>2 000 €</option>
+                                                            <option>2 500 €</option>
+                                                            <option>2 800 €</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex flex-wrap my-sm-3" *ngIf="dashboard">
+                                    <div class="field-title">
+                                        <strong>Dashboard</strong>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <div class="row gx-2">
+                                            <div class="col-sm-6">
+                                                <div class="form-field mb-sm-0">
+                                                    <label>Temps</label>
+                                                    <div class="select-dropdown field-icon-start">
+                                                        <i class="sm-icon icon-start clock-icon"></i>
+                                                        <select class="th-textbox" name="TempsDashboard"
+                                                            [(ngModel)]="TempsDashboard">
+                                                            <option disabled value="" selected>Sélectionnez un temps
+                                                            </option>
+                                                            <option>6 jours</option>
+                                                            <option>8 jours</option>
+                                                            <option>10 jours</option>
+                                                            <option>12 jours</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <div class="form-field mb-sm-0">
+                                                    <label>Tarif</label>
+                                                    <div class="select-dropdown field-icon-start">
+                                                        <i class="sm-icon icon-start tag-icon"></i>
+                                                        <select class="th-textbox" name="TarifDashboard"
+                                                            [(ngModel)]="TarifDashboard">
+                                                            <option disabled value="" selected>Sélectionnez un tarif
+                                                            </option>
+                                                            <option>1 500 €</option>
+                                                            <option>1 800 €</option>
+                                                            <option>2 000 €</option>
+                                                            <option>2 500 €</option>
+                                                            <option>2 800 €</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex flex-wrap my-sm-3" *ngIf="web3">
+                                    <div class="field-title">
+                                        <strong>Web3</strong>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <div class="row gx-2">
+                                            <div class="col-sm-6">
+                                                <div class="form-field mb-sm-0">
+                                                    <label>Temps</label>
+                                                    <div class="select-dropdown field-icon-start">
+                                                        <i class="sm-icon icon-start clock-icon"></i>
+                                                        <select class="th-textbox" name="TempsWeb3"
+                                                            [(ngModel)]="TempsWeb3">
+                                                            <option disabled value="" selected>Sélectionnez un temps
+                                                            </option>
+                                                            <option>6 jours</option>
+                                                            <option>8 jours</option>
+                                                            <option>10 jours</option>
+                                                            <option>12 jours</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <div class="form-field mb-sm-0">
+                                                    <label>Tarif</label>
+                                                    <div class="select-dropdown field-icon-start">
+                                                        <i class="sm-icon icon-start tag-icon"></i>
+                                                        <select class="th-textbox" name="TarifWeb3"
+                                                            [(ngModel)]="TarifWeb3">
+                                                            <option disabled value="" selected>Sélectionnez un tarif
+                                                            </option>
+                                                            <option>1 500 €</option>
+                                                            <option>1 800 €</option>
+                                                            <option>2 000 €</option>
+                                                            <option>2 500 €</option>
+                                                            <option>2 800 €</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex flex-wrap my-sm-3" *ngIf="motion">
+                                    <div class="field-title">
+                                        <strong>Motion Design</strong>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <div class="row gx-2">
+                                            <div class="col-sm-6">
+                                                <div class="form-field mb-sm-0">
+                                                    <label>Temps</label>
+                                                    <div class="select-dropdown field-icon-start">
+                                                        <i class="sm-icon icon-start clock-icon"></i>
+                                                        <select class="th-textbox" name="TempsMotion"
+                                                            [(ngModel)]="TempsMotion">
+                                                            <option disabled value="" selected>Sélectionnez un temps
+                                                            </option>
+                                                            <option>6 jours</option>
+                                                            <option>8 jours</option>
+                                                            <option>10 jours</option>
+                                                            <option>12 jours</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <div class="form-field mb-sm-0">
+                                                    <label>Tarif</label>
+                                                    <div class="select-dropdown field-icon-start">
+                                                        <i class="sm-icon icon-start tag-icon"></i>
+                                                        <select class="th-textbox" name="TarifMotion"
+                                                            [(ngModel)]="TarifMotion">
+                                                            <option disabled value="" selected>Sélectionnez un tarif
+                                                            </option>
+                                                            <option>1 500 €</option>
+                                                            <option>1 800 €</option>
+                                                            <option>2 000 €</option>
+                                                            <option>2 500 €</option>
+                                                            <option>2 800 €</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <div class="mb-2">
+                                <label>02. Veuillez indiquer si une réduction ou la TVA seront appliquées au devis
+                                    :</label>
+                                <div class="row gx-2">
+                                    <div class="col-sm-6 mt-3">
+                                        <div class="form-field">
+                                            <label>Réduction</label>
+                                            <div class="select-dropdown field-icon-start">
+                                                <i class="sm-icon icon-start gift-icon"></i>
+                                                <select class="th-textbox select-placeholder" [(ngModel)]="reduction"
+                                                    name="reduction">
+                                                    <option disabled value="">Sélectionnez un %</option>
+                                                    <option value="10%" selected>10%</option>
+                                                    <option value="15%">15%</option>
+                                                    <option value="20%">20%</option>
+                                                    <option value="25%">25%</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6 mt-3">
+                                        <div class="form-field">
+                                            <label>TVA</label>
+                                            <div class="select-dropdown field-icon-start">
+                                                <i class="sm-icon icon-start shopping-cart-icon"></i>
+                                                <select class="th-textbox select-placeholder" [(ngModel)]="tva"
+                                                    name="tva">
+                                                    <option disabled value="">Sélectionnez un %</option>
+                                                    <option selected>15%</option>
+                                                    <option>20%</option>
+                                                    <option>25%</option>
+                                                    <option>30%</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 mt-4">
+                            <a href="#" class="theme-btn theme-btn--transparent mb-2 me-2">Annuler</a>
+                            <a class="theme-btn mb-2" (click)="openForm1()">update</a>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dark-overlay" [ngClass]="{ 'show': showForm1 }"></div>
+
+    <div class="popup-container" *ngIf="showForm1">
+        <div class="popup modal-size-md">
+            <span (click)="closeForm1()" class="close-popup"></span>
+            <div class="text-center py-3 px-lg-4 mx-2">
+                <div class="delete-img">
+                    <img src="/assets/images/edit-icon.svg" alt="Edit" />
+                </div>
+                <h3>Êtes-vous sûre <br />de vouloir éditer ce devis</h3>
+                <p>
+                    En cliquant sur Editer le devis sera éditer et vous ne pourrez plus revenir en arrière.
+                </p>
+                <div class="sm-btns mt-3">
+                    <a (click)="closeForm1()"
+                        class="theme-btn theme-btn-sm d-inline-flex theme-btn--transparent cancel-popup my-2 mx-1">Annuler</a>
+                    <a (click)="updateQuotation();updateCheckboxBrandingValue()" routerLink="/listQuotation"
+                        class="theme-btn theme-btn-sm d-inline-flex my-2 mx-1">Editer</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="dark-overlay" [ngClass]="{ 'show': showForm2 }"></div>
+
+    <div class="popup-container" *ngIf="showForm2">
+        <div class="popup modal-size-md">
+            <span (click)="closeForm2()" class="close-popup"></span>
+            <div class="text-center py-3 px-lg-4 mx-2">
+                <div class="delete-img">
+                </div>
+                <h3>Êtes-vous sûre <br />de vouloir ajouter ce détail</h3>
+                <p>
+                    En cliquant sur Ajouter le détail sera ajouter et vous ne pourrez plus revenir en arrière.
+                </p>
+                <h3>Label</h3>
+                <input type="text" [(ngModel)]="label" name="label" value="label" for="label" />
+
+                <div class="sm-btns mt-3">
+
+                    <a (click)="closeForm2()"
+                        class="theme-btn theme-btn-sm d-inline-flex theme-btn--transparent cancel-popup my-2 mx-1">Annuler</a>
+                    <button (click)="addInput2()"
+                        class="theme-btn theme-btn-sm d-inline-flex my-2 mx-1">Ajouter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="dark-overlay" [ngClass]="{ 'show': showForm3 }"></div>
+
+    <div class="popup-container" *ngIf="showForm3">
+        <div class="popup modal-size-md">
+            <span (click)="closeForm3()" class="close-popup"></span>
+            <div class="text-center py-3 px-lg-4 mx-2">
+                <div class="delete-img">
+                </div>
+                <h3>Êtes-vous sûre <br />de vouloir ajouter ce détail</h3>
+                <p>
+                    En cliquant sur Ajouter le détail sera ajouter et vous ne pourrez plus revenir en arrière.
+                </p>
+                <h3>Label</h3>
+                <input type="text" [(ngModel)]="label1" name="lab" />
+
+                <div class="sm-btns mt-3">
+
+                    <a (click)="closeForm3()"
+                        class="theme-btn theme-btn-sm d-inline-flex theme-btn--transparent cancel-popup my-2 mx-1">Annuler</a>
+                    <button (click)="addInput2()"
+                        class="theme-btn theme-btn-sm d-inline-flex my-2 mx-1">Ajouter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dark-overlay" [ngClass]="{ 'show': showForm4 }"></div>
+
+    <div class="popup-container" *ngIf="showForm4">
+        <div class="popup modal-size-md">
+            <span (click)="closeForm4()" class="close-popup"></span>
+            <div class="text-center py-3 px-lg-4 mx-2">
+                <div class="delete-img">
+                </div>
+                <h3>Êtes-vous sûre <br />de vouloir ajouter ce détail</h3>
+                <p>
+                    En cliquant sur Ajouter le détail sera ajouter et vous ne pourrez plus revenir en arrière.
+                </p>
+                <h3>Label</h3>
+                <input type="text" [(ngModel)]="label2" name="lab" />
+
+                <div class="sm-btns mt-3">
+
+                    <a (click)="closeForm4()"
+                        class="theme-btn theme-btn-sm d-inline-flex theme-btn--transparent cancel-popup my-2 mx-1">Annuler</a>
+                    <button (click)="addInput2()"
+                        class="theme-btn theme-btn-sm d-inline-flex my-2 mx-1">Ajouter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="dark-overlay" [ngClass]="{ 'show': showForm5 }"></div>
+
+    <div class="popup-container" *ngIf="showForm5">
+        <div class="popup modal-size-md">
+            <span (click)="closeForm5()" class="close-popup"></span>
+            <div class="text-center py-3 px-lg-4 mx-2">
+                <div class="delete-img">
+                </div>
+                <h3>Êtes-vous sûre <br />de vouloir ajouter ce détail</h3>
+                <p>
+                    En cliquant sur Ajouter le détail sera ajouter et vous ne pourrez plus revenir en arrière.
+                </p>
+                <h3>Label</h3>
+                <input type="text" [(ngModel)]="label3" name="lab" />
+
+                <div class="sm-btns mt-3">
+
+                    <a (click)="closeForm5()"
+                        class="theme-btn theme-btn-sm d-inline-flex theme-btn--transparent cancel-popup my-2 mx-1">Annuler</a>
+                    <button (click)="addInput2()"
+                        class="theme-btn theme-btn-sm d-inline-flex my-2 mx-1">Ajouter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dark-overlay" [ngClass]="{ 'show': showForm6 }"></div>
+
+    <div class="popup-container" *ngIf="showForm6">
+        <div class="popup modal-size-md">
+            <span (click)="closeForm6()" class="close-popup"></span>
+            <div class="text-center py-3 px-lg-4 mx-2">
+                <div class="delete-img">
+                </div>
+                <h3>Êtes-vous sûre <br />de vouloir ajouter ce détail</h3>
+                <p>
+                    En cliquant sur Ajouter le détail sera ajouter et vous ne pourrez plus revenir en arrière.
+                </p>
+                <h3>Label</h3>
+                <input type="text" [(ngModel)]="label4" name="label4" />
+
+                <div class="sm-btns mt-3">
+
+                    <a (click)="closeForm6()"
+                        class="theme-btn theme-btn-sm d-inline-flex theme-btn--transparent cancel-popup my-2 mx-1">Annuler</a>
+                    <button (click)="addInput2()"
+                        class="theme-btn theme-btn-sm d-inline-flex my-2 mx-1">Ajouter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dark-overlay" [ngClass]="{ 'show': brandingshowForm }"></div>
+
+    <div class="popup-container" *ngIf="brandingshowForm">
+        <div class="popup modal-size-md">
+            <span (click)="closeFormbranding()" class="close-popup"></span>
+            <div class="text-center py-3 px-lg-4 mx-2">
+                <div class="delete-img">
+                </div>
+                <h3>Êtes-vous sûre <br />de vouloir ajouter ce détail</h3>
+                <p>
+                    En cliquant sur Ajouter le détail sera ajouter et vous ne pourrez plus revenir en arrière.
+                </p>
+                <h3>Label</h3>
+                <input type="text" [(ngModel)]="brandingLabel" name="brandingLabel" />
+
+                <div class="sm-btns mt-3">
+
+                    <a (click)="closeFormbranding()"
+                        class="theme-btn theme-btn-sm d-inline-flex theme-btn--transparent cancel-popup my-2 mx-1">Annuler</a>
+                    <button (click)="addInput2()"
+                        class="theme-btn theme-btn-sm d-inline-flex my-2 mx-1">Ajouter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dark-overlay" [ngClass]="{ 'show': brandingshowForm1 }"></div>
+
+    <div class="popup-container" *ngIf="brandingshowForm1">
+        <div class="popup modal-size-md">
+            <span (click)="closeFormbranding1()" class="close-popup"></span>
+            <div class="text-center py-3 px-lg-4 mx-2">
+                <div class="delete-img">
+                </div>
+                <h3>Êtes-vous sûre <br />de vouloir ajouter ce détail</h3>
+                <p>
+                    En cliquant sur Ajouter le détail sera ajouter et vous ne pourrez plus revenir en arrière.
+                </p>
+                <h3>Label</h3>
+                <input type="text" [(ngModel)]="brandingLabel1" name="lab" />
+
+                <div class="sm-btns mt-3">
+
+                    <a (click)="closeFormbranding1()"
+                        class="theme-btn theme-btn-sm d-inline-flex theme-btn--transparent cancel-popup my-2 mx-1">Annuler</a>
+                    <button (click)="addInput2()"
+                        class="theme-btn theme-btn-sm d-inline-flex my-2 mx-1">Ajouter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dark-overlay" [ngClass]="{ 'show': brandingshowForm2 }"></div>
+
+    <div class="popup-container" *ngIf="brandingshowForm2">
+        <div class="popup modal-size-md">
+            <span (click)="closeFormbranding2()" class="close-popup"></span>
+            <div class="text-center py-3 px-lg-4 mx-2">
+                <div class="delete-img">
+                </div>
+                <h3>Êtes-vous sûre <br />de vouloir ajouter ce détail</h3>
+                <p>
+                    En cliquant sur Ajouter le détail sera ajouter et vous ne pourrez plus revenir en arrière.
+                </p>
+                <h3>Label</h3>
+                <input type="text" [(ngModel)]="brandingLabel2" name="brandingLabel2" />
+
+                <div class="sm-btns mt-3">
+
+                    <a (click)="closeFormbranding2()"
+                        class="theme-btn theme-btn-sm d-inline-flex theme-btn--transparent cancel-popup my-2 mx-1">Annuler</a>
+                    <button (click)="addInput2()"
+                        class="theme-btn theme-btn-sm d-inline-flex my-2 mx-1">Ajouter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dark-overlay" [ngClass]="{ 'show': webshowForm }"></div>
+
+    <div class="popup-container" *ngIf="webshowForm">
+        <div class="popup modal-size-md">
+            <span (click)="closeFormweb()" class="close-popup"></span>
+            <div class="text-center py-3 px-lg-4 mx-2">
+                <div class="delete-img">
+                </div>
+                <h3>Êtes-vous sûre <br />de vouloir ajouter ce détail</h3>
+                <p>
+                    En cliquant sur Ajouter le détail sera ajouter et vous ne pourrez plus revenir en arrière.
+                </p>
+                <h3>Label</h3>
+                <input type="text" [(ngModel)]="webLabel" name="webLabel" />
+
+                <div class="sm-btns mt-3">
+
+                    <a (click)="closeFormweb()"
+                        class="theme-btn theme-btn-sm d-inline-flex theme-btn--transparent cancel-popup my-2 mx-1">Annuler</a>
+                    <button (click)="addInput2()"
+                        class="theme-btn theme-btn-sm d-inline-flex my-2 mx-1">Ajouter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dark-overlay" [ngClass]="{ 'show': webshowForm1 }"></div>
+
+    <div class="popup-container" *ngIf="webshowForm1">
+        <div class="popup modal-size-md">
+            <span (click)="closeFormweb1()" class="close-popup"></span>
+            <div class="text-center py-3 px-lg-4 mx-2">
+                <div class="delete-img">
+                </div>
+                <h3>Êtes-vous sûre <br />de vouloir ajouter ce détail</h3>
+                <p>
+                    En cliquant sur Ajouter le détail sera ajouter et vous ne pourrez plus revenir en arrière.
+                </p>
+                <h3>Label</h3>
+                <input type="text" [(ngModel)]="webLabel1" name="webLabel1" />
+
+                <div class="sm-btns mt-3">
+
+                    <a (click)="closeFormweb1()"
+                        class="theme-btn theme-btn-sm d-inline-flex theme-btn--transparent cancel-popup my-2 mx-1">Annuler</a>
+                    <button (click)="addInput2()"
+                        class="theme-btn theme-btn-sm d-inline-flex my-2 mx-1">Ajouter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dark-overlay" [ngClass]="{ 'show': webshowForm2 }"></div>
+
+    <div class="popup-container" *ngIf="webshowForm2">
+        <div class="popup modal-size-md">
+            <span (click)="closeFormweb2()" class="close-popup"></span>
+            <div class="text-center py-3 px-lg-4 mx-2">
+                <div class="delete-img">
+                </div>
+                <h3>Êtes-vous sûre <br />de vouloir ajouter ce détail</h3>
+                <p>
+                    En cliquant sur Ajouter le détail sera ajouter et vous ne pourrez plus revenir en arrière.
+                </p>
+                <h3>Label</h3>
+                <input type="text" [(ngModel)]="webLabel2" name="webLabel2" />
+
+                <div class="sm-btns mt-3">
+
+                    <a (click)="closeFormweb2()"
+                        class="theme-btn theme-btn-sm d-inline-flex theme-btn--transparent cancel-popup my-2 mx-1">Annuler</a>
+                    <button (click)="addInput2()"
+                        class="theme-btn theme-btn-sm d-inline-flex my-2 mx-1">Ajouter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dark-overlay" [ngClass]="{ 'show': mobileshowForm }"></div>
+
+    <div class="popup-container" *ngIf="mobileshowForm">
+        <div class="popup modal-size-md">
+            <span (click)="closeFormmobile()" class="close-popup"></span>
+            <div class="text-center py-3 px-lg-4 mx-2">
+                <div class="delete-img">
+                </div>
+                <h3>Êtes-vous sûre <br />de vouloir ajouter ce détail</h3>
+                <p>
+                    En cliquant sur Ajouter le détail sera ajouter et vous ne pourrez plus revenir en arrière.
+                </p>
+                <h3>Label</h3>
+                <input type="text" [(ngModel)]="MobileLabel" name="MobileLabel" />
+
+                <div class="sm-btns mt-3">
+
+                    <a (click)="closeFormmobile()"
+                        class="theme-btn theme-btn-sm d-inline-flex theme-btn--transparent cancel-popup my-2 mx-1">Annuler</a>
+                    <button (click)="addInput2()"
+                        class="theme-btn theme-btn-sm d-inline-flex my-2 mx-1">Ajouter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dark-overlay" [ngClass]="{ 'show': mobileshowForm1 }"></div>
+
+    <div class="popup-container" *ngIf="mobileshowForm1">
+        <div class="popup modal-size-md">
+            <span (click)="closeFormmobile1()" class="close-popup"></span>
+            <div class="text-center py-3 px-lg-4 mx-2">
+                <div class="delete-img">
+                </div>
+                <h3>Êtes-vous sûre <br />de vouloir ajouter ce détail</h3>
+                <p>
+                    En cliquant sur Ajouter le détail sera ajouter et vous ne pourrez plus revenir en arrière.
+                </p>
+                <h3>Label</h3>
+                <input type="text" [(ngModel)]="MobileLabel1" name="MobileLabel1" />
+
+                <div class="sm-btns mt-3">
+
+                    <a (click)="closeFormmobile1()"
+                        class="theme-btn theme-btn-sm d-inline-flex theme-btn--transparent cancel-popup my-2 mx-1">Annuler</a>
+                    <button (click)="addInput2()"
+                        class="theme-btn theme-btn-sm d-inline-flex my-2 mx-1">Ajouter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dark-overlay" [ngClass]="{ 'show': mobileshowForm2 }"></div>
+
+    <div class="popup-container" *ngIf="mobileshowForm2">
+        <div class="popup modal-size-md">
+            <span (click)="closeFormmobile2()" class="close-popup"></span>
+            <div class="text-center py-3 px-lg-4 mx-2">
+                <div class="delete-img">
+                </div>
+                <h3>Êtes-vous sûre <br />de vouloir ajouter ce détail</h3>
+                <p>
+                    En cliquant sur Ajouter le détail sera ajouter et vous ne pourrez plus revenir en arrière.
+                </p>
+                <h3>Label</h3>
+                <input type="text" [(ngModel)]="MobileLabel2" name="MobileLabel2" />
+
+                <div class="sm-btns mt-3">
+
+                    <a (click)="closeFormmobile2()"
+                        class="theme-btn theme-btn-sm d-inline-flex theme-btn--transparent cancel-popup my-2 mx-1">Annuler</a>
+                    <button (click)="addInput2()"
+                        class="theme-btn theme-btn-sm d-inline-flex my-2 mx-1">Ajouter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dark-overlay" [ngClass]="{ 'show': dashboardshowForm }"></div>
+
+    <div class="popup-container" *ngIf="dashboardshowForm">
+        <div class="popup modal-size-md">
+            <span (click)="closeFormdashboard()" class="close-popup"></span>
+            <div class="text-center py-3 px-lg-4 mx-2">
+                <div class="delete-img">
+                </div>
+                <h3>Êtes-vous sûre <br />de vouloir ajouter ce détail</h3>
+                <p>
+                    En cliquant sur Ajouter le détail sera ajouter et vous ne pourrez plus revenir en arrière.
+                </p>
+                <h3>Label</h3>
+                <input type="text" [(ngModel)]="DashboardLabel" name="DashboardLabel" />
+
+                <div class="sm-btns mt-3">
+
+                    <a (click)="closeFormdashboard()"
+                        class="theme-btn theme-btn-sm d-inline-flex theme-btn--transparent cancel-popup my-2 mx-1">Annuler</a>
+                    <button (click)="addInput2()"
+                        class="theme-btn theme-btn-sm d-inline-flex my-2 mx-1">Ajouter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dark-overlay" [ngClass]="{ 'show': dashboardshowForm1 }"></div>
+
+    <div class="popup-container" *ngIf="dashboardshowForm1">
+        <div class="popup modal-size-md">
+            <span (click)="closeFormdashboard1()" class="close-popup"></span>
+            <div class="text-center py-3 px-lg-4 mx-2">
+                <div class="delete-img">
+                </div>
+                <h3>Êtes-vous sûre <br />de vouloir ajouter ce détail</h3>
+                <p>
+                    En cliquant sur Ajouter le détail sera ajouter et vous ne pourrez plus revenir en arrière.
+                </p>
+                <h3>Label</h3>
+                <input type="text" [(ngModel)]="DashboardLabel1" name="lab" />
+
+                <div class="sm-btns mt-3">
+
+                    <a (click)="closeFormdashboard1()"
+                        class="theme-btn theme-btn-sm d-inline-flex theme-btn--transparent cancel-popup my-2 mx-1">Annuler</a>
+                    <button (click)="addInput2()"
+                        class="theme-btn theme-btn-sm d-inline-flex my-2 mx-1">Ajouter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dark-overlay" [ngClass]="{ 'show': dashboardshowForm2 }"></div>
+
+    <div class="popup-container" *ngIf="dashboardshowForm2">
+        <div class="popup modal-size-md">
+            <span (click)="closeFormdashboard2()" class="close-popup"></span>
+            <div class="text-center py-3 px-lg-4 mx-2">
+                <div class="delete-img">
+                </div>
+                <h3>Êtes-vous sûre <br />de vouloir ajouter ce détail</h3>
+                <p>
+                    En cliquant sur Ajouter le détail sera ajouter et vous ne pourrez plus revenir en arrière.
+                </p>
+                <h3>Label</h3>
+                <input type="text" [(ngModel)]="DashboardLabel2" name="lab" />
+
+                <div class="sm-btns mt-3">
+
+                    <a (click)="closeFormdashboard2()"
+                        class="theme-btn theme-btn-sm d-inline-flex theme-btn--transparent cancel-popup my-2 mx-1">Annuler</a>
+                    <button (click)="addInput2()"
+                        class="theme-btn theme-btn-sm d-inline-flex my-2 mx-1">Ajouter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dark-overlay" [ngClass]="{ 'show': web3showForm }"></div>
+
+    <div class="popup-container" *ngIf="web3showForm">
+        <div class="popup modal-size-md">
+            <span (click)="closeFormweb3()" class="close-popup"></span>
+            <div class="text-center py-3 px-lg-4 mx-2">
+                <div class="delete-img">
+                </div>
+                <h3>Êtes-vous sûre <br />de vouloir ajouter ce détail</h3>
+                <p>
+                    En cliquant sur Ajouter le détail sera ajouter et vous ne pourrez plus revenir en arrière.
+                </p>
+                <h3>Label</h3>
+                <input type="text" [(ngModel)]="Web3Label" name="lab" />
+
+                <div class="sm-btns mt-3">
+
+                    <a (click)="closeFormweb3()"
+                        class="theme-btn theme-btn-sm d-inline-flex theme-btn--transparent cancel-popup my-2 mx-1">Annuler</a>
+                    <button (click)="addInput2()"
+                        class="theme-btn theme-btn-sm d-inline-flex my-2 mx-1">Ajouter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dark-overlay" [ngClass]="{ 'show': web3showForm1 }"></div>
+
+    <div class="popup-container" *ngIf="web3showForm1">
+        <div class="popup modal-size-md">
+            <span (click)="closeFormweb31()" class="close-popup"></span>
+            <div class="text-center py-3 px-lg-4 mx-2">
+                <div class="delete-img">
+                </div>
+                <h3>Êtes-vous sûre <br />de vouloir ajouter ce détail</h3>
+                <p>
+                    En cliquant sur Ajouter le détail sera ajouter et vous ne pourrez plus revenir en arrière.
+                </p>
+                <h3>Label</h3>
+                <input type="text" [(ngModel)]="Web3Label1" name="lab" />
+
+                <div class="sm-btns mt-3">
+
+                    <a (click)="closeFormweb31()"
+                        class="theme-btn theme-btn-sm d-inline-flex theme-btn--transparent cancel-popup my-2 mx-1">Annuler</a>
+                    <button (click)="addInput2()"
+                        class="theme-btn theme-btn-sm d-inline-flex my-2 mx-1">Ajouter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dark-overlay" [ngClass]="{ 'show': web3showForm2 }"></div>
+
+    <div class="popup-container" *ngIf="web3showForm2">
+        <div class="popup modal-size-md">
+            <span (click)="closeFormweb32()" class="close-popup"></span>
+            <div class="text-center py-3 px-lg-4 mx-2">
+                <div class="delete-img">
+                </div>
+                <h3>Êtes-vous sûre <br />de vouloir ajouter ce détail</h3>
+                <p>
+                    En cliquant sur Ajouter le détail sera ajouter et vous ne pourrez plus revenir en arrière.
+                </p>
+                <h3>Label</h3>
+                <input type="text" [(ngModel)]="Web3Label2" name="lab" />
+
+                <div class="sm-btns mt-3">
+
+                    <a (click)="closeFormweb32()"
+                        class="theme-btn theme-btn-sm d-inline-flex theme-btn--transparent cancel-popup my-2 mx-1">Annuler</a>
+                    <button (click)="addInput2()"
+                        class="theme-btn theme-btn-sm d-inline-flex my-2 mx-1">Ajouter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dark-overlay" [ngClass]="{ 'show': motionshowForm }"></div>
+
+    <div class="popup-container" *ngIf="motionshowForm">
+        <div class="popup modal-size-md">
+            <span (click)="closeFormmotion()" class="close-popup"></span>
+            <div class="text-center py-3 px-lg-4 mx-2">
+                <div class="delete-img">
+                </div>
+                <h3>Êtes-vous sûre <br />de vouloir ajouter ce détail</h3>
+                <p>
+                    En cliquant sur Ajouter le détail sera ajouter et vous ne pourrez plus revenir en arrière.
+                </p>
+                <h3>Label</h3>
+                <input type="text" [(ngModel)]="MotionLabel" name="lab" />
+
+                <div class="sm-btns mt-3">
+
+                    <a (click)="closeFormmotion()"
+                        class="theme-btn theme-btn-sm d-inline-flex theme-btn--transparent cancel-popup my-2 mx-1">Annuler</a>
+                    <button (click)="addInput2()"
+                        class="theme-btn theme-btn-sm d-inline-flex my-2 mx-1">Ajouter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dark-overlay" [ngClass]="{ 'show': motionshowForm1 }"></div>
+
+    <div class="popup-container" *ngIf="motionshowForm1">
+        <div class="popup modal-size-md">
+            <span (click)="closeFormmotion1()" class="close-popup"></span>
+            <div class="text-center py-3 px-lg-4 mx-2">
+                <div class="delete-img">
+                </div>
+                <h3>Êtes-vous sûre <br />de vouloir ajouter ce détail</h3>
+                <p>
+                    En cliquant sur Ajouter le détail sera ajouter et vous ne pourrez plus revenir en arrière.
+                </p>
+                <h3>Label</h3>
+                <input type="text" [(ngModel)]="MotionLabel1" name="lab" />
+
+                <div class="sm-btns mt-3">
+
+                    <a (click)="closeFormmotion1()"
+                        class="theme-btn theme-btn-sm d-inline-flex theme-btn--transparent cancel-popup my-2 mx-1">Annuler</a>
+                    <button (click)="addInput2()"
+                        class="theme-btn theme-btn-sm d-inline-flex my-2 mx-1">Ajouter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dark-overlay" [ngClass]="{ 'show': motionshowForm2 }"></div>
+
+    <div class="popup-container" *ngIf="motionshowForm2">
+        <div class="popup modal-size-md">
+            <span (click)="closeFormmotion2()" class="close-popup"></span>
+            <div class="text-center py-3 px-lg-4 mx-2">
+                <div class="delete-img">
+                </div>
+                <h3>Êtes-vous sûre <br />de vouloir ajouter ce détail</h3>
+                <p>
+                    En cliquant sur Ajouter le détail sera ajouter et vous ne pourrez plus revenir en arrière.
+                </p>
+                <h3>Label</h3>
+                <input type="text" [(ngModel)]="MotionLabel2" name="lab" />
+
+                <div class="sm-btns mt-3">
+
+                    <a (click)="closeFormmotion2()"
+                        class="theme-btn theme-btn-sm d-inline-flex theme-btn--transparent cancel-popup my-2 mx-1">Annuler</a>
+                    <button (click)="addInput2()"
+                        class="theme-btn theme-btn-sm d-inline-flex my-2 mx-1">Ajouter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div *ngIf="showForm">
+        <div class="popup-modal-inner modal-size-md">
+            <span class="close-popup" (click)="closeForm()"></span>
+            <div class="p-2 mt-3">
+                <h3 class="fw-700 mb-3">Nouveau client</h3>
+                <p>
+                    Veuillez remplir les informations ci-dessous afin de créer une nouvelle fiche client.
+                </p>
+                <div class="modal-form mt-3">
+                    <div class="row gx-2">
+                        <div class="col-md-6">
+                            <div class="form-field">
+                                <label>Prénom</label>
+                                <input type="text" class="th-textbox" placeholder="Luana" [(ngModel)]="lastname" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-field">
+                                <label>Nom</label>
+                                <input type="text" class="th-textbox" placeholder="Clément" [(ngModel)]="name" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row gx-2">
+                        <div class="col-md-6">
+                            <div class="form-field">
+                                <label>Email</label>
+                                <input type="text" class="th-textbox" placeholder="Indiquez l’email"
+                                    [(ngModel)]="email" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-field">
+                                <label>N° dé Téléphone</label>
+                                <input type="text" class="th-textbox" placeholder="Indiquez le téléphone"
+                                    [(ngModel)]="phone_number" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row gx-2">
+                        <div class="col-md-12">
+                            <div class="form-field">
+                                <label>Adresse</label>
+                                <input type="text" class="th-textbox" placeholder="Indiquez l’adresse"
+                                    [(ngModel)]="adress" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row gx-2">
+                        <div class="col-md-6">
+                            <div class="form-field">
+                                <label>Code Postal</label>
+                                <input type="text" class="th-textbox" placeholder="Indiquez le code postal"
+                                    [(ngModel)]="code_postal" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-field">
+                                <label>Pays</label>
+                                <div class="select-dropdown">
+                                    <select class="th-textbox select-placeholder" [(ngModel)]="pays">
+                                        <option selected disabled>Sélectionner le pays</option>
+                                        <option value="United States">United States</option>
+                                        <option value="United Kingdom">United Kingdom</option>
+                                        <option value="France">France</option>
+                                        <option value="Tunisie">Tunisie</option>
+                                        <option value="Canada">Canada</option>
+                                        <option value="Australia">Australia</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-wrap align-items-center justify-content-end">
+                        <a href="#" class="theme-btn theme-btn-sm theme-btn--transparent m-2 cancel-popup">
+                            Annuler
+                        </a>
+                        <a href="#" class="theme-btn theme-btn-sm my-2 mw-95">
+                            Ajouter
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/assets/js/jquery-3.6.1.min.js"></script>
+    <script src="/assets/datepicker/moment.min.js"></script>
+    <script src="/assets/datepicker/daterangepicker.js"></script>
+    <script src="/assets/bootstrap5/js/bootstrap.min.js"></script>
+    <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/fr.js"></script>
+    <script>
+        $(function () {
+
+            $('#creationDate').daterangepicker({
+                singleDatePicker: true,
+                autoApply: true,
+                locale: {
+                    format: 'dddd DD MMMM YYYY',
+                },
+            });
+        });
+    </script>
+
+</body>
+
+</html>

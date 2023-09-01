@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quotations</title>
+    <link href="/assets/datepicker/daterangepicker.css" rel="stylesheet" type="text/css">
+    <link href="/assets/fonts/stylesheet.css" rel="stylesheet" type="text/css">
+    <link href="/assets/bootstrap5/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/assets/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+    <div id="app-wrapper" class="d-flex">
+        <div id="app-sidebar">
+            <div class="d-flex justify-content-end d-md-none">
+                <span class="close-icon close-sidebar"></span>
+            </div>
+            <div class="login-user d-flex align-items-center mb-4 mt-2 position-relative">
+                <div class="d-inline-flex align-items-center dropdown-arrow toggle-btn w-100">
+                    <div class="user-img">
+                        <img src="/assets/images/Achraf.svg" alt="" >
+                    </div>
+                    <div class="user-info">
+                        <h4>Achraf</h4>
+                    </div>
+                </div>
+                <div class="user-account-menu toggle-dropdown">
+                    <ul class="list-unstyled m-0">
+                        <li><a href="#">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <nav class="main-menu mb-4">
+                <ul>
+                    <li class="nav-icon-dashboard "><a routerLink="">Dashboard</a></li>
+                    <li class="nav-icon-documents active"><a routerLink="/listQuotation">Quotations</a></li>
+                    <li class="nav-icon-documents"><a routerLink="/template">Templates</a></li>
+                    <li class="nav-icon-projects"><a routerLink="">Projects</a></li>
+                    <li class="nav-icon-clients"><a routerLink="/client">Clients</a></li>
+                </ul>
+            </nav>
+            <div class="logo mt-auto">
+                <img src="/assets/images/DL-logo.svg" alt="Logo" />
+            </div>
+            <div class="copyright pt-3">&copy; Digital Lifestyle 2023. All rights reserved.</div>
+        </div>
+
+        <div id="app-main-content">
+            <div class="main-content content-area">
+                <div class="sidebarToggleBtn hamburger-menu-btn me-auto d-md-none"><span></span></div>
+                <div class="page-header d-flex flex-wrap align-items-center justify-content-between">
+                    <div class="page-title mb-3">
+                        <h2>Quotations</h2>
+                        <p>Find all generated quotations</p>
+                    </div>
+                    <div class="page-header-content d-flex flex-wrap align-items-center mb-2">
+                        <a href="#" class="theme-btn theme-btn--grey mb-2 ms-auto">+ Template</a>
+                        <a (click)="newquotation()" class="theme-btn theme-btn--black mb-2 ms-3">+ New quotation</a>
+                    </div>
+                </div>
+                <div class="search-table py-1 mb-3">
+                    <div class="field-icon-start">
+                      <i class="sm-icon icon-start icon-black search-icon"></i>
+                      <input
+                        type="text"
+                        placeholder="Recherche ..."
+                        class="textbox"
+                        [(ngModel)]="searchQuery"
+                        (input)="filterData()"
+                      />
+                    </div>
+                  </div>
+                  
+
+                <div class="d-flex d-sm-inline-flex select-dropdown filter-option me-sm-1">
+                    <select [(ngModel)]="selectedType" name="service" class="textbox" (change)="filterData()">
+                        <option value="" selected>Type de service</option>
+                      <option value="Branding">Branding</option>
+                      <option value="UX UI Design">UX UI Design</option>
+                      <option>Web Dev</option>
+                      <option>Mobile dev</option>
+                      <option>Dashboard</option>
+                      <option>Web 3</option>
+                      <option>Motion Design</option>
+                    </select>
+                  </div>
+                  
+                  <div class="d-flex d-sm-inline-flex field-icon-start select-dropdown filter-option">
+                    <i class="sm-icon icon-dark-gray calendar-icon"></i>
+                    <input
+                    type="date"
+                    [(ngModel)]="selectedDate"
+                    class="textbox date-picker"
+                    (change)="filterData()"
+                  />
+                  </div>
+                  
+
+                <div class="table-wrapper pt-1">
+                    <table class="last-child-text-right" cellpadding="0" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th><span class="ps-4 ms-3">ID</span></th>
+                                <th><span>Nom du Client</span></th>
+                                <th><span>Quotation Name</span></th>
+                                <th><span>Date de Création</span></th>
+                                <th><span>Type de Services</span></th>
+                                <th><span>Actions</span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let StudentItem of filteredQuotationArray | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }">
+                        
+                                <td>
+                                    <span class="d-inline-flex align-items-center">
+                                        <span class="col-user-img">
+                                            <img src="/assets/images/user-face1.svg" alt="" >
+                                        </span>
+                                        Devis n°{{StudentItem.id}}
+                                    </span>                                </td>
+                                <td>
+                                    {{StudentItem.ClientName}} 
+                                </td>
+                                
+                                <td>{{StudentItem.name}}</td>
+                                <td>
+                                    {{StudentItem.creation_date}}
+                                </td>
+                                <td>
+                                    <span class="tag" *ngIf="StudentItem.branding == 1">branding</span>
+                                    <span class="tag" *ngIf="StudentItem.design == 1">UX UI Design</span>
+                                    <span class="tag" *ngIf="StudentItem.web == 1">Web dev</span>
+                                    <span class="tag" *ngIf="StudentItem.mobile == 1">Mobile dev</span>
+                                    <span class="tag" *ngIf="StudentItem.dashboard == 1">Dashboard</span>
+                                    <span class="tag" *ngIf="StudentItem.web3 == 1">Web 3</span>
+                                    <span class="tag" *ngIf="StudentItem.motion == 1">Motion Design</span>
+
+
+                                </td>
+                              
+                           
+                                <td class="cta-icons">
+                                    <a [routerLink]="['/editQuotaion', StudentItem.id]"><i class="sm-icon edit-icon"></i></a>
+                                    <a data-popup="#deleteModal" class="popup-modal-btn"  (click)="openForm1(StudentItem.id)"><i class="sm-icon trash-icon"></i></a>
+                                    <a data-popup="#linkPrintModal" class="popup-modal-btn" ><i class="sm-icon print-icon"></i></a>
+                                    <a (click)="updatePdfDownloadLink(StudentItem.id); openForm(StudentItem.id)" data-popup="#linkPrintModal" class="popup-modal-btn" ><i class="sm-icon link-icon"></i></a>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                    <pagination-controls
+                    (pageChange)="currentPage = $event"
+                  ></pagination-controls>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+
+    <div class="dark-overlay" [ngClass]="{ 'show': showForm1 }"></div>
+
+    <div   class="popup-container" *ngIf="showForm1">
+        <div class="popup modal-size-md">
+            <span  (click)="closeForm1()" class="close-popup"></span>
+            <div class="text-center py-3 px-lg-4 mx-2">
+                <div class="delete-img">
+                    <img src="/assets/images/trash-bin-icon.svg" alt="Delete" />
+                </div>
+                <h3>Êtes-vous sûre <br/>de vouloir supprimer ce devis</h3>
+                <p>
+                    En cliquant sur « Supprimer » le devis sera supprimée et vous ne pourrez plus revenir en arrière.
+                </p>
+                <div class="sm-btns mt-3">
+                    <a  (click)="closeForm1()"  class="theme-btn theme-btn-sm d-inline-flex theme-btn--transparent cancel-popup my-2 mx-1">Annuler</a>
+                    <a  (click)="setDelete(id)"  class="theme-btn theme-btn-sm d-inline-flex my-2 mx-1">Supprimer</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="dark-overlay" [ngClass]="{ 'show': showForm }"></div>
+
+    <div   class="popup-container" *ngIf="showForm">
+        <div class="popup modal-size-md">
+            <span (click)="closeForm()" class="close-popup"></span>
+            <div class="p-2 mt-3">
+                <h3>Vous pouvez générer un lien pour y accéder ou simplement imprimer une version en mode sombre ou clair.</h3>
+
+                <div class="mt-3">
+                    <p>Generate a link</p>
+                    <div class="grey-tint-box p-1 d-flex align-items-center flex-wrap justify-content-between text-center overflow-hidden">
+                        <span class="break-words fs-14 mx-2" id="linkSpan" >{{ pdfDownloadLink }}</span>
+                        <button (click)="copyLink()" class="theme-btn theme-btn-sm d-inline-flex my-2 mx-1">
+                            <i class="sm-icon2 icon-white link2-icon me-2"></i>
+                            Copy link
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mt-3">
+                    <p>Print</p>
+                    <div class="grey-tint-box text-center">
+                        <a href="#" (click)="printLightPDF(id)" class="theme-btn theme-btn-sm d-inline-flex theme-btn--transparent my-2 mx-1">
+                            <i class="sm-icon2 printer-icon me-2"></i>
+                            Print a light version
+                        </a>
+                        <a href="#" (click)="printDarkPDF(id)" class="theme-btn theme-btn-sm d-inline-flex my-2 mx-1">
+                            <i class="sm-icon2 icon-white printer-icon me-2"></i>
+                            Print a dark version
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/assets/js/jquery-3.6.1.min.js"></script>
+    <script src="/assets/datepicker/moment.min.js"></script>
+    <script src="/assets/datepicker/daterangepicker.js"></script>
+    <script src="/assets/bootstrap5/js/bootstrap.min.js"></script>
+    <script src="/assets/js/main.js"></script>
+    <script>
+        $(function() {
+            
+            $('#daterangepicker').daterangepicker();
+
+            $('#daterangepicker').on('apply.daterangepicker', function(ev, picker) {
+                $(this).val(`Du ${picker.startDate.format('DD-MM-YYYY')} au ${picker.endDate.format('DD-MM-YYYY')}`);
+            });
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="/assets/fonts/stylesheet.css" rel="stylesheet" type="text/css">
+    <link href="/assets/bootstrap5/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/assets/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<form (submit)="login()">
+    <div class="container-fluid">
+        <div class="full-height d-flex flex-column justify-content-between align-items-center">
+            <div class="logo-container py-3 mb-4">
+                <div class="logo">
+                    <img src="/assets/images/DL-logo.svg" alt="Digital Lifestyle" />
+                </div>
+            </div>
+            <div class="form-content-wrapper mw-350 m-auto">
+                <div class="form-field field-icon-start field-icon-end">
+                    <i class="sm-icon icon-start envelop-icon"></i>
+                    <i class="sm-icon icon-end tick-icon"></i>
+                    <input type="text" class="textbox" name="username" [(ngModel)]="name" required placeholder="Email address" />
+                </div>
+                <div class="form-field field-icon-start field-icon-end">
+                    <i class="sm-icon icon-start lock-icon"></i>
+                    <i class="sm-icon icon-end tick-icon"></i>
+                    <input type="password" class="textbox" name="lastname" [(ngModel)]="lastname" required  placeholder="Password" />
+                </div>
+                <div class="text-end">
+                    <a href="#" class="text-decoration-underline color-grey">Forgot your password?</a>
+                </div>
+                <div class="form-btn mt-4">
+                    <input type="submit" value="Login" class="theme-btn theme-btn--black w-100" />
+                </div>
+                <div class="or-separator my-4">
+                    <span>OR</span>
+                </div>
+                <div class="social-connect-btns">
+                    <a href="#" class="theme-btn theme-btn--white d-block mb-4">
+                        <i class="sm-icon google-icon me-2"></i>
+                        Connect with google
+                    </a>
+                    <a href="#" class="theme-btn theme-btn--white d-block mb-3">
+                        <i class="sm-icon microsoft-icon me-2"></i>
+                        Connect with Microsoft
+                    </a>
+                </div>
+            </div>
+            <div class="copyright mt-4 py-3">&copy; Digital Lifestyle 2023. All rights reserved.</div>
+        </div>
+    </div>
+
+    <script src="/assets/js/jquery-3.6.1.min.js"></script>
+    <script src="/assets/bootstrap5/js/bootstrap.min.js"></script>
+    <script src="/assets/js/main.js"></script>
+</form>
+</body>
+</html>
