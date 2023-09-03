@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { QuotationService } from '../quotation.service';
+import { QuotationService } from 'src/service/quotation.service';
 
 @Component({
   selector: 'app-list-quotations',

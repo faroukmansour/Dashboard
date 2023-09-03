@@ -336,7 +336,6 @@
                             </div>
 
 
-
                             <div class="box-section pb-0 mb-2" *ngIf="branding">
                                 <div class="box-title">
                                     <strong>Branding</strong>
@@ -348,7 +347,7 @@
                                                 01. Discovering & UI Design
                                                 <div class="switch ms-auto">
                                                     <input type="checkbox" name="accordion-state" value="6"
-                                                        [(ngModel)]="Branding1">
+                                                        (change)="onCheckboxBranding(1)" [(ngModel)]="Branding1">
                                                     <div class="slider round">
                                                         <span class="on"></span>
                                                         <span class="off"></span>
@@ -396,8 +395,8 @@
                                                     <input type="checkbox" [(ngModel)]="checkboxcxc1.checked"
                                                         value="chec" name="brandingLabel"
                                                         (change)="updateCheckboxBrandingValue()"
-
-                                                        [id]="'checkboxSet1_' + i" class="th-checkbox" />
+                                                        name="'checkboxSet1_' + i" [id]="'checkboxSet1_' + i"
+                                                        class="th-checkbox" />
                                                     <label *ngIf="checkboxcxc1.brandingLabel"
                                                         [for]="'checkboxSet1_' + i">{{ checkboxcxc1.brandingLabel
                                                         }}</label>
@@ -416,7 +415,7 @@
                                                 02. Information Architecture
                                                 <div class="switch ms-auto">
                                                     <input type="checkbox" name="Branding2" value="Branding2"
-                                                        [(ngModel)]="Branding2">
+                                                        (change)="onCheckboxBranding(2)" [(ngModel)]="Branding2">
                                                     <div class="slider round">
                                                         <span class="on"></span>
                                                         <span class="off"></span>
@@ -462,8 +461,7 @@
                                                 </li>
                                                 <li *ngFor="let checkboxcxc of brandingcheckboxes1; let i = index">
                                                     <input type="checkbox" [(ngModel)]="checkboxcxc.checked"
-                                                    (change)="updateCheckboxBrandingValue1()"
-
+                                                        (change)="updateCheckboxBrandingValue1()"
                                                         value="'checkboxSet2_' + i" [id]="'checkboxSet2_' + i"
                                                         name="'checkboxSet2_' + i" class="th-checkbox" />
                                                     <label *ngIf="checkboxcxc.brandingLabel1"
@@ -484,7 +482,7 @@
                                                 03. Prototyping & Testing
                                                 <div class="switch ms-auto">
                                                     <input type="checkbox" name="accordion-state" value="8"
-                                                        [(ngModel)]="Branding3">
+                                                        (change)="onCheckboxBranding(3)" [(ngModel)]="Branding3">
                                                     <div class="slider round">
                                                         <span class="on"></span>
                                                         <span class="off"></span>
@@ -504,7 +502,6 @@
                                                 <li>
                                                     <input type="checkbox" id="Branding32" value="Branding32"
                                                         class="th-checkbox" [(ngModel)]="Branding32"
-
                                                         name="Branding32" />
                                                     <label for="Branding32">Combine user interviews and internally
                                                         generated ideas into wireframes.</label>
@@ -531,7 +528,7 @@
                                                 </li>
                                                 <li *ngFor="let checkboxcxc of brandingcheckboxes2; let i = index">
                                                     <input type="checkbox" [(ngModel)]="checkboxcxc.checked"
-                                                        name="brandingLabel2" [id]="'checkboxSet3_' + i"
+                                                        name="'checkboxSet3_' + i" [id]="'checkboxSet3_' + i"
                                                         (change)="updateCheckboxBrandingValue2()"
                                                         class="th-checkbox" />
                                                     <label *ngIf="checkboxcxc.brandingLabel2"
@@ -572,39 +569,45 @@
                                             <ul class="list-unstyled m-0 p-0 checkboxes-list">
                                                 <li>
                                                     <input type="checkbox" id="checkbox1_1_1" value="value1"
-                                                        class="th-checkbox" [(ngModel)]="Design11" name="Design11" />
+                                                        class="th-checkbox" [(ngModel)]="Design11"
+                                                        name="Design11" />
                                                     <label for="checkbox1_1_1">Mapping out the current content
                                                         architecture.</label>
                                                 </li>
                                                 <li>
                                                     <input type="checkbox" id="checkbox1_1_2" value="value2"
-                                                        class="th-checkbox" [(ngModel)]="Design12" name="Design12" />
-                                                    <label for="checkbox1_1_2">Combine user interviews and internally
+                                                        class="th-checkbox" [(ngModel)]="Design12"
+                                                        name="Design12" />
+                                                    <label for="checkbox1_1_2">Combine user interviews and
+                                                        internally
                                                         generated ideas into wireframes.</label>
                                                 </li>
                                                 <li>
                                                     <input type="checkbox" id="checkbox1_1_3" value="value3"
-                                                        class="th-checkbox" [(ngModel)]="Design13" name="Design13" />
+                                                        class="th-checkbox" [(ngModel)]="Design13"
+                                                        name="Design13" />
                                                     <label for="checkbox1_1_3">Prototyping all pages as a clickable
                                                         prototype.</label>
                                                 </li>
                                                 <li>
                                                     <input type="checkbox" id="checkbox1_1_4" value="value4"
-                                                        class="th-checkbox" [(ngModel)]="Design14" name="Design14" />
-                                                    <label for="checkbox1_1_4">Testing materials as required.</label>
+                                                        class="th-checkbox" [(ngModel)]="Design14"
+                                                        name="Design14" />
+                                                    <label for="checkbox1_1_4">Testing materials as
+                                                        required.</label>
                                                 </li>
                                                 <li>
                                                     <input type="checkbox" id="checkbox1_1_5" value="value5"
-                                                        class="th-checkbox" [(ngModel)]="Design15" name="Design15" />
+                                                        class="th-checkbox" [(ngModel)]="Design15"
+                                                        name="Design15" />
                                                     <label for="checkbox1_1_5">User acceptance testing & iterations
                                                         validation.</label>
                                                 </li>
 
                                                 <li *ngFor="let checkboxcxc of checkboxes; let i = index">
                                                     <input type="checkbox" [id]="'label' + i" value="value5"
-                                                    [(ngModel)]="checkboxcxc.checked"
-                                                    (change)="updateCheckboxvalue()"
-                                                        class="th-checkbox" />
+                                                        [(ngModel)]="checkboxcxc.checked" name="'label' + i"
+                                                        (change)="updateCheckboxvalue()" class="th-checkbox" />
                                                     <label *ngIf="checkboxcxc.label" [for]="'label' + i">{{
                                                         checkboxcxc.label }}</label>
                                                 </li>
@@ -624,7 +627,6 @@
                                                 02. Information Architecture
                                                 <div class="switch ms-auto">
                                                     <input type="checkbox" name="accordion-state" value="2"
-                                                    
                                                         [(ngModel)]="Design2" (change)="onCheckboxChange(2)">
                                                     <div class="slider round">
                                                         <span class="on"></span>
@@ -637,37 +639,44 @@
                                             <ul class="list-unstyled m-0 p-0 checkboxes-list" *ngIf="Design2">
                                                 <li>
                                                     <input type="checkbox" id="checkbox1_2_1" value="value1"
-                                                        class="th-checkbox" [(ngModel)]="Design21" name="Design21" />
+                                                        class="th-checkbox" [(ngModel)]="Design21"
+                                                        name="Design21" />
                                                     <label for="checkbox1_2_1">Mapping out the current content
                                                         architecture.</label>
                                                 </li>
                                                 <li>
                                                     <input type="checkbox" id="checkbox1_2_2" value="value2"
-                                                        class="th-checkbox" [(ngModel)]="Design22" name="Design22" />
-                                                    <label for="checkbox1_2_2">Combine user interviews and internally
+                                                        class="th-checkbox" [(ngModel)]="Design22"
+                                                        name="Design22" />
+                                                    <label for="checkbox1_2_2">Combine user interviews and
+                                                        internally
                                                         generated ideas into wireframes.</label>
                                                 </li>
                                                 <li>
                                                     <input type="checkbox" id="checkbox1_2_3" value="value3"
-                                                        class="th-checkbox" [(ngModel)]="Design23" name="Design23" />
+                                                        class="th-checkbox" [(ngModel)]="Design23"
+                                                        name="Design23" />
                                                     <label for="checkbox1_2_3">Prototyping all pages as a clickable
                                                         prototype.</label>
                                                 </li>
                                                 <li>
                                                     <input type="checkbox" id="checkbox1_2_4" value="value4"
-                                                        class="th-checkbox" [(ngModel)]="Design24" name="Design24" />
-                                                    <label for="checkbox1_2_4">Testing materials as required.</label>
+                                                        class="th-checkbox" [(ngModel)]="Design24"
+                                                        name="Design24" />
+                                                    <label for="checkbox1_2_4">Testing materials as
+                                                        required.</label>
                                                 </li>
                                                 <li>
                                                     <input type="checkbox" id="checkbox1_2_5" value="value5"
-                                                        class="th-checkbox" [(ngModel)]="Design25" name="Design25" />
+                                                        class="th-checkbox" [(ngModel)]="Design25"
+                                                        name="Design25" />
                                                     <label for="checkbox1_2_5">User acceptance testing & iterations
                                                         validation.</label>
                                                 </li>
                                                 <li *ngFor="let checkboxcxc of checkboxes1; let i = index">
                                                     <input type="checkbox" [id]="'label1' + i" value="value5"
-                                                    [(ngModel)]="checkboxcxc.checked"
-                                                    (change)="updateCheckboxvalue1()"
+                                                        [(ngModel)]="checkboxcxc.checked"
+                                                        (change)="updateCheckboxvalue1()" name="'label1' + i"
                                                         class="th-checkbox" />
                                                     <label *ngIf="checkboxcxc.label1" [for]="'label1' + i">{{
                                                         checkboxcxc.label1 }}</label>
@@ -698,37 +707,44 @@
                                             <ul class="list-unstyled m-0 p-0 checkboxes-list" *ngIf="Design3">
                                                 <li>
                                                     <input type="checkbox" id="checkbox1_3_1" value="value1"
-                                                        class="th-checkbox" [(ngModel)]="Design31" name="Design31" />
+                                                        class="th-checkbox" [(ngModel)]="Design31"
+                                                        name="Design31" />
                                                     <label for="checkbox1_3_1">Mapping out the current content
                                                         architecture.</label>
                                                 </li>
                                                 <li>
                                                     <input type="checkbox" id="checkbox1_3_2" value="value2"
-                                                        class="th-checkbox" [(ngModel)]="Design32" name="Design32" />
-                                                    <label for="checkbox1_3_2">Combine user interviews and internally
+                                                        class="th-checkbox" [(ngModel)]="Design32"
+                                                        name="Design32" />
+                                                    <label for="checkbox1_3_2">Combine user interviews and
+                                                        internally
                                                         generated ideas into wireframes.</label>
                                                 </li>
                                                 <li>
                                                     <input type="checkbox" id="checkbox1_3_3" value="value3"
-                                                        class="th-checkbox" [(ngModel)]="Design33" name="Design33" />
+                                                        class="th-checkbox" [(ngModel)]="Design33"
+                                                        name="Design33" />
                                                     <label for="checkbox1_3_3">Prototyping all pages as a clickable
                                                         prototype.</label>
                                                 </li>
                                                 <li>
                                                     <input type="checkbox" id="checkbox1_3_4" value="value4"
-                                                        class="th-checkbox" [(ngModel)]="Design34" name="Design34" />
-                                                    <label for="checkbox1_3_4">Testing materials as required.</label>
+                                                        class="th-checkbox" [(ngModel)]="Design34"
+                                                        name="Design34" />
+                                                    <label for="checkbox1_3_4">Testing materials as
+                                                        required.</label>
                                                 </li>
                                                 <li>
                                                     <input type="checkbox" id="checkbox1_3_5" value="value5"
-                                                        class="th-checkbox" [(ngModel)]="Design35" name="Design35" />
+                                                        class="th-checkbox" [(ngModel)]="Design35"
+                                                        name="Design35" />
                                                     <label for="checkbox1_3_5">User acceptance testing & iterations
                                                         validation.</label>
                                                 </li>
                                                 <li *ngFor="let checkboxcxc of checkboxes2; let i = index">
                                                     <input type="checkbox" [id]="'label2' + i" value="value5"
-                                                    [(ngModel)]="checkboxcxc.checked"
-                                                    (change)="updateCheckboxvalue2()"
+                                                        [(ngModel)]="checkboxcxc.checked"
+                                                        (change)="updateCheckboxvalue2()" name="'label2' + i"
                                                         class="th-checkbox" />
                                                     <label *ngIf="checkboxcxc.label2" [for]="'label2' + i">{{
                                                         checkboxcxc.label2 }}</label>
@@ -759,37 +775,44 @@
                                             <ul class="list-unstyled m-0 p-0 checkboxes-list" *ngIf="Design4">
                                                 <li>
                                                     <input type="checkbox" id="checkbox1_4_1" value="value1"
-                                                        class="th-checkbox" [(ngModel)]="Design41" name="Design41" />
+                                                        class="th-checkbox" [(ngModel)]="Design41"
+                                                        name="Design41" />
                                                     <label for="checkbox1_4_1">Mapping out the current content
                                                         architecture.</label>
                                                 </li>
                                                 <li>
                                                     <input type="checkbox" id="checkbox1_4_2" value="value2"
-                                                        class="th-checkbox" [(ngModel)]="Design42" name="Design42" />
-                                                    <label for="checkbox1_4_2">Combine user interviews and internally
+                                                        class="th-checkbox" [(ngModel)]="Design42"
+                                                        name="Design42" />
+                                                    <label for="checkbox1_4_2">Combine user interviews and
+                                                        internally
                                                         generated ideas into wireframes.</label>
                                                 </li>
                                                 <li>
                                                     <input type="checkbox" id="checkbox1_4_3" value="value3"
-                                                        class="th-checkbox" [(ngModel)]="Design43" name="Design43" />
+                                                        class="th-checkbox" [(ngModel)]="Design43"
+                                                        name="Design43" />
                                                     <label for="checkbox1_4_3">Prototyping all pages as a clickable
                                                         prototype.</label>
                                                 </li>
                                                 <li>
                                                     <input type="checkbox" id="checkbox1_4_4" value="value4"
-                                                        class="th-checkbox" [(ngModel)]="Design44" name="Design44" />
-                                                    <label for="checkbox1_4_4">Testing materials as required.</label>
+                                                        class="th-checkbox" [(ngModel)]="Design44"
+                                                        name="Design44" />
+                                                    <label for="checkbox1_4_4">Testing materials as
+                                                        required.</label>
                                                 </li>
                                                 <li>
                                                     <input type="checkbox" id="checkbox1_4_5" value="value5"
-                                                        class="th-checkbox" [(ngModel)]="Design45" name="Design45" />
+                                                        class="th-checkbox" [(ngModel)]="Design45"
+                                                        name="Design45" />
                                                     <label for="checkbox1_4_5">User acceptance testing & iterations
                                                         validation.</label>
                                                 </li>
                                                 <li *ngFor="let checkboxcxc of checkboxes3; let i = index">
                                                     <input type="checkbox" [id]="'label3' + i" value="value5"
-                                                    [(ngModel)]="checkboxcxc.checked"
-                                                    (change)="updateCheckboxvalue3()"
+                                                        [(ngModel)]="checkboxcxc.checked"
+                                                        (change)="updateCheckboxvalue3()" name="'label3' + i"
                                                         class="th-checkbox" />
                                                     <label *ngIf="checkboxcxc.label3" [for]="'label3' + i">{{
                                                         checkboxcxc.label3 }}</label>
@@ -820,37 +843,44 @@
                                             <ul class="list-unstyled m-0 p-0 checkboxes-list" *ngIf="Design5">
                                                 <li>
                                                     <input type="checkbox" id="checkbox1_5_1" value="value1"
-                                                        class="th-checkbox" [(ngModel)]="Design51" name="Design51" />
+                                                        class="th-checkbox" [(ngModel)]="Design51"
+                                                        name="Design51" />
                                                     <label for="checkbox1_5_1">Mapping out the current content
                                                         architecture.</label>
                                                 </li>
                                                 <li>
                                                     <input type="checkbox" id="checkbox1_5_2" value="value2"
-                                                        class="th-checkbox" [(ngModel)]="Design52" name="Design52" />
-                                                    <label for="checkbox1_5_2">Combine user interviews and internally
+                                                        class="th-checkbox" [(ngModel)]="Design52"
+                                                        name="Design52" />
+                                                    <label for="checkbox1_5_2">Combine user interviews and
+                                                        internally
                                                         generated ideas into wireframes.</label>
                                                 </li>
                                                 <li>
                                                     <input type="checkbox" id="checkbox1_5_3" value="value3"
-                                                        class="th-checkbox" [(ngModel)]="Design53" name="Design53" />
+                                                        class="th-checkbox" [(ngModel)]="Design53"
+                                                        name="Design53" />
                                                     <label for="checkbox1_5_3">Prototyping all pages as a clickable
                                                         prototype.</label>
                                                 </li>
                                                 <li>
                                                     <input type="checkbox" id="checkbox1_5_4" value="value4"
-                                                        class="th-checkbox" [(ngModel)]="Design54" name="Design54" />
-                                                    <label for="checkbox1_5_4">Testing materials as required.</label>
+                                                        class="th-checkbox" [(ngModel)]="Design54"
+                                                        name="Design54" />
+                                                    <label for="checkbox1_5_4">Testing materials as
+                                                        required.</label>
                                                 </li>
                                                 <li>
                                                     <input type="checkbox" id="checkbox1_5_5" value="value5"
-                                                        class="th-checkbox" [(ngModel)]="Design55" name="Design55" />
+                                                        class="th-checkbox" [(ngModel)]="Design55"
+                                                        name="Design55" />
                                                     <label for="checkbox1_5_5">User acceptance testing & iterations
                                                         validation.</label>
                                                 </li>
                                                 <li *ngFor="let checkboxcxc of checkboxes4; let i = index">
                                                     <input type="checkbox" [id]="'label4' + i"
-                                                    [(ngModel)]="checkboxcxc.checked"
-                                                    (change)="updateCheckboxvalue4()"
+                                                        [(ngModel)]="checkboxcxc.checked"
+                                                        (change)="updateCheckboxvalue4()" name="'label4' + i"
                                                         class="th-checkbox" />
                                                     <label *ngIf="checkboxcxc.label4" [for]="'label4' + i">{{
                                                         checkboxcxc.label4 }}</label>
@@ -875,7 +905,8 @@
                                             <label>
                                                 01. Discovering & UI Design
                                                 <div class="switch ms-auto">
-                                                    <input type="checkbox" name="Web1" value="Web1" [(ngModel)]="Web1"
+                                                    <input type="checkbox" name="Web1" value="Web1"
+                                                        [(ngModel)]="Web1" (change)="onCheckboxWeb(1)"
                                                         (change)="Web1">
                                                     <div class="slider round">
                                                         <span class="on"></span>
@@ -887,42 +918,43 @@
                                         <div *ngIf="Web1">
                                             <ul class="list-unstyled m-0 p-0 checkboxes-list">
                                                 <li>
-                                                    <input type="checkbox" id="Web11" value="Web11" class="th-checkbox"
-                                                        [(ngModel)]="Web11" name="Web11" />
+                                                    <input type="checkbox" id="Web11" value="Web11"
+                                                        class="th-checkbox" [(ngModel)]="Web11" name="Web11" />
                                                     <label for="Web11">Mapping out the current content
                                                         architecture.</label>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="Web12" value="Web12" class="th-checkbox"
-                                                        [(ngModel)]="Web12" name="Web12" />
-                                                    <label for="Web12">Combine user interviews and internally generated
+                                                    <input type="checkbox" id="Web12" value="Web12"
+                                                        class="th-checkbox" [(ngModel)]="Web12" name="Web12" />
+                                                    <label for="Web12">Combine user interviews and internally
+                                                        generated
                                                         ideas into wireframes.</label>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="Web13" value="Web13" class="th-checkbox"
-                                                        [(ngModel)]="Web13" name="Web13" />
+                                                    <input type="checkbox" id="Web13" value="Web13"
+                                                        class="th-checkbox" [(ngModel)]="Web13" name="Web13" />
                                                     <label for="Web13">Prototyping all pages as a clickable
                                                         prototype.</label>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="Web14" value="Web14" class="th-checkbox"
-                                                        [(ngModel)]="Web14" name="Web14" />
+                                                    <input type="checkbox" id="Web14" value="Web14"
+                                                        class="th-checkbox" [(ngModel)]="Web14" name="Web14" />
                                                     <label for="Web14">Testing materials as required.</label>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="Web15" value="Web15" class="th-checkbox"
-                                                        [(ngModel)]="Web15" name="Web15" />
+                                                    <input type="checkbox" id="Web15" value="Web15"
+                                                        class="th-checkbox" [(ngModel)]="Web15" name="Web15" />
                                                     <label for="Web15">User acceptance testing & iterations
                                                         validation.</label>
                                                 </li>
                                                 <li *ngFor="let checkboxcxc of webcheckboxes; let i = index">
                                                     <input type="checkbox" [id]="'webLabel' + i"
-                                                    [(ngModel)]="checkboxcxc.checked"
-                                                    (change)="updateCheckboxWebValue()"
+                                                        [(ngModel)]="checkboxcxc.checked"
+                                                        (change)="updateCheckboxWebValue()" name="'webLabel' + i"
                                                         value="value5" class="th-checkbox" />
-                                                        
-                                                    <label *ngIf="checkboxcxc.webLabel"
-                                                    [for]="'webLabel' + i">{{ checkboxcxc.webLabel
+
+                                                    <label *ngIf="checkboxcxc.webLabel" [for]="'webLabel' + i">{{
+                                                        checkboxcxc.webLabel
                                                         }}</label>
                                                 </li>
 
@@ -938,7 +970,9 @@
                                             <label>
                                                 02. Information Architecture
                                                 <div class="switch ms-auto">
-                                                    <input type="checkbox" name="Web2" value="Web2" [(ngModel)]="Web2">
+                                                    <input type="checkbox" name="Web2" value="Web2"
+                                                        [(ngModel)]="Web2" (change)="onCheckboxWeb(2)">
+
                                                     <div class="slider round">
                                                         <span class="on"></span>
                                                         <span class="off"></span>
@@ -949,41 +983,43 @@
                                         <div *ngIf="Web2">
                                             <ul class="list-unstyled m-0 p-0 checkboxes-list">
                                                 <li>
-                                                    <input type="checkbox" id="Web21" value="Web21" class="th-checkbox"
+                                                    <input type="checkbox" id="Web21" value="Web21"
+                                                        class="th-checkbox" (change)="onCheckboxWeb(1)"
                                                         [(ngModel)]="Web21" name="Web21" />
                                                     <label for="Web21">Mapping out the current content
                                                         architecture.</label>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="Web22" value="Web22" class="th-checkbox"
-                                                        [(ngModel)]="Web22" name="Web22" />
-                                                    <label for="Web22">Combine user interviews and internally generated
+                                                    <input type="checkbox" id="Web22" value="Web22"
+                                                        class="th-checkbox" [(ngModel)]="Web22" name="Web22" />
+                                                    <label for="Web22">Combine user interviews and internally
+                                                        generated
                                                         ideas into wireframes.</label>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="Web23" value="Web23" class="th-checkbox"
-                                                        [(ngModel)]="Web23" name="Web23" />
+                                                    <input type="checkbox" id="Web23" value="Web23"
+                                                        class="th-checkbox" [(ngModel)]="Web23" name="Web23" />
                                                     <label for="Web23">Prototyping all pages as a clickable
                                                         prototype.</label>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="Web24" value="Web24" class="th-checkbox"
-                                                        [(ngModel)]="Web24" name="Web24" />
+                                                    <input type="checkbox" id="Web24" value="Web24"
+                                                        class="th-checkbox" [(ngModel)]="Web24" name="Web24" />
                                                     <label for="Web24">Testing materials as required.</label>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="Web25" value="Web25" class="th-checkbox"
-                                                        [(ngModel)]="Web25" name="Web25" />
+                                                    <input type="checkbox" id="Web25" value="Web25"
+                                                        class="th-checkbox" [(ngModel)]="Web25" name="Web25" />
                                                     <label for="Web25">User acceptance testing & iterations
                                                         validation.</label>
                                                 </li>
                                                 <li *ngFor="let checkboxcxc of webcheckboxes1; let i = index">
                                                     <input type="checkbox" [id]="'webLabel1' + i"
-                                                    [(ngModel)]="checkboxcxc.checked"
-                                                    (change)="updateCheckboxWebValue1()"
+                                                        [(ngModel)]="checkboxcxc.checked"
+                                                        (change)="updateCheckboxWebValue1()" name="'webLabel1' + i"
                                                         value="value5" class="th-checkbox" />
-                                                    <label *ngIf="checkboxcxc.webLabel1"
-                                                    [for]="'webLabel1' + i">{{ checkboxcxc.webLabel1
+                                                    <label *ngIf="checkboxcxc.webLabel1" [for]="'webLabel1' + i">{{
+                                                        checkboxcxc.webLabel1
                                                         }}</label>
                                                 </li>
 
@@ -1000,7 +1036,7 @@
                                                 03. Prototyping & Testing
                                                 <div class="switch ms-auto">
                                                     <input type="checkbox" name="Webb3" value="Webb3"
-                                                        [(ngModel)]="Webb3">
+                                                        (change)="onCheckboxWeb(3)" [(ngModel)]="Webb3">
                                                     <div class="slider round">
                                                         <span class="on"></span>
                                                         <span class="off"></span>
@@ -1011,41 +1047,42 @@
                                         <div *ngIf="Webb3">
                                             <ul class="list-unstyled m-0 p-0 checkboxes-list">
                                                 <li>
-                                                    <input type="checkbox" id="Web31" value="Web31" class="th-checkbox"
-                                                        [(ngModel)]="Web31" name="Web31" />
+                                                    <input type="checkbox" id="Web31" value="Web31"
+                                                        class="th-checkbox" [(ngModel)]="Web31" name="Web31" />
                                                     <label for="Web31">Mapping out the current content
                                                         architecture.</label>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="Web32" value="Web32" class="th-checkbox"
-                                                        [(ngModel)]="Web32" name="Web32" />
-                                                    <label for="Web32">Combine user interviews and internally generated
+                                                    <input type="checkbox" id="Web32" value="Web32"
+                                                        class="th-checkbox" [(ngModel)]="Web32" name="Web32" />
+                                                    <label for="Web32">Combine user interviews and internally
+                                                        generated
                                                         ideas into wireframes.</label>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="Web33" value="Web33" class="th-checkbox"
-                                                        [(ngModel)]="Web33" name="Web33" />
+                                                    <input type="checkbox" id="Web33" value="Web33"
+                                                        class="th-checkbox" [(ngModel)]="Web33" name="Web33" />
                                                     <label for="Web33">Prototyping all pages as a clickable
                                                         prototype.</label>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="Web34" value="Web34" class="th-checkbox"
-                                                        [(ngModel)]="Web34" name="Web34" />
+                                                    <input type="checkbox" id="Web34" value="Web34"
+                                                        class="th-checkbox" [(ngModel)]="Web34" name="Web34" />
                                                     <label for="Web34">Testing materials as required.</label>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="Web35" value="Web35" class="th-checkbox"
-                                                        [(ngModel)]="Web35" name="Web35" />
+                                                    <input type="checkbox" id="Web35" value="Web35"
+                                                        class="th-checkbox" [(ngModel)]="Web35" name="Web35" />
                                                     <label for="Web35">User acceptance testing & iterations
                                                         validation.</label>
                                                 </li>
                                                 <li *ngFor="let checkboxcxc of webcheckboxes2; let i = index">
                                                     <input type="checkbox" [id]="'webLabel2' + i"
-                                                    [(ngModel)]="checkboxcxc.checked"
-                                                    (change)="updateCheckboxWebValue2()"
-                                                        value="value5" class="th-checkbox" />
-                                                    <label *ngIf="checkboxcxc.webLabel2"
-                                                    [for]="'webLabel2' + i">{{ checkboxcxc.webLabel2
+                                                        [(ngModel)]="checkboxcxc.checked" name="'webLabel2' + i"
+                                                        (change)="updateCheckboxWebValue2()" value="value5"
+                                                        class="th-checkbox" />
+                                                    <label *ngIf="checkboxcxc.webLabel2" [for]="'webLabel2' + i">{{
+                                                        checkboxcxc.webLabel2
                                                         }}</label>
                                                 </li>
 
@@ -1069,7 +1106,7 @@
                                                 01. Discovering & UI Design
                                                 <div class="switch ms-auto">
                                                     <input type="checkbox" name="Mobile1" value="Mobile1"
-                                                        [(ngModel)]="Mobile1">
+                                                        (change)="onCheckboxMobile(1)" [(ngModel)]="Mobile1">
                                                     <div class="slider round">
                                                         <span class="on"></span>
                                                         <span class="off"></span>
@@ -1081,40 +1118,46 @@
                                             <ul class="list-unstyled m-0 p-0 checkboxes-list">
                                                 <li>
                                                     <input type="checkbox" id="Mobile11" value="Mobile11"
-                                                        class="th-checkbox" [(ngModel)]="Mobile11" name="Mobile11" />
+                                                        class="th-checkbox" [(ngModel)]="Mobile11"
+                                                        name="Mobile11" />
                                                     <label for="Mobile11">Mapping out the current content
                                                         architecture.</label>
                                                 </li>
                                                 <li>
                                                     <input type="checkbox" id="Mobile12" value="Mobile12"
-                                                        class="th-checkbox" [(ngModel)]="Mobile12" name="Mobile12" />
+                                                        class="th-checkbox" [(ngModel)]="Mobile12"
+                                                        name="Mobile12" />
                                                     <label for="Mobile12">Combine user interviews and internally
                                                         generated ideas into wireframes.</label>
                                                 </li>
                                                 <li>
                                                     <input type="checkbox" id="Mobile13" value="Mobile13"
-                                                        class="th-checkbox" [(ngModel)]="Mobile13" name="Mobile13" />
+                                                        class="th-checkbox" [(ngModel)]="Mobile13"
+                                                        name="Mobile13" />
                                                     <label for="Mobile13">Prototyping all pages as a clickable
                                                         prototype.</label>
                                                 </li>
                                                 <li>
                                                     <input type="checkbox" id="Mobile14" value="Mobile14"
-                                                        class="th-checkbox" [(ngModel)]="Mobile14" name="Mobile14" />
+                                                        class="th-checkbox" [(ngModel)]="Mobile14"
+                                                        name="Mobile14" />
                                                     <label for="Mobile14">Testing materials as required.</label>
                                                 </li>
                                                 <li>
                                                     <input type="checkbox" id="Mobile15" value="Mobile15"
-                                                        class="th-checkbox" [(ngModel)]="Mobile15" name="Mobile15" />
+                                                        class="th-checkbox" [(ngModel)]="Mobile15"
+                                                        name="Mobile15" />
                                                     <label for="Mobile15">User acceptance testing & iterations
                                                         validation.</label>
                                                 </li>
                                                 <li *ngFor="let checkboxcxc of mobilecheckboxes; let i = index">
                                                     <input type="checkbox" [id]="'MobileLabel' + i"
-                                                    [(ngModel)]="checkboxcxc.checked"
-                                                    (change)="updateCheckboxMobileValue()"
-                                                        value="value5" class="th-checkbox" />
+                                                        [(ngModel)]="checkboxcxc.checked"
+                                                        (change)="updateCheckboxMobileValue()"
+                                                        name="'MobileLabel' + i" value="value5"
+                                                        class="th-checkbox" />
                                                     <label *ngIf="checkboxcxc.MobileLabel"
-                                                    [for]="'MobileLabel' + i">{{ checkboxcxc.MobileLabel
+                                                        [for]="'MobileLabel' + i">{{ checkboxcxc.MobileLabel
                                                         }}</label>
                                                 </li>
 
@@ -1131,7 +1174,7 @@
                                                 02. Information Architecture
                                                 <div class="switch ms-auto">
                                                     <input type="checkbox" name="Mobile2" value="Mobile2"
-                                                        [(ngModel)]="Mobile2">
+                                                        (change)="onCheckboxMobile(2)" [(ngModel)]="Mobile2">
                                                     <div class="slider round">
                                                         <span class="on"></span>
                                                         <span class="off"></span>
@@ -1143,40 +1186,45 @@
                                             <ul class="list-unstyled m-0 p-0 checkboxes-list">
                                                 <li>
                                                     <input type="checkbox" id="Mobile21" value="Mobile21"
-                                                        class="th-checkbox" [(ngModel)]="Mobile21" name="Mobile21" />
+                                                        class="th-checkbox" [(ngModel)]="Mobile21"
+                                                        name="Mobile21" />
                                                     <label for="Mobile21">Mapping out the current content
                                                         architecture.</label>
                                                 </li>
                                                 <li>
                                                     <input type="checkbox" id="Mobile22" value="Mobile22"
-                                                        class="th-checkbox" [(ngModel)]="Mobile22" name="Mobile22" />
+                                                        class="th-checkbox" [(ngModel)]="Mobile22"
+                                                        name="Mobile22" />
                                                     <label for="Mobile22">Combine user interviews and internally
                                                         generated ideas into wireframes.</label>
                                                 </li>
                                                 <li>
                                                     <input type="checkbox" id="Mobile23" value="Mobile23"
-                                                        class="th-checkbox" [(ngModel)]="Mobile23" name="Mobile23" />
+                                                        class="th-checkbox" [(ngModel)]="Mobile23"
+                                                        name="Mobile23" />
                                                     <label for="Mobile23">Prototyping all pages as a clickable
                                                         prototype.</label>
                                                 </li>
                                                 <li>
                                                     <input type="checkbox" id="Mobile24" value="Mobile24"
-                                                        class="th-checkbox" [(ngModel)]="Mobile24" name="Mobile24" />
+                                                        class="th-checkbox" [(ngModel)]="Mobile24"
+                                                        name="Mobile24" />
                                                     <label for="Mobile24">Testing materials as required.</label>
                                                 </li>
                                                 <li>
                                                     <input type="checkbox" id="Mobile25" value="Mobile25"
-                                                        class="th-checkbox" [(ngModel)]="Mobile25" name="Mobile25" />
+                                                        class="th-checkbox" [(ngModel)]="Mobile25"
+                                                        name="Mobile25" />
                                                     <label for="Mobile25">User acceptance testing & iterations
                                                         validation.</label>
                                                 </li>
                                                 <li *ngFor="let checkboxcxc of mobilecheckboxes1; let i = index">
                                                     <input type="checkbox" [id]="'MobileLabel1' + i"
-                                                    [(ngModel)]="checkboxcxc.checked"
-                                                    (change)="updateCheckboxMobileValue1()"
-                                                        value="value5" class="th-checkbox" />
+                                                        [(ngModel)]="checkboxcxc.checked" name="'MobileLabel1' + i"
+                                                        (change)="updateCheckboxMobileValue1()" value="value5"
+                                                        class="th-checkbox" />
                                                     <label *ngIf="checkboxcxc.MobileLabel1"
-                                                    [for]="'MobileLabel1' + i">{{ checkboxcxc.MobileLabel1
+                                                        [for]="'MobileLabel1' + i">{{ checkboxcxc.MobileLabel1
                                                         }}</label>
                                                 </li>
 
@@ -1193,7 +1241,7 @@
                                                 03. Prototyping & Testing
                                                 <div class="switch ms-auto">
                                                     <input type="checkbox" name="Mobile3" value="Mobile3"
-                                                        [(ngModel)]="Mobile3">
+                                                        (change)="onCheckboxMobile(3)" [(ngModel)]="Mobile3">
                                                     <div class="slider round">
                                                         <span class="on"></span>
                                                         <span class="off"></span>
@@ -1205,40 +1253,45 @@
                                             <ul class="list-unstyled m-0 p-0 checkboxes-list">
                                                 <li>
                                                     <input type="checkbox" id="Mobile31" value="Mobile31"
-                                                        class="th-checkbox" [(ngModel)]="Mobile31" name="Mobile31" />
+                                                        class="th-checkbox" [(ngModel)]="Mobile31"
+                                                        name="Mobile31" />
                                                     <label for="Mobile31">Mapping out the current content
                                                         architecture.</label>
                                                 </li>
                                                 <li>
                                                     <input type="checkbox" id="Mobile32" value="Mobile32"
-                                                        class="th-checkbox" [(ngModel)]="Mobile32" name="Mobile32" />
+                                                        class="th-checkbox" [(ngModel)]="Mobile32"
+                                                        name="Mobile32" />
                                                     <label for="Mobile32">Combine user interviews and internally
                                                         generated ideas into wireframes.</label>
                                                 </li>
                                                 <li>
                                                     <input type="checkbox" id="Mobile33" value="Mobile33"
-                                                        class="th-checkbox" [(ngModel)]="Mobile33" name="Mobile33" />
+                                                        class="th-checkbox" [(ngModel)]="Mobile33"
+                                                        name="Mobile33" />
                                                     <label for="Mobile33">Prototyping all pages as a clickable
                                                         prototype.</label>
                                                 </li>
                                                 <li>
                                                     <input type="checkbox" id="Mobile34" value="Mobile34"
-                                                        class="th-checkbox" [(ngModel)]="Mobile34" name="Mobile34" />
+                                                        class="th-checkbox" [(ngModel)]="Mobile34"
+                                                        name="Mobile34" />
                                                     <label for="Mobile34">Testing materials as required.</label>
                                                 </li>
                                                 <li>
                                                     <input type="checkbox" id="Mobile35" value="Mobile35"
-                                                        class="th-checkbox" [(ngModel)]="Mobile35" name="Mobile35" />
+                                                        class="th-checkbox" [(ngModel)]="Mobile35"
+                                                        name="Mobile35" />
                                                     <label for="Mobile35">User acceptance testing & iterations
                                                         validation.</label>
                                                 </li>
                                                 <li *ngFor="let checkboxcxc of mobilecheckboxes2; let i = index">
                                                     <input type="checkbox" [id]="'MobileLabel2' + i"
-                                                    [(ngModel)]="checkboxcxc.checked"
-                                                    (change)="updateCheckboxMobileValue2()"
-                                                        value="value5" class="th-checkbox" />
+                                                        [(ngModel)]="checkboxcxc.checked" name="'MobileLabel2' + i"
+                                                        (change)="updateCheckboxMobileValue2()" value="value5"
+                                                        class="th-checkbox" />
                                                     <label *ngIf="checkboxcxc.MobileLabel2"
-                                                    [for]="'MobileLabel2' + i">{{ checkboxcxc.MobileLabel2
+                                                        [for]="'MobileLabel2' + i">{{ checkboxcxc.MobileLabel2
                                                         }}</label>
                                                 </li>
 
@@ -1255,7 +1308,7 @@
 
 
 
-                            
+
                             <div class="box-section pb-0 mb-2" *ngIf="dashboard">
                                 <div class="box-title">
                                     <strong>Dashboard</strong>
@@ -1266,7 +1319,8 @@
                                             <label>
                                                 01. Discovering & UI Design
                                                 <div class="switch ms-auto">
-                                                    <input type="checkbox" name="accordion-state" value="6" [(ngModel)]="Dashboard1" >
+                                                    <input type="checkbox" name="accordion-state" value="6"
+                                                        [(ngModel)]="Dashboard1" (change)="onCheckbox(1)">
                                                     <div class="slider round">
                                                         <span class="on"></span>
                                                         <span class="off"></span>
@@ -1277,32 +1331,52 @@
                                         <div *ngIf="Dashboard1">
                                             <ul class="list-unstyled m-0 p-0 checkboxes-list">
                                                 <li>
-                                                    <input type="checkbox" id="checkbox2_1_1" value="value1" class="th-checkbox" [(ngModel)]="Dashboard11" name="Dashboard11" />
-                                                    <label for="checkbox2_1_1">Mapping out the current content architecture.</label>
+                                                    <input type="checkbox" id="checkbox2_1_1" value="value1"
+                                                        class="th-checkbox" [(ngModel)]="Dashboard11"
+                                                        name="Dashboard11" />
+                                                    <label for="checkbox2_1_1">Mapping out the current content
+                                                        architecture.</label>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="checkbox2_1_2" value="value2" class="th-checkbox" [(ngModel)]="Dashboard12" name="Dashboard12" />
-                                                    <label for="checkbox2_1_2">Combine user interviews and internally generated ideas into wireframes.</label>
+                                                    <input type="checkbox" id="checkbox2_1_2" value="value2"
+                                                        class="th-checkbox" [(ngModel)]="Dashboard12"
+                                                        name="Dashboard12" />
+                                                    <label for="checkbox2_1_2">Combine user interviews and
+                                                        internally generated ideas into wireframes.</label>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="checkbox2_1_3" value="value3" class="th-checkbox" [(ngModel)]="Dashboard13" name="Dashboard13" />
-                                                    <label for="checkbox2_1_3">Prototyping all pages as a clickable prototype.</label>
+                                                    <input type="checkbox" id="checkbox2_1_3" value="value3"
+                                                        class="th-checkbox" [(ngModel)]="Dashboard13"
+                                                        name="Dashboard13" />
+                                                    <label for="checkbox2_1_3">Prototyping all pages as a clickable
+                                                        prototype.</label>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="checkbox2_1_4" value="value4" class="th-checkbox" [(ngModel)]="Dashboard14" name="Dashboard14" />
-                                                    <label for="checkbox2_1_4">Testing materials as required.</label>
+                                                    <input type="checkbox" id="checkbox2_1_4" value="value4"
+                                                        class="th-checkbox" [(ngModel)]="Dashboard14"
+                                                        name="Dashboard14" />
+                                                    <label for="checkbox2_1_4">Testing materials as
+                                                        required.</label>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="checkbox2_1_5" value="value5" class="th-checkbox" [(ngModel)]="Dashboard15" name="Dashboard15" />
-                                                    <label for="checkbox2_1_5">User acceptance testing & iterations validation.</label>
+                                                    <input type="checkbox" id="checkbox2_1_5" value="value5"
+                                                        class="th-checkbox" [(ngModel)]="Dashboard15"
+                                                        name="Dashboard15" />
+                                                    <label for="checkbox2_1_5">User acceptance testing & iterations
+                                                        validation.</label>
                                                 </li>
-                                                <li *ngFor="let checkboxcxc of dashboardcheckboxes; let i = index"  >
-                                                    <input type="checkbox" [id]="'DashboardLabel' + i" value="value5" class="th-checkbox" [(ngModel)]="checkboxcxc.checked"
-                                                    (change)="updateCheckboxDashboardValue()" />
-                                                    <label *ngIf="checkboxcxc.DashboardLabel" [for]="'DashboardLabel' + i">{{ checkboxcxc.DashboardLabel }}</label>
-                                                  </li>
-                                                  
-                                                <li (click)="openFormdashboard()" >
+                                                <li *ngFor="let checkboxcxc of dashboardcheckboxes; let i = index">
+                                                    <input type="checkbox" [id]="'DashboardLabel' + i"
+                                                        value="value5" class="th-checkbox"
+                                                        [(ngModel)]="checkboxcxc.checked"
+                                                        (change)="updateCheckboxDashboardValue()"
+                                                        name="'DashboardLabel' + i" />
+                                                    <label *ngIf="checkboxcxc.DashboardLabel"
+                                                        [for]="'DashboardLabel' + i">{{ checkboxcxc.DashboardLabel
+                                                        }}</label>
+                                                </li>
+
+                                                <li (click)="openFormdashboard()">
                                                     <strong class="text-decoration-underline">+ Add</strong>
                                                 </li>
                                             </ul>
@@ -1314,7 +1388,8 @@
                                             <label>
                                                 02. Information Architecture
                                                 <div class="switch ms-auto">
-                                                    <input type="checkbox" name="accordion-state" value="7" [(ngModel)]="Dashboard2">
+                                                    <input type="checkbox" name="accordion-state" value="7"
+                                                        [(ngModel)]="Dashboard2" (change)="onCheckbox(2)">
                                                     <div class="slider round">
                                                         <span class="on"></span>
                                                         <span class="off"></span>
@@ -1325,32 +1400,52 @@
                                         <div *ngIf="Dashboard2">
                                             <ul class="list-unstyled m-0 p-0 checkboxes-list">
                                                 <li>
-                                                    <input type="checkbox" id="checkbox2_2_1" value="value1" class="th-checkbox" [(ngModel)]="Dashboard21" name="Dashboard21" />
-                                                    <label for="checkbox2_2_1">Mapping out the current content architecture.</label>
+                                                    <input type="checkbox" id="checkbox2_2_1" value="value1"
+                                                        class="th-checkbox" [(ngModel)]="Dashboard21"
+                                                        name="Dashboard21" />
+                                                    <label for="checkbox2_2_1">Mapping out the current content
+                                                        architecture.</label>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="checkbox2_2_2" value="value2" class="th-checkbox"  [(ngModel)]="Dashboard22" name="Dashboard22"/>
-                                                    <label for="checkbox2_2_2">Combine user interviews and internally generated ideas into wireframes.</label>
+                                                    <input type="checkbox" id="checkbox2_2_2" value="value2"
+                                                        class="th-checkbox" [(ngModel)]="Dashboard22"
+                                                        name="Dashboard22" />
+                                                    <label for="checkbox2_2_2">Combine user interviews and
+                                                        internally generated ideas into wireframes.</label>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="checkbox2_2_3" value="value3" class="th-checkbox" [(ngModel)]="Dashboard23" name="Dashboard23" />
-                                                    <label for="checkbox2_2_3">Prototyping all pages as a clickable prototype.</label>
+                                                    <input type="checkbox" id="checkbox2_2_3" value="value3"
+                                                        class="th-checkbox" [(ngModel)]="Dashboard23"
+                                                        name="Dashboard23" />
+                                                    <label for="checkbox2_2_3">Prototyping all pages as a clickable
+                                                        prototype.</label>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="checkbox2_2_4" value="value4" class="th-checkbox" [(ngModel)]="Dashboard24" name="Dashboard24" />
-                                                    <label for="checkbox2_2_4">Testing materials as required.</label>
+                                                    <input type="checkbox" id="checkbox2_2_4" value="value4"
+                                                        class="th-checkbox" [(ngModel)]="Dashboard24"
+                                                        name="Dashboard24" />
+                                                    <label for="checkbox2_2_4">Testing materials as
+                                                        required.</label>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="checkbox2_2_5" value="value5" class="th-checkbox" [(ngModel)]="Dashboard25" name="Dashboard25" />
-                                                    <label for="checkbox2_2_5">User acceptance testing & iterations validation.</label>
+                                                    <input type="checkbox" id="checkbox2_2_5" value="value5"
+                                                        class="th-checkbox" [(ngModel)]="Dashboard25"
+                                                        name="Dashboard25" />
+                                                    <label for="checkbox2_2_5">User acceptance testing & iterations
+                                                        validation.</label>
                                                 </li>
-                                                <li *ngFor="let checkboxcxc of dashboardcheckboxes1; let i = index"  >
-                                                    <input type="checkbox" [id]="'DashboardLabel1' + i" value="value5" class="th-checkbox" [(ngModel)]="checkboxcxc.checked"
-                                                    (change)="updateCheckboxDashboardValue1()" />
-                                                    <label *ngIf="checkboxcxc.DashboardLabel1" [for]="'DashboardLabel1' + i">{{ checkboxcxc.DashboardLabel1 }}</label>
-                                                  </li>
-                                                  
-                                                <li (click)="openFormdashboard1()" >
+                                                <li *ngFor="let checkboxcxc of dashboardcheckboxes1; let i = index">
+                                                    <input type="checkbox" [id]="'DashboardLabel1' + i"
+                                                        value="value5" class="th-checkbox"
+                                                        [(ngModel)]="checkboxcxc.checked"
+                                                        (change)="updateCheckboxDashboardValue1()"
+                                                        name="'DashboardLabel1' + i" />
+                                                    <label *ngIf="checkboxcxc.DashboardLabel1"
+                                                        [for]="'DashboardLabel1' + i">{{ checkboxcxc.DashboardLabel1
+                                                        }}</label>
+                                                </li>
+
+                                                <li (click)="openFormdashboard1()">
                                                     <strong class="text-decoration-underline">+ Add</strong>
                                                 </li>
                                             </ul>
@@ -1362,7 +1457,8 @@
                                             <label>
                                                 03. Prototyping & Testing
                                                 <div class="switch ms-auto">
-                                                    <input type="checkbox" name="accordion-state" value="8" [(ngModel)]="Dashboard3" >
+                                                    <input type="checkbox" name="accordion-state" value="8"
+                                                        [(ngModel)]="Dashboard3" (change)="onCheckbox(3)">
                                                     <div class="slider round">
                                                         <span class="on"></span>
                                                         <span class="off"></span>
@@ -1370,35 +1466,55 @@
                                                 </div>
                                             </label>
                                         </div>
-                                        <div *ngIf="Dashboard3" >
+                                        <div *ngIf="Dashboard3">
                                             <ul class="list-unstyled m-0 p-0 checkboxes-list">
                                                 <li>
-                                                    <input type="checkbox" id="checkbox2_3_1" value="value1" class="th-checkbox" [(ngModel)]="Dashboard31" name="Dashboard31"/>
-                                                    <label for="checkbox2_3_1">Mapping out the current content architecture.</label>
+                                                    <input type="checkbox" id="checkbox2_3_1" value="value1"
+                                                        class="th-checkbox" [(ngModel)]="Dashboard31"
+                                                        name="Dashboard31" />
+                                                    <label for="checkbox2_3_1">Mapping out the current content
+                                                        architecture.</label>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="checkbox2_3_2" value="value2" class="th-checkbox" [(ngModel)]="Dashboard32" name="Dashboard32" />
-                                                    <label for="checkbox2_3_2">Combine user interviews and internally generated ideas into wireframes.</label>
+                                                    <input type="checkbox" id="checkbox2_3_2" value="value2"
+                                                        class="th-checkbox" [(ngModel)]="Dashboard32"
+                                                        name="Dashboard32" />
+                                                    <label for="checkbox2_3_2">Combine user interviews and
+                                                        internally generated ideas into wireframes.</label>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="checkbox2_3_3" value="value3" class="th-checkbox" [(ngModel)]="Dashboard33" name="Dashboard33"/>
-                                                    <label for="checkbox2_3_3">Prototyping all pages as a clickable prototype.</label>
+                                                    <input type="checkbox" id="checkbox2_3_3" value="value3"
+                                                        class="th-checkbox" [(ngModel)]="Dashboard33"
+                                                        name="Dashboard33" />
+                                                    <label for="checkbox2_3_3">Prototyping all pages as a clickable
+                                                        prototype.</label>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="checkbox2_3_4" value="value4" class="th-checkbox" [(ngModel)]="Dashboard34" name="Dashboard34"/>
-                                                    <label for="checkbox2_3_4">Testing materials as required.</label>
+                                                    <input type="checkbox" id="checkbox2_3_4" value="value4"
+                                                        class="th-checkbox" [(ngModel)]="Dashboard34"
+                                                        name="Dashboard34" />
+                                                    <label for="checkbox2_3_4">Testing materials as
+                                                        required.</label>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="checkbox2_3_5" value="value5" class="th-checkbox" [(ngModel)]="Dashboard35" name="Dashboard35"/>
-                                                    <label for="checkbox2_3_5">User acceptance testing & iterations validation.</label>
+                                                    <input type="checkbox" id="checkbox2_3_5" value="value5"
+                                                        class="th-checkbox" [(ngModel)]="Dashboard35"
+                                                        name="Dashboard35" />
+                                                    <label for="checkbox2_3_5">User acceptance testing & iterations
+                                                        validation.</label>
                                                 </li>
-                                                <li *ngFor="let checkboxcxc of dashboardcheckboxes2; let i = index"  >
-                                                    <input type="checkbox" [id]="'DashboardLabel2' + i" value="value5" class="th-checkbox" [(ngModel)]="checkboxcxc.checked"
-                                                    (change)="updateCheckboxDashboardValue2()"  />
-                                                    <label *ngIf="checkboxcxc.DashboardLabel2" [for]="'DashboardLabel2' + i">{{ checkboxcxc.DashboardLabel2 }}</label>
-                                                  </li>
-                                                  
-                                                <li (click)="openFormdashboard2()" >
+                                                <li *ngFor="let checkboxcxc of dashboardcheckboxes2; let i = index">
+                                                    <input type="checkbox" [id]="'DashboardLabel2' + i"
+                                                        value="value5" class="th-checkbox"
+                                                        [(ngModel)]="checkboxcxc.checked"
+                                                        (change)="updateCheckboxDashboardValue2()"
+                                                        name="'DashboardLabel2' + i" />
+                                                    <label *ngIf="checkboxcxc.DashboardLabel2"
+                                                        [for]="'DashboardLabel2' + i">{{ checkboxcxc.DashboardLabel2
+                                                        }}</label>
+                                                </li>
+
+                                                <li (click)="openFormdashboard2()">
                                                     <strong class="text-decoration-underline">+ Add</strong>
                                                 </li>
                                             </ul>
@@ -1418,7 +1534,7 @@
                                                 01. Discovering & UI Design
                                                 <div class="switch ms-auto">
                                                     <input type="checkbox" name="Webbb1" value="Webbb1"
-                                                        [(ngModel)]="Webbb1">
+                                                        (change)="onCheckboxWeb3(1)" [(ngModel)]="Webbb1">
                                                     <div class="slider round">
                                                         <span class="on"></span>
                                                         <span class="off"></span>
@@ -1459,11 +1575,11 @@
                                                 </li>
                                                 <li *ngFor="let checkboxcxc of web3checkboxes; let i = index">
                                                     <input type="checkbox" [id]="'Web3Label' + i"
-                                                    [(ngModel)]="checkboxcxc.checked"
-                                                    (change)="updateCheckboxWeb3Value()"
+                                                        [(ngModel)]="checkboxcxc.checked"
+                                                        (change)="updateCheckboxWeb3Value()" name="'Web3Label' + i"
                                                         value="value5" class="th-checkbox" />
                                                     <label *ngIf="checkboxcxc.Web3Label"
-                                                    [for]="'web3checkboxes' + i">{{ checkboxcxc.Web3Label
+                                                        [for]="'web3checkboxes' + i">{{ checkboxcxc.Web3Label
                                                         }}</label>
                                                 </li>
 
@@ -1480,7 +1596,7 @@
                                                 02. Information Architecture
                                                 <div class="switch ms-auto">
                                                     <input type="checkbox" name="Webbb2" value="Webbb2"
-                                                        [(ngModel)]="Webbb2">
+                                                        (change)="onCheckboxWeb3(2)" [(ngModel)]="Webbb2">
                                                     <div class="slider round">
                                                         <span class="on"></span>
                                                         <span class="off"></span>
@@ -1521,11 +1637,12 @@
                                                 </li>
                                                 <li *ngFor="let checkboxcxc of web3checkboxes1; let i = index">
                                                     <input type="checkbox" [id]="'Web3Label1' + i"
-                                                    [(ngModel)]="checkboxcxc.checked"
-                                                    (change)="updateCheckboxWeb3Value1()"
-                                                        value="value5" class="th-checkbox" />
+                                                        [(ngModel)]="checkboxcxc.checked"
+                                                        (change)="updateCheckboxWeb3Value1()"
+                                                        name="'Web3Label1' + i" value="value5"
+                                                        class="th-checkbox" />
                                                     <label *ngIf="checkboxcxc.Web3Label1"
-                                                    [for]="'web3checkboxes1' + i">{{ checkboxcxc.Web3Label1
+                                                        [for]="'web3checkboxes1' + i">{{ checkboxcxc.Web3Label1
                                                         }}</label>
                                                 </li>
 
@@ -1542,7 +1659,7 @@
                                                 03. Prototyping & Testing
                                                 <div class="switch ms-auto">
                                                     <input type="checkbox" name="Webbb3" value="Webbb3"
-                                                        [(ngModel)]="Webbb3">
+                                                        (change)="onCheckboxWeb3(3)" [(ngModel)]="Webbb3">
                                                     <div class="slider round">
                                                         <span class="on"></span>
                                                         <span class="off"></span>
@@ -1583,11 +1700,12 @@
                                                 </li>
                                                 <li *ngFor="let checkboxcxc of web3checkboxes2; let i = index">
                                                     <input type="checkbox" [id]="'Web3Label2' + i"
-                                                    [(ngModel)]="checkboxcxc.checked"
-                                                    (change)="updateCheckboxWeb3Value2()"
-                                                        value="value5" class="th-checkbox" />
+                                                        [(ngModel)]="checkboxcxc.checked"
+                                                        (change)="updateCheckboxWeb3Value2()"
+                                                        name="'Web3Label2' + i" value="value5"
+                                                        class="th-checkbox" />
                                                     <label *ngIf="checkboxcxc.Web3Label2"
-                                                    [for]="'web3checkboxes2' + i">{{ checkboxcxc.Web3Label2
+                                                        [for]="'web3checkboxes2' + i">{{ checkboxcxc.Web3Label2
                                                         }}</label>
                                                 </li>
 
@@ -1611,7 +1729,7 @@
                                                 01. Discovering & UI Design
                                                 <div class="switch ms-auto">
                                                     <input type="checkbox" name="Motion1" value="Motion1"
-                                                        [(ngModel)]="Motion1">
+                                                        (change)="onCheckboxMotion(1)" [(ngModel)]="Motion1">
                                                     <div class="slider round">
                                                         <span class="on"></span>
                                                         <span class="off"></span>
@@ -1623,40 +1741,45 @@
                                             <ul class="list-unstyled m-0 p-0 checkboxes-list">
                                                 <li>
                                                     <input type="checkbox" id="Motion11" value="Motion11"
-                                                        class="th-checkbox" [(ngModel)]="Motion11" name="Motion11" />
+                                                        class="th-checkbox" [(ngModel)]="Motion11"
+                                                        name="Motion11" />
                                                     <label for="Motion11">Mapping out the current content
                                                         architecture.</label>
                                                 </li>
                                                 <li>
                                                     <input type="checkbox" id="Motion12" value="Motion12"
-                                                        class="th-checkbox" [(ngModel)]="Motion12" name="Motion12" />
+                                                        class="th-checkbox" [(ngModel)]="Motion12"
+                                                        name="Motion12" />
                                                     <label for="Motion12">Combine user interviews and internally
                                                         generated ideas into wireframes.</label>
                                                 </li>
                                                 <li>
                                                     <input type="checkbox" id="Motion13" value="Motion13"
-                                                        class="th-checkbox" [(ngModel)]="Motion13" name="Motion13" />
+                                                        class="th-checkbox" [(ngModel)]="Motion13"
+                                                        name="Motion13" />
                                                     <label for="Motion13">Prototyping all pages as a clickable
                                                         prototype.</label>
                                                 </li>
                                                 <li>
                                                     <input type="checkbox" id="Motion14" value="Motion14"
-                                                        class="th-checkbox" [(ngModel)]="Motion14" name="Motion14" />
+                                                        class="th-checkbox" [(ngModel)]="Motion14"
+                                                        name="Motion14" />
                                                     <label for="Motion14">Testing materials as required.</label>
                                                 </li>
                                                 <li>
                                                     <input type="checkbox" id="Motion15" value="Motion15"
-                                                        class="th-checkbox" [(ngModel)]="Motion15" name="Motion15" />
+                                                        class="th-checkbox" [(ngModel)]="Motion15"
+                                                        name="Motion15" />
                                                     <label for="Motion15">User acceptance testing & iterations
                                                         validation.</label>
                                                 </li>
                                                 <li *ngFor="let checkboxcxc of motioncheckboxes; let i = index">
                                                     <input type="checkbox" [id]="'MotionLabel' + i"
-                                                    [(ngModel)]="checkboxcxc.checked"
-                                                    (change)="updateCheckboxMotionValue()"
-                                                    value="'checkboxSet1_' + i" class="th-checkbox" />
+                                                        [(ngModel)]="checkboxcxc.checked" name="'MotionLabel' + i"
+                                                        (change)="updateCheckboxMotionValue()"
+                                                        value="'checkboxSet1_' + i" class="th-checkbox" />
                                                     <label *ngIf="checkboxcxc.MotionLabel"
-                                                    [for]="'MotionLabel' + i">{{ checkboxcxc.MotionLabel
+                                                        [for]="'MotionLabel' + i">{{ checkboxcxc.MotionLabel
                                                         }}</label>
                                                 </li>
 
@@ -1673,7 +1796,7 @@
                                                 02. Information Architecture
                                                 <div class="switch ms-auto">
                                                     <input type="checkbox" name="Motion2" value="Motion2"
-                                                        [(ngModel)]="Motion2">
+                                                        (change)="onCheckboxMotion(2)" [(ngModel)]="Motion2">
                                                     <div class="slider round">
                                                         <span class="on"></span>
                                                         <span class="off"></span>
@@ -1685,40 +1808,46 @@
                                             <ul class="list-unstyled m-0 p-0 checkboxes-list">
                                                 <li>
                                                     <input type="checkbox" id="Motion21" value="Motion21"
-                                                        class="th-checkbox" [(ngModel)]="Motion21" name="Motion21" />
+                                                        class="th-checkbox" [(ngModel)]="Motion21"
+                                                        name="Motion21" />
                                                     <label for="Motion21">Mapping out the current content
                                                         architecture.</label>
                                                 </li>
                                                 <li>
                                                     <input type="checkbox" id="Motion22" value="Motion22"
-                                                        class="th-checkbox" [(ngModel)]="Motion22" name="Motion22" />
+                                                        class="th-checkbox" [(ngModel)]="Motion22"
+                                                        name="Motion22" />
                                                     <label for="Motion22">Combine user interviews and internally
                                                         generated ideas into wireframes.</label>
                                                 </li>
                                                 <li>
                                                     <input type="checkbox" id="Motion23" value="Motion23"
-                                                        class="th-checkbox" [(ngModel)]="Motion23" name="Motion23" />
+                                                        class="th-checkbox" [(ngModel)]="Motion23"
+                                                        name="Motion23" />
                                                     <label for="Motion23">Prototyping all pages as a clickable
                                                         prototype.</label>
                                                 </li>
                                                 <li>
                                                     <input type="checkbox" id="Motion24" value="Motion24"
-                                                        class="th-checkbox" [(ngModel)]="Motion24" name="Motion24" />
+                                                        class="th-checkbox" [(ngModel)]="Motion24"
+                                                        name="Motion24" />
                                                     <label for="Motion24">Testing materials as required.</label>
                                                 </li>
                                                 <li>
                                                     <input type="checkbox" id="Motion25" value="Motion25"
-                                                        class="th-checkbox" [(ngModel)]="Motion25" name="Motion25" />
+                                                        class="th-checkbox" [(ngModel)]="Motion25"
+                                                        name="Motion25" />
                                                     <label for="Motion25">User acceptance testing & iterations
                                                         validation.</label>
                                                 </li>
                                                 <li *ngFor="let checkboxcxc of motioncheckboxes1; let i = index">
                                                     <input type="checkbox" [id]="'MotionLabel1' + i"
-                                                    [(ngModel)]="checkboxcxc.checked"
-                                                    (change)="updateCheckboxMotionValue1()"
-                                                    value="'checkboxSet2_' + i" class="th-checkbox" />
+                                                        [(ngModel)]="checkboxcxc.checked"
+                                                        (change)="updateCheckboxMotionValue1()"
+                                                        name="'MotionLabel1' + i" value="'checkboxSet2_' + i"
+                                                        class="th-checkbox" />
                                                     <label *ngIf="checkboxcxc.MotionLabel1"
-                                                    [for]="'MotionLabel1' + i">{{ checkboxcxc.MotionLabel1
+                                                        [for]="'MotionLabel1' + i">{{ checkboxcxc.MotionLabel1
                                                         }}</label>
                                                 </li>
                                                 <li (click)="openFormmotion1()">
@@ -1734,7 +1863,7 @@
                                                 03. Prototyping & Testing
                                                 <div class="switch ms-auto">
                                                     <input type="checkbox" name="Motion3" value="Motion3"
-                                                        [(ngModel)]="Motion3">
+                                                        (change)="onCheckboxMotion(3)" [(ngModel)]="Motion3">
                                                     <div class="slider round">
                                                         <span class="on"></span>
                                                         <span class="off"></span>
@@ -1746,40 +1875,46 @@
                                             <ul class="list-unstyled m-0 p-0 checkboxes-list">
                                                 <li>
                                                     <input type="checkbox" id="Motion31" value="Motion31"
-                                                        class="th-checkbox" [(ngModel)]="Motion31" name="Motion31" />
+                                                        class="th-checkbox" [(ngModel)]="Motion31"
+                                                        name="Motion31" />
                                                     <label for="Motion31">Mapping out the current content
                                                         architecture.</label>
                                                 </li>
                                                 <li>
                                                     <input type="checkbox" id="Motion32" value="Motion32"
-                                                        class="th-checkbox" [(ngModel)]="Motion32" name="Motion32" />
+                                                        class="th-checkbox" [(ngModel)]="Motion32"
+                                                        name="Motion32" />
                                                     <label for="Motion32">Combine user interviews and internally
                                                         generated ideas into wireframes.</label>
                                                 </li>
                                                 <li>
                                                     <input type="checkbox" id="Motion33" value="Motion33"
-                                                        class="th-checkbox" [(ngModel)]="Motion33" name="Motion33" />
+                                                        class="th-checkbox" [(ngModel)]="Motion33"
+                                                        name="Motion33" />
                                                     <label for="Motion33">Prototyping all pages as a clickable
                                                         prototype.</label>
                                                 </li>
                                                 <li>
                                                     <input type="checkbox" id="Motion34" value="Motion34"
-                                                        class="th-checkbox" [(ngModel)]="Motion34" name="Motion34" />
+                                                        class="th-checkbox" [(ngModel)]="Motion34"
+                                                        name="Motion34" />
                                                     <label for="Motion34">Testing materials as required.</label>
                                                 </li>
                                                 <li>
                                                     <input type="checkbox" id="Motion35" value="Motion35"
-                                                        class="th-checkbox" [(ngModel)]="Motion35" name="Motion35" />
+                                                        class="th-checkbox" [(ngModel)]="Motion35"
+                                                        name="Motion35" />
                                                     <label for="Motion35">User acceptance testing & iterations
                                                         validation.</label>
                                                 </li>
                                                 <li *ngFor="let checkboxcxc of motioncheckboxes2; let i = index">
                                                     <input type="checkbox" [id]="'MotionLabel2' + i"
-                                                    [(ngModel)]="checkboxcxc.checked"
-                                                    (change)="updateCheckboxMotionValue2()"
-                                                    value="'checkboxSet3_' + i" class="th-checkbox" />
+                                                        [(ngModel)]="checkboxcxc.checked"
+                                                        (change)="updateCheckboxMotionValue2()"
+                                                        name="'MotionLabel2' + i" value="'checkboxSet3_' + i"
+                                                        class="th-checkbox" />
                                                     <label *ngIf="checkboxcxc.MotionLabel2"
-                                                    [for]="'MotionLabel2' + i">{{ checkboxcxc.MotionLabel2
+                                                        [for]="'MotionLabel2' + i">{{ checkboxcxc.MotionLabel2
                                                         }}</label>
                                                 </li>
 
@@ -1799,6 +1934,14 @@
 
                         </div>
 
+
+
+
+
+
+
+
+     
                         <div class="col-lg-6">
                             <div class="d-inline-flex mt-4"
                                 *ngIf="branding || design || web||mobile ||web3 ||dashboard ||motion">
