@@ -19,6 +19,8 @@ export class NewQuotationsComponent implements OnInit {
   showForm4 = false;
   showForm5 = false;
   showForm6 = false;
+  showForm8 = false;
+
   brandingshowForm = false;
   brandingshowForm1 = false;
   brandingshowForm2 = false;
@@ -78,7 +80,7 @@ export class NewQuotationsComponent implements OnInit {
   showtypeError: boolean = false;
 
 
-
+status!:string;
 
 
   clients: any[] = [];
@@ -829,10 +831,13 @@ console.log("qotationIdddddddd",this.qotationId);
       this.filteredClients = [];
     } else {
       this.filteredClients = this.clients.filter((client) => {
-        return client.name.toLowerCase().includes(this.searchTerm.toLowerCase());
+        const fullName = `${client.name} ${client.lastname}`.toLowerCase();
+        return fullName.includes(this.searchTerm.toLowerCase());
       });
     }
+    this.getAllClients();
   }
+  
   openForm() {
 
     // this.ClientToUpdate = studuent;
@@ -842,6 +847,16 @@ console.log("qotationIdddddddd",this.qotationId);
 
   closeForm() {
     this.showForm = false;
+  }
+  openForm8() {
+
+    // this.ClientToUpdate = studuent;
+    this.showForm8 = true;
+
+  }
+
+  closeForm8() {
+    this.showForm8 = false;
   }
 
   openForm1() {
@@ -975,7 +990,6 @@ console.log("qotationIdddddddd",this.qotationId);
 
   openFormmobile() {
 
-    // this.ClientToUpdate = studuent;
     this.mobileshowForm = true;
 
   }
@@ -986,7 +1000,6 @@ console.log("qotationIdddddddd",this.qotationId);
 
   openFormmobile1() {
 
-    // this.ClientToUpdate = studuent;
     this.mobileshowForm1 = true;
 
   }
@@ -996,8 +1009,6 @@ console.log("qotationIdddddddd",this.qotationId);
   }
 
   openFormmobile2() {
-
-    // this.ClientToUpdate = studuent;
     this.mobileshowForm2 = true;
 
   }
@@ -1376,20 +1387,290 @@ console.log("qotationIdddddddd",this.qotationId);
       Webbb33: this.Webbb33,
       Webbb34: this.Webbb34,
       Webbb35: this.Webbb35,
+      status: 'COMPLETE'
+    };
+
+    this.quotationService.addQuotation(quotationData).subscribe(
+      (response) => {
+        console.log('Quotation added successfully:', response);
+        console.log('Selected option:', this.societe);
+        console.log(this.branding);
+        console.log('design1', this.Design1);
+        alert("quotation Added");
+        this.router.navigate(['/listQuotation']); // Replace '/other-page' with the actual route path
 
 
 
+        // You can handle success (e.g., show a success message, redirect to another page)
+      },
+      (error) => {
+        console.error('Error adding quotation:', error);
+
+        // Handle the error (e.g., show an error message)
+      }
+    );
+  }
+
+  addQuotationDraft() {
+
+    if (!this.societe) {
+      this.showSocieteError = true;
+      console.log('veuillez choisir une Societe');
+      this.societeInput.nativeElement.focus();
+      this.showForm1 = false;
+      return; // Stop the execution of the method if commentaire is empty
+    }
+
+    else {
+      // Handle form submission here
+      this.showSocieteError = false;
+    }
+
+    if (!this.creation_date) {
+      this.showDateError = true;
+      console.log('veuillez choisir un Date');
+      this.dateInput.nativeElement.focus();
+      this.showForm1 = false;
+      return; // Stop the execution of the method if commentaire is empty
+    }
+
+    else {
+      // Handle form submission here
+      this.showDateError = false;
+    }
+
+    if (!this.auteur) {
+      this.showAuteurError = true;
+      console.log('veuillez choisir un Auteur');
+      this.auteurInput.nativeElement.focus();
+      this.showForm1 = false;
+      return; // Stop the execution of the method if commentaire is empty
+    }
+
+    else {
+      // Handle form submission here
+      this.showAuteurError = false;
+    }
+
+    if (!this.commentaire) {
+      this.showCommentaireError = true;
+      console.log('Please fill in the commentaire field.');
+      this.showForm1 = false;
+
+      this.commentaireInput.nativeElement.focus();
+      return; // Stop the execution of the method if commentaire is empty
+    }
+    else {
+      // Handle form submission here
+      this.showCommentaireError = false;
+    }
 
 
+    if (!this.ClientName) {
+      this.showClientError = true;
+      console.log('veuillez choisir un Client');
+      this.showForm1 = false;
+
+      this.clientInput.nativeElement.focus();
+      return; // Stop the execution of the method if commentaire is empty
+    }
+
+    else {
+      // Handle form submission here
+      this.showClientError = false;
+    }
 
 
+    if (!this.isCheckboxSelected4 && !this.isCheckboxSelected5 && !this.isCheckboxSelected3 && !this.isCheckboxSelected2 && !this.isCheckboxSelectedUXDesign && !this.isCheckboxSelected && !this.branding) {
+      console.log('Please unselect either "Web 3" or "Motion Design" before submitting.');
+      this.typeInput.nativeElement.focus();
+
+      this.showtypeError = true;
+      this.showForm1 = false;
+
+      return; // Stop the execution of the method if either checkbox is selected
+    }
+    else {
+      // Handle form submission here
+      this.showtypeError = false;
+    }
 
 
+    const quotationData = {
+      name: this.name,
+      ClientName: this.ClientName,
+      creation_date: this.creation_date,
+      societe: this.societe,
+      auteur: this.auteur,
+      commentaire: this.commentaire,
+      reduction: this.reduction,
+      tva: this.tva,
+      branding: this.branding,
+      design: this.isCheckboxSelectedUXDesign,
+      web: this.isCheckboxSelected2,
+      mobile: this.isCheckboxSelected3,
+      dashboard: this.isCheckboxSelected,
+      web3: this.isCheckboxSelected4,
+      motion: this.isCheckboxSelected5,
+      TarifBranding: this.TarifBranding,
+      TarifDesign: this.TarifDesign,
+      TarifWeb: this.TarifWeb,
+      TarifMobile: this.TarifMobile,
+      TarifWeb3: this.TarifWeb3,
+      TarifDashboard: this.TarifDashboard,
+      TarifMotion: this.TarifMotion,
 
+      TempsBranding: this.TempsBranding,
+      TempsDesign: this.TempsDesign,
+      TempsWeb: this.TempsWeb,
+      TempsMobile: this.TempsMobile,
+      TempsWeb3: this.TempsWeb3,
+      TempsDashboard: this.TempsDashboard,
+      TempsMotion: this.TempsMotion,
 
+      Design1: this.Design1,
+      Design2: this.Design2,
+      Design3: this.Design3,
+      Design4: this.Design4,
+      Design5: this.Design5,
 
+      Design11: this.Design11,
+      Design12: this.Design12,
+      Design13: this.Design13,
+      Design14: this.Design14,
+      Design15: this.Design15,
+      Design21: this.Design21,
+      Design22: this.Design22,
+      Design23: this.Design23,
+      Design24: this.Design24,
+      Design25: this.Design25,
+      Design31: this.Design31,
+      Design32: this.Design32,
+      Design33: this.Design33,
+      Design34: this.Design34,
+      Design35: this.Design35,
+      Design41: this.Design41,
+      Design42: this.Design42,
+      Design43: this.Design43,
+      Design44: this.Design44,
+      Design45: this.Design45,
+      Design51: this.Design51,
+      Design52: this.Design52,
+      Design53: this.Design53,
+      Design54: this.Design54,
+      Design55: this.Design55,
+      Dashboard1: this.Dashboard1,
+      Dashboard2: this.Dashboard2,
+      Dashboard3: this.Dashboard3,
+      Dashboard11: this.Dashboard11,
+      Dashboard12: this.Dashboard12,
+      Dashboard13: this.Dashboard13,
+      Dashboard14: this.Dashboard14,
+      Dashboard15: this.Dashboard15,
+      Dashboard21: this.Dashboard21,
+      Dashboard22: this.Dashboard22,
+      Dashboard23: this.Dashboard23,
+      Dashboard24: this.Dashboard24,
+      Dashboard25: this.Dashboard25,
+      Dashboard31: this.Dashboard31,
+      Dashboard32: this.Dashboard32,
+      Dashboard33: this.Dashboard33,
+      Dashboard34: this.Dashboard34,
+      Dashboard35: this.Dashboard35,
+      Branding1: this.Branding1,
+      Branding2: this.Branding2,
+      Branding3: this.Branding3,
+      Branding11: this.Branding11,
+      Branding12: this.Branding12,
+      Branding13: this.Branding13,
+      Branding14: this.Branding14,
+      Branding15: this.Branding15,
+      Branding21: this.Branding21,
+      Branding22: this.Branding22,
+      Branding23: this.Branding23,
+      Branding24: this.Branding24,
+      Branding25: this.Branding25,
+      Branding31: this.Branding31,
+      Branding32: this.Branding32,
+      Branding33: this.Branding33,
+      Branding34: this.Branding34,
+      Branding35: this.Branding35,
+      Web1: this.Web1,
+      Web2: this.Web2,
+      Webb3: this.Webb3,
+      Web11: this.Web11,
+      Web12: this.Web12,
+      Web13: this.Web13,
+      Web14: this.Web14,
+      Web15: this.Web15,
+      Web21: this.Web21,
+      Web22: this.Web22,
+      Web23: this.Web23,
+      Web24: this.Web24,
+      Web25: this.Web25,
+      Web31: this.Web31,
+      Web32: this.Web32,
+      Web33: this.Web33,
+      Web34: this.Web34,
+      Web35: this.Web35,
 
+      Mobile1: this.Mobile1,
+      Mobile2: this.Mobile2,
+      Mobile3: this.Mobile3,
+      Mobile11: this.Mobile11,
+      Mobile12: this.Mobile12,
+      Mobile13: this.Mobile13,
+      Mobile14: this.Mobile14,
+      Mobile15: this.Mobile15,
+      Mobile21: this.Mobile21,
+      Mobile22: this.Mobile22,
+      Mobile23: this.Mobile23,
+      Mobile24: this.Mobile24,
+      Mobile25: this.Mobile25,
+      Mobile31: this.Mobile31,
+      Mobile32: this.Mobile32,
+      Mobile33: this.Mobile33,
+      Mobile34: this.Mobile34,
+      Mobile35: this.Mobile35,
 
+      Motion1: this.Motion1,
+      Motion2: this.Motion2,
+      Motion3: this.Motion3,
+      Motion11: this.Motion11,
+      Motion12: this.Motion12,
+      Motion13: this.Motion13,
+      Motion14: this.Motion14,
+      Motion15: this.Motion15,
+      Motion21: this.Motion21,
+      Motion22: this.Motion22,
+      Motion23: this.Motion23,
+      Motion24: this.Motion24,
+      Motion25: this.Motion25,
+      Motion31: this.Motion31,
+      Motion32: this.Motion32,
+      Motion33: this.Motion33,
+      Motion34: this.Motion34,
+      Motion35: this.Motion35,
+
+      Webbb1: this.Webbb1,
+      Webbb2: this.Webbb2,
+      Webbb3: this.Webbb3,
+      Webbb11: this.Webbb11,
+      Webbb12: this.Webbb12,
+      Webbb13: this.Webbb13,
+      Webbb14: this.Webbb14,
+      Webbb15: this.Webbb15,
+      Webbb21: this.Webbb21,
+      Webbb22: this.Webbb22,
+      Webbb23: this.Webbb23,
+      Webbb24: this.Webbb24,
+      Webbb25: this.Webbb25,
+      Webbb31: this.Webbb31,
+      Webbb32: this.Webbb32,
+      Webbb33: this.Webbb33,
+      Webbb34: this.Webbb34,
+      Webbb35: this.Webbb35,
+      status: 'DRAFT'
     };
 
     this.quotationService.addQuotation(quotationData).subscribe(
@@ -1427,8 +1708,8 @@ console.log("qotationIdddddddd",this.qotationId);
     this.clientService.addClient(ClientData).subscribe(
       (response) => {
         console.log('Client added successfully:', response);
-        window.location.reload();
-
+        this.getAllClients();
+        this.clearSelection();
         // You can handle success (e.g., show a success message, redirect to another page)
       },
       (error) => {
@@ -1444,6 +1725,8 @@ console.log("qotationIdddddddd",this.qotationId);
     this.clientSelected = true;
     this.searchTerm = client.name + ' ' + client.lastname; // Concatenate the name and last name in the input
     this.ClientName = this.searchTerm; // Update the selected name
+    this.getAllClients();
+
   }
 
   clearSelection() {
@@ -1451,6 +1734,8 @@ console.log("qotationIdddddddd",this.qotationId);
     this.selectedClient = null;
     this.searchTerm = '';
     this.ClientName = ''; // Clear the selected name when the selection is cleared
+    this.getAllClients();
+
   }
 
   isCheckboxSelected = false; // Variable to track the checkbox state

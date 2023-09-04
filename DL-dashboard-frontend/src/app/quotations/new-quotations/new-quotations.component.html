@@ -94,10 +94,7 @@
                                     </label>
 
                                 </div>
-                                <span class="tag tag-v2 fw-700 green-tag ms-3">
-                                    COMPLETE
-                                    <i class="sm-icon2 icon-green arrow-light-icon ms-2"></i>
-                                </span>
+                            
                             </div>
                         </div>
 
@@ -2341,7 +2338,7 @@
                             <div class="col-12 mt-4">
                                 <a href="#" class="theme-btn theme-btn--transparent mb-2 me-2">Annuler</a>
                                 <a (click)="openForm1()" class="theme-btn mb-2 me-2">Créer le devis</a>
-                                <a href="#" class="theme-btn theme-btn--grey mb-2">Enregistrer en brouillon</a>
+                                <a (click)="openForm8()" class="theme-btn theme-btn--grey mb-2">Enregistrer en brouillon</a>
                             </div>
 
                         </div>
@@ -2371,6 +2368,28 @@
                         </div>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup-container" *ngIf="showForm8">
+        <div class="popup modal-size-md">
+            <span (click)="closeForm8()" class="close-popup"></span>
+            <div class="text-center py-3 px-lg-4 mx-2">
+                <div class="delete-img">
+                </div>
+                <h3>Êtes-vous sûre <br />de vouloir ajouter ce devis comme draft</h3>
+                <p>
+                    En cliquant sur Ajouter le devis sera éditer et vous ne pourrez plus revenir en
+                    arrière.
+                </p>
+                <div class="sm-btns mt-3">
+
+                    <a (click)="closeForm8()"
+                        class="theme-btn theme-btn-sm d-inline-flex theme-btn--transparent cancel-popup my-2 mx-1">Annuler</a>
+                    <button (click)="addQuotationDraft()"
+                        class="theme-btn theme-btn-sm d-inline-flex my-2 mx-1">Ajouter</button>
+                </div>
             </div>
         </div>
     </div>

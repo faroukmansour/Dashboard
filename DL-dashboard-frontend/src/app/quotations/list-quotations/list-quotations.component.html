@@ -108,6 +108,7 @@
                                 <th><span>Quotation Name</span></th>
                                 <th><span>Date de Création</span></th>
                                 <th><span>Type de Services</span></th>
+                                <th><span>Status</span></th>
                                 <th><span>Actions</span></th>
                             </tr>
                         </thead>
@@ -140,6 +141,11 @@
 
 
                                 </td>
+                                <td>
+                                    <span class="green-tag " *ngIf="StudentItem.status == 'COMPLETE'">COMPLETE</span> 
+                                    <span class="red-tag " *ngIf="StudentItem.status == 'DRAFT'">DRAFT</span> 
+
+                                                               </td>
                               
                            
                                 <td class="cta-icons">

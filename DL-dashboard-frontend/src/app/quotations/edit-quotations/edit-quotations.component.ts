@@ -67,7 +67,7 @@ export class EditQuotationsComponent implements OnInit {
   TarifDashboard:string='';
   TarifMotion:string='';
 
-
+status! : string;
 
 
   label!: string;
@@ -422,7 +422,7 @@ this.Webbb32=quotation.Webbb32;
 this.Webbb33=quotation.Webbb33;
 this.Webbb34=quotation.Webbb34;
 this.Webbb35=quotation.Webbb35;
-
+this.status = quotation.status;
 
 
 const isoDate = quotation.creation_date;
@@ -704,6 +704,8 @@ this.creation_date = localDate.toISOString().substr(0, 10);
     this.clientService.addClient(ClientData).subscribe(
       (response) => {
         console.log('Client added successfully:', response);
+        this.getAllClients();
+        this.clearSelection();
         // You can handle success (e.g., show a success message, redirect to another page)
       },
       (error) => {
@@ -719,6 +721,8 @@ this.creation_date = localDate.toISOString().substr(0, 10);
     this.clientSelected = true;
     this.searchTerm = client.name + ' ' + client.lastname; // Concatenate the name and last name in the input
     this.ClientName = this.searchTerm; // Update the selected name
+    this.getAllClients();
+
   }
 
   clearSelection() {
@@ -726,6 +730,8 @@ this.creation_date = localDate.toISOString().substr(0, 10);
     this.selectedClient = null;
     this.searchTerm = '';
     this.ClientName = ''; // Clear the selected name when the selection is cleared
+    this.getAllClients();
+
   }
 
 

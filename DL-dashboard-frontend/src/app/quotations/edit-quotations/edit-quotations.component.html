@@ -58,9 +58,8 @@
                     <div class="page-title mb-3">
                         <h2 class="d-inline-flex align-items-center">
                             Modifier devis
-                            <span class="tag tag-v2 fw-700 green-tag ms-3">
-                                COMPLETE
-                            </span>
+                                <span class="tag tag-v2 fw-700 green-tag ms-3 " *ngIf="status == 'COMPLETE'">COMPLETE</span> 
+                                <span class="tag tag-v2 fw-700 red-tag ms-3" *ngIf="status == 'DRAFT'">DRAFT</span>                             
                         </h2>
                         <p>Modifiez le formulaire ci-dessus</p>
                     </div>
