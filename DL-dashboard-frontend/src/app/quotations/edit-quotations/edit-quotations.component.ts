@@ -1,8 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { QuotationService } from '../quotation.service';
-import { ClientService } from 'src/app/client.service';
+import { ClientService } from 'src/service/client.service';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { QuotationService } from 'src/service/quotation.service';
 
 @Component({
   selector: 'app-edit-quotations',
@@ -67,7 +67,7 @@ export class EditQuotationsComponent implements OnInit {
   TarifDashboard:string='';
   TarifMotion:string='';
 
-
+status! : string;
 
 
   label!: string;
@@ -422,7 +422,7 @@ this.Webbb32=quotation.Webbb32;
 this.Webbb33=quotation.Webbb33;
 this.Webbb34=quotation.Webbb34;
 this.Webbb35=quotation.Webbb35;
-
+this.status = quotation.status;
 
 
 const isoDate = quotation.creation_date;
@@ -704,6 +704,8 @@ this.creation_date = localDate.toISOString().substr(0, 10);
     this.clientService.addClient(ClientData).subscribe(
       (response) => {
         console.log('Client added successfully:', response);
+        this.getAllClients();
+        this.clearSelection();
         // You can handle success (e.g., show a success message, redirect to another page)
       },
       (error) => {
@@ -719,6 +721,8 @@ this.creation_date = localDate.toISOString().substr(0, 10);
     this.clientSelected = true;
     this.searchTerm = client.name + ' ' + client.lastname; // Concatenate the name and last name in the input
     this.ClientName = this.searchTerm; // Update the selected name
+    this.getAllClients();
+
   }
 
   clearSelection() {
@@ -726,6 +730,8 @@ this.creation_date = localDate.toISOString().substr(0, 10);
     this.selectedClient = null;
     this.searchTerm = '';
     this.ClientName = ''; // Clear the selected name when the selection is cleared
+    this.getAllClients();
+
   }
 
 
@@ -878,71 +884,1385 @@ this.creation_date = localDate.toISOString().substr(0, 10);
 
 
   
-
   onCheckboxChange(switchNumber: number) {
     if (switchNumber === 1) {
+      for (const checkbox of this.checkboxes1) {
+        checkbox.checked = false;
+        const checkboxData = {
+          
+         value1: null,
+         label1: checkbox.label1
+        };
+  
+  
+        this.quotationService.updateCheckboxvalue1(this.qotationId, checkboxData).subscribe(
+          (response) => {
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
+      for (const checkbox of this.checkboxes2) {
+        checkbox.checked = false;
+        const checkboxData = {
+          
+         value2: null,
+         label2: checkbox.label2
+        };
+  
+  
+        this.quotationService.updateCheckboxvalue2(this.qotationId, checkboxData).subscribe(
+          (response) => {
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
+      for (const checkbox of this.checkboxes3) {
+        checkbox.checked = false;
+        const checkboxData = {
+          
+         value3: null,
+         label3: checkbox.label3
+        };
+  
+  
+        this.quotationService.updateCheckboxvalue3(this.qotationId, checkboxData).subscribe(
+          (response) => {
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
+      for (const checkbox of this.checkboxes4) {
+        checkbox.checked = false;
+        const checkboxData = {
+          
+         value1: null,
+         label4: checkbox.label4
+        };
+  
+  
+        this.quotationService.updateCheckboxvalue4(this.qotationId, checkboxData).subscribe(
+          (response) => {
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
       this.Design2 = false;
+      this.Design21 = false;
+      this.Design22 = false;
+      this.Design23 = false;
+      this.Design24 = false;
+      this.Design25 = false;
+
       this.Design3 = false;
+      this.Design31 = false;
+      this.Design32 = false;
+      this.Design33 = false;
+      this.Design34 = false;
+      this.Design35 = false;
+
       this.Design4 = false;
+      this.Design41 = false;
+      this.Design42 = false;
+      this.Design43 = false;
+      this.Design44 = false;
+      this.Design45 = false;
+
       this.Design5 = false;
+      this.Design51 = false;
+      this.Design52 = false;
+      this.Design53 = false;
+      this.Design54 = false;
+      this.Design55 = false;
+
 
     } else if (switchNumber === 2) {
+      for (const checkbox of this.checkboxes) {
+        checkbox.checked = false;
+        const checkboxData = {
+          
+         value: null,
+         label: checkbox.label
+        };
+  
+  
+        this.quotationService.updateCheckboxvalue(this.qotationId, checkboxData).subscribe(
+          (response) => {
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
+      for (const checkbox of this.checkboxes2) {
+        checkbox.checked = false;
+        const checkboxData = {
+          
+         value2: null,
+         label2: checkbox.label2
+        };
+  
+  
+        this.quotationService.updateCheckboxvalue2(this.qotationId, checkboxData).subscribe(
+          (response) => {
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
+      for (const checkbox of this.checkboxes3) {
+        checkbox.checked = false;
+        const checkboxData = {
+          
+         value3: null,
+         label3: checkbox.label3
+        };
+  
+  
+        this.quotationService.updateCheckboxvalue3(this.qotationId, checkboxData).subscribe(
+          (response) => {
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
+      for (const checkbox of this.checkboxes4) {
+        checkbox.checked = false;
+        const checkboxData = {
+          
+         value1: null,
+         label4: checkbox.label4
+        };
+  
+  
+        this.quotationService.updateCheckboxvalue4(this.qotationId, checkboxData).subscribe(
+          (response) => {
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
       this.Design1 = false;
+      this.Design11 = false;
+      this.Design12 = false;
+      this.Design13 = false;
+      this.Design14 = false;
+      this.Design15 = false;
+
       this.Design3 = false;
-      this.Design4 = false;
-      this.Design5 = false;
+      this.Design31 = false;
+      this.Design32 = false;
+      this.Design33 = false;
+      this.Design34 = false;
+      this.Design35 = false;
 
-    }else if (switchNumber === 3) {
-      this.Design1 = false;
-      this.Design2 = false;
       this.Design4 = false;
-      this.Design5 = false;
+      this.Design41 = false;
+      this.Design42 = false;
+      this.Design43 = false;
+      this.Design44 = false;
+      this.Design45 = false;
 
-    }else if (switchNumber === 4) {
-      this.Design1 = false;
-      this.Design2 = false;
-      this.Design3= false;
       this.Design5 = false;
+      this.Design51 = false;
+      this.Design52 = false;
+      this.Design53 = false;
+      this.Design54 = false;
+      this.Design55 = false;
 
-    }else if (switchNumber === 5) {
+    } else if (switchNumber === 3) {
+      for (const checkbox of this.checkboxes1) {
+        checkbox.checked = false;
+        const checkboxData = {
+          
+         value1: null,
+         label1: checkbox.label1
+        };
+  
+  
+        this.quotationService.updateCheckboxvalue1(this.qotationId, checkboxData).subscribe(
+          (response) => {
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
+      for (const checkbox of this.checkboxes) {
+        checkbox.checked = false;
+        const checkboxData = {
+          
+         value: null,
+         label: checkbox.label
+        };
+  
+  
+        this.quotationService.updateCheckboxvalue(this.qotationId, checkboxData).subscribe(
+          (response) => {
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
+      for (const checkbox of this.checkboxes3) {
+        checkbox.checked = false;
+        const checkboxData = {
+          
+         value3: null,
+         label3: checkbox.label3
+        };
+  
+  
+        this.quotationService.updateCheckboxvalue3(this.qotationId, checkboxData).subscribe(
+          (response) => {
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
+      for (const checkbox of this.checkboxes4) {
+        checkbox.checked = false;
+        const checkboxData = {
+          
+         value1: null,
+         label4: checkbox.label4
+        };
+  
+  
+        this.quotationService.updateCheckboxvalue4(this.qotationId, checkboxData).subscribe(
+          (response) => {
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
       this.Design1 = false;
+      this.Design11 = false;
+      this.Design12 = false;
+      this.Design13 = false;
+      this.Design14 = false;
+      this.Design15 = false;
+
       this.Design2 = false;
-      this.Design3= false;
+      this.Design21 = false;
+      this.Design22 = false;
+      this.Design23 = false;
+      this.Design24 = false;
+      this.Design25 = false;
+
       this.Design4 = false;
+      this.Design41 = false;
+      this.Design42 = false;
+      this.Design43 = false;
+      this.Design44 = false;
+      this.Design45 = false;
+
+      this.Design5 = false;
+      this.Design51 = false;
+      this.Design52 = false;
+      this.Design53 = false;
+      this.Design54 = false;
+      this.Design55 = false;
+
+    } else if (switchNumber === 4) {
+      for (const checkbox of this.checkboxes1) {
+        checkbox.checked = false;
+        const checkboxData = {
+          
+         value1: null,
+         label1: checkbox.label1
+        };
+  
+  
+        this.quotationService.updateCheckboxvalue1(this.qotationId, checkboxData).subscribe(
+          (response) => {
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
+      for (const checkbox of this.checkboxes2) {
+        checkbox.checked = false;
+        const checkboxData = {
+          
+         value2: null,
+         label2: checkbox.label2
+        };
+  
+  
+        this.quotationService.updateCheckboxvalue2(this.qotationId, checkboxData).subscribe(
+          (response) => {
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
+      for (const checkbox of this.checkboxes) {
+        checkbox.checked = false;
+        const checkboxData = {
+          
+         value: null,
+         label: checkbox.label
+        };
+  
+  
+        this.quotationService.updateCheckboxvalue(this.qotationId, checkboxData).subscribe(
+          (response) => {
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
+      for (const checkbox of this.checkboxes4) {
+        checkbox.checked = false;
+        const checkboxData = {
+          
+         value1: null,
+         label4: checkbox.label4
+        };
+  
+  
+        this.quotationService.updateCheckboxvalue4(this.qotationId, checkboxData).subscribe(
+          (response) => {
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
+      this.Design1 = false;
+      this.Design11 = false;
+      this.Design12 = false;
+      this.Design13 = false;
+      this.Design14 = false;
+      this.Design15 = false;
+
+      this.Design2 = false;
+      this.Design21 = false;
+      this.Design22 = false;
+      this.Design23 = false;
+      this.Design24 = false;
+      this.Design25 = false;
+
+      this.Design3 = false;
+      this.Design31 = false;
+      this.Design32 = false;
+      this.Design33 = false;
+      this.Design34 = false;
+      this.Design35 = false;
+
+      this.Design5 = false;
+      this.Design51 = false;
+      this.Design52 = false;
+      this.Design53 = false;
+      this.Design54 = false;
+      this.Design55 = false;
+
+    } else if (switchNumber === 5) {
+      for (const checkbox of this.checkboxes1) {
+        checkbox.checked = false;
+        const checkboxData = {
+          
+         value1: null,
+         label1: checkbox.label1
+        };
+  
+  
+        this.quotationService.updateCheckboxvalue1(this.qotationId, checkboxData).subscribe(
+          (response) => {
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
+      for (const checkbox of this.checkboxes2) {
+        checkbox.checked = false;
+        const checkboxData = {
+          
+         value2: null,
+         label2: checkbox.label2
+        };
+  
+  
+        this.quotationService.updateCheckboxvalue2(this.qotationId, checkboxData).subscribe(
+          (response) => {
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
+      for (const checkbox of this.checkboxes3) {
+        checkbox.checked = false;
+        const checkboxData = {
+          
+         value3: null,
+         label3: checkbox.label3
+        };
+  
+  
+        this.quotationService.updateCheckboxvalue3(this.qotationId, checkboxData).subscribe(
+          (response) => {
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
+      for (const checkbox of this.checkboxes) {
+        checkbox.checked = false;
+        const checkboxData = {
+          
+         value: null,
+         label: checkbox.label
+        };
+  
+  
+        this.quotationService.updateCheckboxvalue(this.qotationId, checkboxData).subscribe(
+          (response) => {
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
+      this.Design1 = false;
+      this.Design11 = false;
+      this.Design12 = false;
+      this.Design13 = false;
+      this.Design14 = false;
+      this.Design15 = false;
+
+      this.Design2 = false;
+      this.Design3 = false;
+      this.Design31 = false;
+      this.Design32 = false;
+      this.Design33 = false;
+      this.Design34 = false;
+      this.Design35 = false;
+
+      this.Design4 = false;
+      this.Design41 = false;
+      this.Design42 = false;
+      this.Design43 = false;
+      this.Design44 = false;
+      this.Design45 = false;
 
     }
-    
+
   }
 
-
-  onCheck(switchNumber: number) {
+  onCheckboxBranding(switchNumber: number) {
     if (switchNumber === 1) {
-      this.Dashboard2 = false;
-      this.Dashboard3 = false;
+      for (const checkbox of this.brandingcheckboxes1) {
+        checkbox.checked = false;
+        const checkboxData = {
+          
+          BrandingValue1: null,
+          brandingLabel1: checkbox.brandingLabel1
+        };
   
-
+  
+        this.quotationService.updateCheckboxBrandingValue1(this.qotationId, checkboxData).subscribe(
+          (response) => {
+            console.log(`Checkbox ${checkbox.brandingLabel} updated successfully.`);
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
+      for (const checkbox of this.brandingcheckboxes2) {
+        checkbox.checked = false;
+        const checkboxData = {
+          BrandingValue2: null,
+          brandingLabel2: checkbox.brandingLabel2
+        };
+  
+  
+        this.quotationService.updateCheckboxBrandingValue2(this.qotationId, checkboxData).subscribe(
+          (response) => {
+            console.log(`Checkbox ${checkbox.brandingLabel} updated successfully.`);
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
+      this.Branding2 = false;
+      this.Branding3 = false;
+      this.Branding21 = false;
+      this.Branding22 = false;
+      this.Branding23 = false;
+      this.Branding24 = false;
+      this.Branding25 = false;
+      this.Branding31 = false;
+      this.Branding32 = false;
+      this.Branding33 = false;
+      this.Branding34 = false;
+      this.Branding35 = false;
     } else if (switchNumber === 2) {
-      this.Dashboard1 = false;
-      this.Dashboard3 = false;
+      for (const checkbox of this.brandingcheckboxes) {
+        checkbox.checked = false;
+        const checkboxData = {
+          
+          BrandingValue: null,
+          brandingLabel: checkbox.brandingLabel
+        };
   
+  
+        this.quotationService.updateCheckboxBrandingValue(this.qotationId, checkboxData).subscribe(
+          (response) => {
+            console.log(`Checkbox ${checkbox.brandingLabel} updated successfully.`);
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
+      for (const checkbox of this.brandingcheckboxes2) {
+        checkbox.checked = false;
+        const checkboxData = {
+          BrandingValue2: null,
+          brandingLabel2: checkbox.brandingLabel2
+        };
+  
+  
+        this.quotationService.updateCheckboxBrandingValue2(this.qotationId, checkboxData).subscribe(
+          (response) => {
+            console.log(`Checkbox ${checkbox.brandingLabel} updated successfully.`);
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
+      this.Branding1 = false;
+      this.Branding3 = false;
+      this.Branding11 = false;
+      this.Branding12 = false;
+      this.Branding13 = false;
+      this.Branding14 = false;
+      this.Branding15 = false;
+      this.Branding31 = false;
+      this.Branding32 = false;
+      this.Branding33 = false;
+      this.Branding34 = false;
+      this.Branding35 = false;
 
-    }else if (switchNumber === 3) {
-      this.Dashboard1 = false;
-      this.Dashboard2 = false;
+
+
+    } else if (switchNumber === 3) {
+      for (const checkbox of this.brandingcheckboxes) {
+        checkbox.checked = false;
+        const checkboxData = {
+          BrandingValue: null,
+          brandingLabel: checkbox.brandingLabel
+        };
+  
+  
+        this.quotationService.updateCheckboxBrandingValue(this.qotationId, checkboxData).subscribe(
+          (response) => {
+            console.log(`Checkbox ${checkbox.brandingLabel} updated successfully.`);
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
+      for (const checkbox of this.brandingcheckboxes1) {
+        checkbox.checked = false;
+        const checkboxData = {
+          BrandingValue1: null,
+          brandingLabel1: checkbox.brandingLabel1
+        };
+  
+  
+        this.quotationService.updateCheckboxBrandingValue1(this.qotationId, checkboxData).subscribe(
+          (response) => {
+            console.log(`Checkbox ${checkbox.brandingLabel} updated successfully.`);
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
+      this.Branding1 = false;
+      this.Branding2 = false;
+      this.Branding11 = false;
+      this.Branding12 = false;
+      this.Branding13 = false;
+      this.Branding14 = false;
+      this.Branding15 = false;
+      this.Branding21 = false;
+      this.Branding22 = false;
+      this.Branding23 = false;
+      this.Branding24 = false;
+      this.Branding25 = false;
+
     }
-    
   }
 
-
-
-
-
-
-
-
-
-
+  onCheckboxWeb(switchNumber: number) {
+    if (switchNumber === 1) {
+      for (const checkbox of this.webcheckboxes1) {
+        checkbox.checked = false;
+        const checkboxData = {
+          
+          WebValue1: null,
+          webLabel1: checkbox.webLabel1
+        };
   
+  
+        this.quotationService.updateCheckboxWebValue1(this.qotationId, checkboxData).subscribe(
+          (response) => {
+            console.log(`Checkbox ${checkbox.brandingLabel} updated successfully.`);
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
+      for (const checkbox of this.webcheckboxes2) {
+        checkbox.checked = false;
+        const checkboxData = {
+          
+          WebValue2: null,
+          webLabel2: checkbox.webLabel2
+        };
+  
+  
+        this.quotationService.updateCheckboxWebValue2(this.qotationId, checkboxData).subscribe(
+          (response) => {
+            console.log(`Checkbox ${checkbox.brandingLabel} updated successfully.`);
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
+      this.Web2 = false;
+      this.Webb3 = false;
+      this.Web21 = false;
+      this.Web22 = false;
+      this.Web23 = false;
+      this.Web24 = false;
+      this.Web25 = false;
+      this.Web31 = false;
+      this.Web32 = false;
+      this.Web33 = false;
+      this.Web34 = false;
+      this.Web35 = false;
+
+    } else if (switchNumber === 2) {
+      for (const checkbox of this.webcheckboxes) {
+        checkbox.checked = false;
+        const checkboxData = {
+          
+          WebValue: null,
+          webLabel: checkbox.webLabel
+        };
+  
+  
+        this.quotationService.updateCheckboxWebValue(this.qotationId, checkboxData).subscribe(
+          (response) => {
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
+      for (const checkbox of this.webcheckboxes2) {
+        checkbox.checked = false;
+        const checkboxData = {
+          
+          WebValue2: null,
+          webLabel2: checkbox.webLabel2
+        };
+  
+  
+        this.quotationService.updateCheckboxWebValue2(this.qotationId, checkboxData).subscribe(
+          (response) => {
+            console.log(`Checkbox ${checkbox.brandingLabel} updated successfully.`);
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
+      this.Web1 = false;
+      this.Webb3 = false;
+      this.Web11 = false;
+      this.Web12 = false;
+      this.Web13 = false;
+      this.Web14 = false;
+      this.Web15 = false;
+      this.Web31 = false;
+      this.Web32 = false;
+      this.Web33 = false;
+      this.Web34 = false;
+      this.Web35 = false;
+    } else if (switchNumber === 3) {
+      for (const checkbox of this.webcheckboxes) {
+        checkbox.checked = false;
+        const checkboxData = {
+          
+          WebValue: null,
+          webLabel: checkbox.webLabel
+        };
+  
+  
+        this.quotationService.updateCheckboxWebValue(this.qotationId, checkboxData).subscribe(
+          (response) => {
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
+      for (const checkbox of this.webcheckboxes1) {
+        checkbox.checked = false;
+        const checkboxData = {
+          
+          WebValue1: null,
+          webLabel1: checkbox.webLabel1
+        };
+  
+  
+        this.quotationService.updateCheckboxWebValue1(this.qotationId, checkboxData).subscribe(
+          (response) => {
+            console.log(`Checkbox ${checkbox.brandingLabel} updated successfully.`);
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
+      this.Web1 = false;
+      this.Web2 = false;
+      this.Web11 = false;
+      this.Web12 = false;
+      this.Web13 = false;
+      this.Web14 = false;
+      this.Web15 = false;
+      this.Web21 = false;
+      this.Web22 = false;
+      this.Web23 = false;
+      this.Web24 = false;
+      this.Web25 = false;
+    }
+  }
+
+  onCheckboxMobile(switchNumber: number) {
+    if (switchNumber === 1) {
+      for (const checkbox of this.mobilecheckboxes1) {
+        checkbox.checked = false;
+        const checkboxData = {
+          
+         MobileValue1: null,
+          MobileLabel1: checkbox.MobileLabel1
+        };
+  
+  
+        this.quotationService.updateCheckboxMobileValue1(this.qotationId, checkboxData).subscribe(
+          (response) => {
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
+      for (const checkbox of this.mobilecheckboxes2) {
+        checkbox.checked = false;
+        const checkboxData = {
+          
+         MobileValue2: null,
+          MobileLabel2: checkbox.MobileLabel2
+        };
+  
+  
+        this.quotationService.updateCheckboxMobileValue2(this.qotationId, checkboxData).subscribe(
+          (response) => {
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
+      this.Mobile2 = false;
+      this.Mobile3 = false;
+      this.Mobile21 = false;
+      this.Mobile22 = false;
+      this.Mobile23 = false;
+      this.Mobile24 = false;
+      this.Mobile25 = false;
+      this.Mobile31 = false;
+      this.Mobile32 = false;
+      this.Mobile33 = false;
+      this.Mobile34 = false;
+      this.Mobile35 = false;
+
+
+
+    } else if (switchNumber === 2) {
+      for (const checkbox of this.mobilecheckboxes) {
+        checkbox.checked = false;
+        const checkboxData = {
+          
+         MobileValue: null,
+          MobileLabel: checkbox.MobileLabel
+        };
+  
+  
+        this.quotationService.updateCheckboxMobileValue(this.qotationId, checkboxData).subscribe(
+          (response) => {
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
+      for (const checkbox of this.mobilecheckboxes2) {
+        checkbox.checked = false;
+        const checkboxData = {
+          
+         MobileValue2: null,
+          MobileLabel2: checkbox.MobileLabel2
+        };
+  
+  
+        this.quotationService.updateCheckboxMobileValue2(this.qotationId, checkboxData).subscribe(
+          (response) => {
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
+      this.Mobile1 = false;
+      this.Mobile3 = false;
+      this.Mobile11 = false;
+      this.Mobile12 = false;
+      this.Mobile13 = false;
+      this.Mobile14 = false;
+      this.Mobile15 = false;
+      this.Mobile31 = false;
+      this.Mobile32 = false;
+      this.Mobile33 = false;
+      this.Mobile34 = false;
+      this.Mobile35 = false;
+
+
+    } else if (switchNumber === 3) {
+      for (const checkbox of this.mobilecheckboxes1) {
+        checkbox.checked = false;
+        const checkboxData = {
+          
+         MobileValue1: null,
+          MobileLabel1: checkbox.MobileLabel1
+        };
+  
+  
+        this.quotationService.updateCheckboxMobileValue1(this.qotationId, checkboxData).subscribe(
+          (response) => {
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
+      for (const checkbox of this.mobilecheckboxes) {
+        checkbox.checked = false;
+        const checkboxData = {
+          
+         MobileValue: null,
+          MobileLabel: checkbox.MobileLabel
+        };
+  
+  
+        this.quotationService.updateCheckboxMobileValue(this.qotationId, checkboxData).subscribe(
+          (response) => {
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
+      this.Mobile1 = false;
+      this.Mobile2 = false;
+      this.Mobile21 = false;
+      this.Mobile22 = false;
+      this.Mobile23 = false;
+      this.Mobile24 = false;
+      this.Mobile25 = false;
+      this.Mobile11 = false;
+      this.Mobile12 = false;
+      this.Mobile13 = false;
+      this.Mobile14 = false;
+      this.Mobile15 = false;
+    }
+  }
+  onCheckboxWeb3(switchNumber: number) {
+    if (switchNumber === 1) {
+      for (const checkbox of this.web3checkboxes1) {
+        checkbox.checked = false;
+        const checkboxData = {
+          
+         Web3Value1: null,
+          Web3Label1: checkbox.Web3Label1
+        };
+  
+  
+        this.quotationService.updateCheckboxWeb3Value1(this.qotationId, checkboxData).subscribe(
+          (response) => {
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
+      for (const checkbox of this.web3checkboxes2) {
+        checkbox.checked = false;
+        const checkboxData = {
+          
+         Web3Value2: null,
+          Web3Label2: checkbox.Web3Label2
+        };
+  
+  
+        this.quotationService.updateCheckboxWeb3Value2(this.qotationId, checkboxData).subscribe(
+          (response) => {
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
+      this.Webbb2 = false;
+      this.Webbb3 = false;
+      this.Webbb21 = false;
+      this.Webbb22 = false;
+      this.Webbb23 = false;
+      this.Webbb24 = false;
+      this.Webbb25 = false;
+      this.Webbb31 = false;
+      this.Webbb32 = false;
+      this.Webbb33 = false;
+      this.Webbb34 = false;
+      this.Webbb35 = false;
+
+
+    } else if (switchNumber === 2) {
+      for (const checkbox of this.web3checkboxes) {
+        checkbox.checked = false;
+        const checkboxData = {
+          
+         Web3Value: null,
+          Web3Label: checkbox.Web3Label
+        };
+  
+  
+        this.quotationService.updateCheckboxWeb3Value(this.qotationId, checkboxData).subscribe(
+          (response) => {
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
+      for (const checkbox of this.web3checkboxes2) {
+        checkbox.checked = false;
+        const checkboxData = {
+          
+         Web3Value2: null,
+          Web3Label2: checkbox.Web3Label2
+        };
+  
+  
+        this.quotationService.updateCheckboxWeb3Value2(this.qotationId, checkboxData).subscribe(
+          (response) => {
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
+      this.Webbb1 = false;
+      this.Webbb3 = false;
+      this.Webbb11 = false;
+      this.Webbb12 = false;
+      this.Webbb13 = false;
+      this.Webbb14 = false;
+      this.Webbb15 = false;
+      this.Webbb31 = false;
+      this.Webbb32 = false;
+      this.Webbb33 = false;
+      this.Webbb34 = false;
+      this.Webbb35 = false;
+
+    } else if (switchNumber === 3) {
+      for (const checkbox of this.web3checkboxes1) {
+        checkbox.checked = false;
+        const checkboxData = {
+          
+         Web3Value1: null,
+          Web3Label1: checkbox.Web3Label1
+        };
+  
+  
+        this.quotationService.updateCheckboxWeb3Value1(this.qotationId, checkboxData).subscribe(
+          (response) => {
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
+      for (const checkbox of this.web3checkboxes) {
+        checkbox.checked = false;
+        const checkboxData = {
+          
+         Web3Value: null,
+          Web3Label: checkbox.Web3Label
+        };
+  
+  
+        this.quotationService.updateCheckboxWeb3Value(this.qotationId, checkboxData).subscribe(
+          (response) => {
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
+      this.Webbb1 = false;
+      this.Webbb2 = false;
+      this.Webbb11 = false;
+      this.Webbb12 = false;
+      this.Webbb13 = false;
+      this.Webbb14 = false;
+      this.Webbb15 = false;
+      this.Webbb21 = false;
+      this.Webbb22 = false;
+      this.Webbb23 = false;
+      this.Webbb24 = false;
+      this.Webbb25 = false;
+    }
+  }
+
+  onCheckboxMotion(switchNumber: number) {
+    if (switchNumber === 1) {
+      for (const checkbox of this.motioncheckboxes1) {
+        checkbox.checked = false;
+        const checkboxData = {
+          
+         MotionValue1: null,
+          MotionLabel1: checkbox.MotionLabel1
+        };
+  
+  
+        this.quotationService.updateCheckboxMotionValue1(this.qotationId, checkboxData).subscribe(
+          (response) => {
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
+      for (const checkbox of this.motioncheckboxes2) {
+        checkbox.checked = false;
+        const checkboxData = {
+          
+         MotionValue2: null,
+          MotionLabel2: checkbox.MotionLabel2
+        };
+  
+  
+        this.quotationService.updateCheckboxMotionValue2(this.qotationId, checkboxData).subscribe(
+          (response) => {
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
+      this.Motion2 = false;
+      this.Motion3 = false;
+      this.Motion21 = false;
+      this.Motion22 = false;
+      this.Motion23 = false;
+      this.Motion24 = false;
+      this.Motion25 = false;
+      this.Motion31 = false;
+      this.Motion32 = false;
+      this.Motion33 = false;
+      this.Motion34 = false;
+      this.Motion35 = false;
+    } else if (switchNumber === 2) {
+      for (const checkbox of this.motioncheckboxes) {
+        checkbox.checked = false;
+        const checkboxData = {
+          
+         MotionValue: null,
+          MotionLabel: checkbox.MotionLabel
+        };
+  
+  
+        this.quotationService.updateCheckboxMotionValue(this.qotationId, checkboxData).subscribe(
+          (response) => {
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
+      for (const checkbox of this.motioncheckboxes2) {
+        checkbox.checked = false;
+        const checkboxData = {
+          
+         MotionValue2: null,
+          MotionLabel2: checkbox.MotionLabel2
+        };
+  
+  
+        this.quotationService.updateCheckboxMotionValue2(this.qotationId, checkboxData).subscribe(
+          (response) => {
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
+      this.Motion1 = false;
+      this.Motion3 = false;
+      this.Motion11 = false;
+      this.Motion12 = false;
+      this.Motion13 = false;
+      this.Motion14 = false;
+      this.Motion15 = false;
+      this.Motion31 = false;
+      this.Motion32 = false;
+      this.Motion33 = false;
+      this.Motion34 = false;
+      this.Motion35 = false;
+    } else if (switchNumber === 3) {
+      for (const checkbox of this.motioncheckboxes1) {
+        checkbox.checked = false;
+        const checkboxData = {
+          
+         MotionValue1: null,
+          MotionLabel1: checkbox.MotionLabel1
+        };
+  
+  
+        this.quotationService.updateCheckboxMotionValue1(this.qotationId, checkboxData).subscribe(
+          (response) => {
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
+      for (const checkbox of this.motioncheckboxes) {
+        checkbox.checked = false;
+        const checkboxData = {
+          
+         MotionValue: null,
+          MotionLabel: checkbox.MotionLabel
+        };
+  
+  
+        this.quotationService.updateCheckboxMotionValue(this.qotationId, checkboxData).subscribe(
+          (response) => {
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
+      this.Motion1 = false;
+      this.Motion2 = false;
+      this.Motion11 = false;
+      this.Motion12 = false;
+      this.Motion13 = false;
+      this.Motion14 = false;
+      this.Motion15 = false;
+      this.Motion21 = false;
+      this.Motion22 = false;
+      this.Motion23 = false;
+      this.Motion24 = false;
+      this.Motion25 = false;
+    }
+  }
+
+  onCheckbox(switchNumber: number) {
+    if (switchNumber === 1) {
+      for (const checkbox of this.dashboardcheckboxes1) {
+        checkbox.checked = false;
+        const checkboxData = {
+          
+         DashboardValue1: null,
+         DashboardLabel1: checkbox.DashboardLabel1
+        };
+  
+  
+        this.quotationService.updateCheckboxDashboardValue1(this.qotationId, checkboxData).subscribe(
+          (response) => {
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
+        for (const checkbox of this.dashboardcheckboxes2) {
+          checkbox.checked = false;
+          const checkboxData = {
+            
+           DashboardValue2: null,
+           DashboardLabel2: checkbox.DashboardLabel2
+          };
+    
+    
+          this.quotationService.updateCheckboxDashboardValue2(this.qotationId, checkboxData).subscribe(
+            (response) => {
+            },
+            (error) => {
+              console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+            }
+          );
+        }
+      this.Dashboard2 = false;
+      this.Dashboard3 = false;
+      this.Dashboard31 = false;
+      this.Dashboard32 = false;
+      this.Dashboard33 = false;
+      this.Dashboard34 = false;
+      this.Dashboard35 = false;
+      this.Dashboard21 = false;
+      this.Dashboard22 = false;
+      this.Dashboard23 = false;
+      this.Dashboard24 = false;
+      this.Dashboard25 = false;
+
+    } 
+    else if (switchNumber === 2) {
+      for (const checkbox of this.dashboardcheckboxes) {
+        checkbox.checked = false;
+        const checkboxData = {
+          
+         DashboardValue: null,
+         DashboardLabel: checkbox.DashboardLabel
+        };
+  
+  
+        this.quotationService.updateCheckboxDashboardValue(this.qotationId, checkboxData).subscribe(
+          (response) => {
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
+        for (const checkbox of this.dashboardcheckboxes2) {
+          checkbox.checked = false;
+          const checkboxData = {
+            
+           DashboardValue2: null,
+           DashboardLabel2: checkbox.DashboardLabel2
+          };
+    
+    
+          this.quotationService.updateCheckboxDashboardValue2(this.qotationId, checkboxData).subscribe(
+            (response) => {
+            },
+            (error) => {
+              console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+            }
+          );
+        }
+      this.Dashboard1 = false;
+      this.Dashboard3 = false;
+      this.Dashboard11 = false;
+      this.Dashboard12 = false;
+      this.Dashboard13 = false;
+      this.Dashboard14 = false;
+      this.Dashboard15 = false;
+      this.Dashboard31 = false;
+      this.Dashboard32 = false;
+      this.Dashboard33 = false;
+      this.Dashboard34 = false;
+      this.Dashboard35 = false;
+
+    }
+     else if (switchNumber === 3) {
+      for (const checkbox of this.dashboardcheckboxes1) {
+        checkbox.checked = false;
+        const checkboxData = {
+          
+         DashboardValue1: null,
+         DashboardLabel1: checkbox.DashboardLabel1
+        };
+  
+  
+        this.quotationService.updateCheckboxDashboardValue1(this.qotationId, checkboxData).subscribe(
+          (response) => {
+          },
+          (error) => {
+            console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+          }
+        );
+      }
+        for (const checkbox of this.dashboardcheckboxes) {
+          checkbox.checked = false;
+          const checkboxData = {
+            
+           DashboardValue: null,
+           DashboardLabel: checkbox.DashboardLabel
+          };
+    
+    
+          this.quotationService.updateCheckboxDashboardValue(this.qotationId, checkboxData).subscribe(
+            (response) => {
+            },
+            (error) => {
+              console.error(`Error updating checkbox ${checkbox.brandingLabel}:`, error);
+            }
+          );
+        }
+      this.Dashboard1 = false;
+      this.Dashboard2 = false;
+      this.Dashboard11 = false;
+      this.Dashboard12 = false;
+      this.Dashboard13 = false;
+      this.Dashboard14 = false;
+      this.Dashboard15 = false;
+      this.Dashboard21 = false;
+      this.Dashboard22 = false;
+      this.Dashboard23 = false;
+      this.Dashboard24 = false;
+      this.Dashboard25 = false;
+
+    }
+
+  }
+
   get checkboxArray() {
     return this.form.get('checkboxes') as FormArray;
   }

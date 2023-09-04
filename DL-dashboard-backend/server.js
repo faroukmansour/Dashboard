@@ -293,6 +293,7 @@ server.get('/api/client/:name', (req, res) => {
         Webbb33: req.body.Webbb33 ? '1' : null,
         Webbb34: req.body.Webbb34 ? '1' : null,
         Webbb35: req.body.Webbb35 ? '1' : null,
+        status: req.body.status,
 
       };
       details.creation_date = details.creation_date.toISOString().split("T")[0];

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ClientService } from '../client.service';
+import { ClientService } from 'src/service/client.service';
 
 @Component({
   selector: 'app-client',

@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedComponent } from './shared/shared.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { ClientComponent } from './client/client.component';
 import { TemplateComponent } from './template/template.component';
 import { QuotationsComponent } from './quotations/quotations.component';
 import { ListQuotationsComponent } from './quotations/list-quotations/list-quotations.component';
@@ -18,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ClientComponent } from './client/client.component';
 
 @NgModule({
   declarations: [
